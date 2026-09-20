@@ -2,13 +2,14 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.2 — pilot operasional terfokus dan referensi pengembangan bertahap |
+| Versi | 0.3 — konsolidasi terakhir R1, recording DAILY, dan handoff UX |
 | Tanggal | 20 September 2026 |
 | Bahasa produk awal | Bahasa Indonesia |
 | Platform utama | Web mobile-first; disiapkan untuk kemasan aplikasi Android |
-| Fokus | Operasional dan keuangan kandang; recording, performa, serta estimasi kemitraan sebagai pendukung |
+| Fokus | Operasional dan keuangan kandang; recording dasar OFF/DAILY sebagai pilihan, performa dan estimasi kemitraan tetap bertahap |
 | Pengguna awal yang diketahui | Dua owner berminat; jumlah kandang, pengguna aktif, dan transaksi belum terukur |
-| Status persetujuan | Pengguna meminta perbaikan hasil review kritis; scope dasar direvisi di bagian 4. Parameter lapangan, kebijakan sensitif, dan gate produksi tetap harus diverifikasi |
+| Status persetujuan | Konsolidasi terakhir dari scope R1 dan `UX_UI_SPEC.md` v0.1; inventaris 26 layar dan 35 skenario UX menjadi handoff, bukan bukti UAT. Parameter lapangan, kebijakan sensitif, mockup visual, dan gate produksi tetap harus diverifikasi |
+| Spesifikasi UX pendamping | `UX_UI_SPEC.md` v0.1; 26 layar dan 35 skenario penerimaan UX. ID layar/tes dikelola di dokumen pendamping dan tidak menggantikan AC/GOLD/ledger test PRD |
 | Implementasi | Dokumen kebutuhan, bukan aplikasi yang sudah dibuat, bukan desain database final |
 | Privasi contoh | Semua nama, kode, tarif, dan angka contoh dalam dokumen ini sintetis |
 
@@ -158,13 +159,20 @@ Target di atas adalah target uji, bukan hasil yang sudah dicapai. Tidak menjanji
 | K-21 | ABK dapat mengambil kasbon yang diperhitungkan terhadap gaji. Gaji pokok berbasis periode ayam, bukan default bulanan. |
 | K-22 | Upah pekerjaan tambahan bertarif tersendiri, tidak digabung ke komponen/slip/pembayaran gaji periode; boleh direkap bersama dalam laporan keuangan. |
 | K-23 | PRD harus rinci dan dapat dipakai AI agent berbiaya rendah; deliverable berupa file Markdown. |
+| K-24 | Recording dasar tersedia sejak R1 dan dapat dimatikan oleh Owner bila memakai pencatatan mitra. Tanpa recording, operasional dan pembukuan tetap dapat digunakan sampai penghasilan/hasil usaha periode dari data keuangan yang cukup. Nama mode dan pembatasan teknis mengikuti rancangan bagian 4 dan 16. |
+| K-25 | Jika Owner mengaktifkan recording, ABK mengisinya satu kali sehari sebagai rekap harian pakan terpakai, ayam mati/afkir, dan sampling yang dilakukan. Saat OFF tidak ada kewajiban recording. Granularitas, versi/revisi, cutoff, offline, dan linkage stok mengikuti rancangan bagian 16; bukan keputusan literal tambahan pengguna. |
+| K-26 | Maksimal satu user ABK dengan akses aktif per kandang; Owner tetap memiliki akses. Detail assignment lintas kandang, batas payroll, dan perilaku pergantian adalah rancangan implementasi yang harus tetap menjaga audit, konflik, dan histori. |
+| K-27 | Owner mencatat pakan datang, DOC, dan penerimaan sapronak mitra serta dapat menginput transaksi langsung. ABK tetap boleh membeli/menerima operasional gas/solar sendiri. Owner mobile-first; setiap ABK menggunakan HP dan identitasnya sendiri untuk input yang berwenang. |
+| K-28 | Fokus ABK adalah Recording, Transaksi belanja, Pemakaian operasional, dan Uang Kas. Bentuk navigasi, penempatan gaji/kasbon/upah/panduan/akun, dan struktur menu adalah rancangan UX; Owner tetap membutuhkan direct input. |
+| K-29 | Aplikasi menyediakan tutorial bagi pengguna. Bentuk panduan kontekstual dan batas tanpa LMS mengikuti rancangan UX, bukan fitur pelatihan tambahan yang telah diminta. |
+| K-30 | Arah UI dikonfirmasi modern, mudah digunakan, dan bergaya glassmorphism. Detail implementasi translucent/frosted, surface opaque, kontras, fallback solid, warna, radius, blur, dan shadow adalah rancangan UX yang masih menunggu mockup/usability/accessibility review. |
 
 ### 3.2 Default rancangan D
 
 | ID | Default usulan yang digunakan dalam PRD | Keputusan terkait |
 |---|---|---|
 | D-01 | Tenant adalah ruang usaha; satu primary owner pada rilis awal. Co-owner/patungan belum didesain sebagai pembagian saham. | Q-02 |
-| D-02 | R1 adalah pilot operasional utuh sesuai bagian 4; recording detail, estimasi/template kontrak, buku pribadi, PPL, dan task umum ditunda. Tidak perlu membangun modul tertunda agar R1 selesai. | Q-01 |
+| D-02 | R1 adalah pilot operasional utuh sesuai bagian 4; recording R1 hanya OFF/DAILY dasar, sedangkan SUMMARY, recording detail, estimasi/template kontrak, buku pribadi, PPL, dan task umum ditunda. Tidak perlu membangun modul tertunda agar R1 selesai. | Q-01 |
 | D-03 | Owner memegang persetujuan/posting finansial. ABK mengajukan pada R1; Mandor hanya setelah perluasan aktif. Batch review tidak mengubah hak; delegasi pembayaran bukan default. | Q-03 |
 | D-04 | Kas terkonfirmasi tidak boleh minus; laporan belanja belum diverifikasi tetap terlihat sebagai klaim keluar, bukan dihapus. | Q-03 |
 | D-05 | Moving weighted average sementara mengikuti posting; biaya final mengikuti urutan kejadian yang disahkan dan rekonsiliasi append-only INV-16. Keterlambatan sinkron tidak boleh diam-diam menentukan biaya final. | Q-04 |
@@ -182,6 +190,11 @@ Target di atas adalah target uji, bukan hasil yang sudah dicapai. Tidak menjanji
 | D-17 | PPL tidak melihat kontrak harga, pengeluaran, kas, gaji, kasbon, atau keuangan pribadi. | Q-03 |
 | D-18 | Nominal komponen kontrak yang belum diketahui tidak diganti nol. Output parsial bukan estimasi lengkap. | Q-07 |
 | D-19 | Framework dan versi dependensi diputuskan melalui ADR setelah kebutuhan disetujui. Tidak ada stack yang sudah dipasang oleh PRD. | Q-10 |
+| D-20 | Owner memilih mode recording per siklus; `OFF` adalah default aman sampai owner mengaktifkan `DAILY`. Mode tidak berubah otomatis karena ada atau tidaknya data, dan pergantian mode memakai cutoff/rekonsiliasi. | Q-01, Q-05 |
+| D-21 | Default rancangan scope daily recording memakai satu konteks `cycle + building + business_date`; status per bangunan bukan keputusan eksplisit pengguna dan harus divalidasi terhadap opsi gabungan pada pilot. Satu summary kanonis dapat memiliki banyak draft/submit/revisi tertaut, tetapi agregasi memakai versi efektif terakhir. | Q-01, Q-05, Q-12 |
+| D-22 | Satu ABK aktif per kandang tidak mencegah konflik Owner/ABK atau dua device. Semua mutable recording memakai expected version/optimistic concurrency; accepted recording, inventory pending, dan efek finansial tetap state terpisah. | Q-03, Q-12 |
+| D-23 | Usulan navigasi ABK adalah Hari Ini / Catat / Uang Kas / Riwayat / Lainnya; gaji, kasbon, upah, Pusat Panduan, dan Akun berada di Lainnya. Owner mempertahankan navigasi lama. Struktur ini bukan keputusan literal K dan diuji melalui mockup/usability. | Q-01 |
+| D-24 | Arah visual memakai glassmorphism selektif sebagai progressive enhancement: shell/dekorasi boleh translucent, form/angka/status finansial opaque, kontras diuji, dan solid fallback dipakai bila efek gagal/tidak dipilih. Token warna/radius/blur/shadow belum final. | Q-01, Q-10 |
 
 <a id="s04"></a>
 ## 4. Cakupan rilis dan dependensi
@@ -204,7 +217,8 @@ R1 hanya mencakup baris R1 berikut. R2 adalah perluasan bertahap berdasarkan has
 | Modal/prive, pinjaman/talangan owner kepada usaha | R1 | Sisi buku usaha saja; tidak membutuhkan buku pribadi aktif |
 | Pekerjaan umum, kebutuhan belanja, perawatan, kunjungan PPL, peran Mandor/PPL | R2 | Role dan modul tertunda tidak diundang/diaktifkan pada pilot |
 | Keuangan pribadi owner dan offset pinjaman pribadi melalui payroll | R2 | Tidak ada pair ke buku pribadi pada R1; jangan menyamarkan potongan yang belum didukung menjadi pembayaran tunai |
-| Recording detail/rekap metrik, panen per DO, FCR/ABW/deplesi/IP | R2 | R1 memakai mode OFF, data awal/akhir minimal dan cutoff; tidak membutuhkan recording harian atau tiket panen |
+| Recording dasar owner/ABK berwenang: mode OFF atau DAILY (pakan terpakai, mati/afkir, sampling harian) | R1 | OFF tidak membutuhkan recording dan tetap mencakup operasional/keuangan sampai hasil usaha atau settlement aktual; DAILY memakai satu rekap kanonis per hari, bukan penjumlahan submit/revisi |
+| SUMMARY, recording detail/event produksi, panen per DO, FCR/ABW panen/deplesi/IP, dan metrik lanjutan | R2 | ABW sampling sederhana REC-10 tersedia pada DAILY R1; bukan ABW panen/performa lengkap. Tidak ada impor otomatis, mesin kontrak, atau klaim metrik final hanya karena mode DAILY |
 | Estimasi dari template kontrak bertipe dan berversi | R2 | Mulai dari pola kontrak pilot terverifikasi; tarif/parameter configurable, tanpa builder umum wajib |
 | Builder kontrak umum untuk owner | Setelah validasi template R2 | Hanya jika variasi berulang membuktikan kebutuhan; primitive bounded tetap wajib |
 | Dashboard mobile-first, ekspor CSV/PDF dan paket data usaha, lampiran | R1 | File privat; paket terstruktur bukan hanya laporan ringkasan |
@@ -220,10 +234,10 @@ R1 hanya mencakup baris R1 berikut. R2 adalah perluasan bertahap berdasarkan has
 
 ### 4.2 Penerapan scope pada seluruh dokumen
 
-- Bagian 5–13 adalah inti R1, kecuali payroll pinjaman pribadi pada 13.4. Bagian 14 menjadi referensi R2; hanya efek **sisi usaha** modal/prive/talangan berlaku R1 melalui CASH-15. Bagian 15–19 ditunda, kecuali prinsip OFF/tidak mengarang data, data periode minimum, dan larangan hardcode kontrak.
+- Bagian 5–13 adalah inti R1, kecuali payroll pinjaman pribadi pada 13.4. Bagian 14 menjadi referensi R2; hanya efek **sisi usaha** modal/prive/talangan berlaku R1 melalui CASH-15. Bagian 16 berlaku untuk OFF/DAILY melalui REC-01–REC-10, prinsip sumber/coverage REC-13, dan REC-14–REC-19; source SUMMARY/DETAIL, REC-11–REC-12, serta bagian 15, 17–19 tetap tertunda kecuali prinsip tidak mengarang data, data periode minimum, dan larangan hardcode kontrak. ABW sampling sederhana REC-10 bukan metrik panen R2.
 - Pada bagian 20, SET dan rekonsiliasi aktual/coverage berlaku R1 kecuali perbandingan estimasi SET-10. EST dan engine kontrak tidak berlaku R1. Upload RHPP sebagai bukti tidak menjanjikan ekstraksi otomatis.
 - Layar, laporan/ekspor, notifikasi, entitas, endpoint, dan tes mengikuti batas ini. Tidak adanya API R2 bukan kegagalan R1; mencoba mengakses fitur/grant tertunda harus ditolak, bukan mengembalikan data tersembunyi. Scope tes rinci pada 29.2.
-- Pilot menguji satu siklus pada kandang terpilih setiap owner; model tetap mendukung banyak kandang. Mulai tengah siklus boleh melalui ONB-10. Laporan yang tidak mencakup seluruh siklus tidak boleh disebut laba satu siklus lengkap.
+- Pilot menguji satu siklus pada kandang terpilih setiap owner; model tetap mendukung banyak kandang. Mulai tengah siklus boleh melalui ONB-10. Mode OFF/DAILY tidak mengubah kebutuhan coverage finansial; laporan yang tidak mencakup seluruh siklus tidak boleh disebut laba satu siklus lengkap.
 - Snapshot kas/biaya dan daftar kewajiban tetap berguna saat settlement belum lengkap. Tidak menunggu RHPP untuk memakai aplikasi atau memulai periode berikutnya; tidak memaksa angka laba final.
 - Sebelum pilot, konfirmasi kasus usaha yang benar-benar terjadi. Jika kebutuhan penting berada di luar scope (misalnya pemotongan pinjaman pribadi melalui gaji), putuskan perluasan kecil dengan tes atau nyatakan batasnya; jangan diam-diam menyatakan kewajiban lunas.
 
@@ -310,17 +324,21 @@ Legenda: **M** mengelola sesuai scope; **B** baca; **A** ajukan/catat, bukan per
 | Kemampuan | Admin platform | Owner | Mandor opsional | ABK | PPL |
 |---|---|---|---|---|---|
 | Aktivasi tenant/limit sistem | M | B status sendiri | — | — | — |
-| Kandang, bangunan, mitra, penugasan | — | M | B scope tugas | B scope tugas | B identitas minimum kandang undangan |
+| Kandang, bangunan, mitra, penugasan | — | M | B scope tugas | B proyeksi operasional minimum scope tugas | B identitas minimum kandang undangan |
+| Penugasan user ABK aktif per kandang (maks. satu ABK) | — | M | — | B scope kandang yang ditugaskan | — |
 | Periode fisik: buat/aktifkan/nyatakan selesai | — | M | A setelah R2 | — | B setelah R2 |
 | Keuangan periode: review/kunci/buka kembali snapshot | — | M | — | — | — |
 | Kas usaha, kontrak harga, settlement, laba | — | M | — | — | — |
 | Belanja lapangan | — | M | A scope tugas | A scope tugas | — |
+| Membuat/melengkapi/mengesahkan dokumen penerimaan DOC, pakan, sapronak mitra | — | M | — | — | — |
+| Pembelian/penerimaan operasional gas dan solar sendiri | — | M | A scope tugas | A scope tugas sendiri | — |
 | Saldo pegangan dan belanja sendiri | — | M | S | S | — |
 | Persetujuan/pembayaran/reversal finansial | — | M | — | — | — |
 | Stok kuantitas, pemakaian, opname | — | M | A/B scope tugas | A/B scope tugas | B kuantitas sapronak relevan |
+| Recording harian R1 (`DAILY`) | — | M | — | A scope kandang yang ditugaskan | — |
 | Gaji/kasbon pribadi ABK | — | M | S | S | — |
 | Upah pekerjaan sendiri | — | M | A/B sendiri | A/B sendiri | — |
-| Data produksi/panen (R2; inaktif pada R1) | — | M | A/B scope tugas | A/B scope tugas | B kandang undangan |
+| Data produksi/panen detail (R2; inaktif pada R1) | — | M | A/B scope tugas | A/B scope tugas | B kandang undangan |
 | Kunjungan/rekomendasi PPL (R2; inaktif pada R1) | — | M | A/B scope tugas | A/B scope tugas | A kunjungan sendiri, B scope grant |
 | Task/lampiran task nonfinansial (R2; inaktif pada R1) | — | M | A/B scope tugas | A/B scope tugas | B yang dibagikan ke PPL pada kandang undangan |
 | Keuangan pribadi owner (R2; inaktif pada R1) | — | S | — | — | — |
@@ -329,12 +347,19 @@ Legenda: **M** mengelola sesuai scope; **B** baca; **A** ajukan/catat, bukan per
 
 Default tidak memberi Mandor akses gaji semua ABK. Delegasi finansial, jika disetujui kemudian, harus berupa capability eksplisit, scope kandang, batas nominal, dan audit; bukan otomatis akibat label Mandor.
 
+**Proyeksi operasional ABK:** server hanya mengirim label/identitas minimum mitra yang relevan, jenis/satuan/kuantitas stok, serta tanggal DOC dan populasi awal/alokasi yang diperlukan untuk recording pada penugasan sah. Ini bukan akses ke master mitra penuh atau dokumen penerimaan. Invoice, lampiran penerimaan yang dapat mengandung harga, rate/nilai, rekening pihak, dan settlement tidak termasuk. Endpoint tulis penerimaan sapronak hanya Owner; endpoint baca ABK menggunakan whitelist field, bukan mengirim objek penuh lalu menyembunyikannya di UI. Kuantitas operasional tetap dapat dibaca melalui proyeksi stok/konteks berizin.
+
+**SEC-15:** pada satu kandang, paling banyak satu membership/grant ABK berstatus aktif pada suatu waktu. Owner tetap mempunyai akses dan tidak dihitung sebagai slot ABK. Constraint ini bukan limit jumlah baris Employee/payroll; detail multi-kandang adalah default implementasi yang tetap dapat diuji. Assignment menyimpan `effective_from`, `effective_to`, `assignment_version`, dan status grant. Pergantian menutup grant lama, membuka grant baru, serta menulis audit dalam satu transaksi atomik; request dengan versi usang ditolak atau masuk review.
+
+Antrean, draft, dan operation ID yang dibuat ABK lama tidak ikut diwariskan ke ABK baru dan tidak boleh dihapus diam-diam. Antrean tetap terikat user/device asal untuk sinkronisasi atau rekonsiliasi owner; pencabutan grant mencegah posting tanpa izin terkini. Kas pegangan, gaji, kasbon, pinjaman, dan upah historis tetap tertaut pada pihak asal, walaupun assignment kandangnya diganti. Satu ABK aktif tidak menjadi lock eksklusif terhadap Owner atau device lain: recording dan transaksi mutable tetap memakai expected version, idempotency, dan conflict review.
+
 **Scope PPL:** identitas kandang/bangunan, status fisik periode, produksi/panen, kuantitas sapronak, serta kunjungan/rekomendasi pada grant yang sah. Task/catatan umum ABK/owner hanya terbaca bila ditandai `PPL_VISIBLE`; default `INTERNAL`. Lampiran dan histori revisi mewarisi visibility objek induk. Nota/pembelian, tarif pekerjaan, kas/gaji, kontrak harga, dan settlement tetap tertutup; flag PPL_VISIBLE tidak dapat mengubah objek finansial menjadi publik. Kunjungan yang sengaja mencatat rekomendasi PPL default PPL_VISIBLE pada scope grant tersebut.
 
 ### 6.3 Perubahan akses
 
 - Owner mengundang user dan memberikan scope kandang/bangunan. User dapat memegang beberapa peran pada scope berbeda; union izin hanya pada scope yang sama dan sah.
 - Owner mencabut grant PPL atau penugasan ABK tanpa menghapus catatan lama.
+- Owner dapat mengganti ABK aktif secara atomik/versioned; pencabutan akses lama tidak memindahkan kepemilikan histori, saldo, kewajiban, atau antrean ke user baru.
 - Penonaktifan karyawan tidak menghapus sisa kas, piutang, gaji, atau upah belum lunas.
 - Setelah pencabutan, server menolak request baru dan URL unduhan baru. Salinan yang sebelumnya sudah diunduh tidak dapat dijanjikan dapat ditarik kembali.
 - Admin tidak mempunyai menu impersonation/read-all. Akses dukungan khusus kelak memerlukan persetujuan, durasi, alasan, dan audit terpisah.
@@ -355,7 +380,7 @@ Pergantian ownership dan recovery yang memengaruhi akses memakai expected member
 | ONB-01 | Admin membuat/mengaktifkan tenant, menetapkan primary owner, dan limit. Tidak ada checkout, harga paket, atau payment gateway R1. |
 | ONB-02 | Owner mengisi nama usaha, zona waktu, kandang, bangunan/kapasitas, lalu akun kas awal. Kontrak lengkap bukan syarat mulai catat operasional. |
 | ONB-03 | Saldo awal kas/stok/piutang dicatat dengan tanggal cut-off, sumber, dan alasan; bukan dianggap pendapatan periode. |
-| ONB-04 | Owner mengundang ABK dan mengatur penugasan pada R1; Mandor/PPL sesudah modulnya aktif. Karyawan boleh ada sebagai data tanpa akun login. |
+| ONB-04 | Owner mengundang ABK dan mengatur assignment versioned pada R1; paling banyak satu ABK berakses aktif per kandang, sementara data payroll/karyawan dan penugasan user ke kandang lain tetap boleh. Mandor/PPL sesudah modulnya aktif. Karyawan boleh ada sebagai data tanpa akun login. |
 | ONB-05 | Master kategori pengeluaran/pemasukan dapat ditambah/diarsip, tetapi kelas akuntansi seperti transfer, stok, pinjaman, dan biaya tidak dapat diubah sekadar mengganti nama kategori. |
 | ONB-06 | Master barang memuat jenis, kepemilikan, unit dasar/konversi, mode stok/nonstok, minimum stok opsional. Tidak ada asumsi semua sak/tabung sama. |
 | ONB-07 | Master mitra/toko/broker dibedakan menurut peran; satu pihak dapat mempunyai beberapa peran tanpa mencampur saldo/tagihan. |
@@ -370,7 +395,7 @@ Pergantian ownership dan recovery yang memengaruhi akses memakai expected member
 - Saldo kas/stok, utang toko, reimbursement, advance gaji, dan kewajiban gaji/upah dibawa sebagai opening positions tertaut pihak/periode pada C, bukan kas masuk/biaya baru. Setiap posisi menyimpan apakah biaya sebelum cutoff sudah diakui; nilai biaya historis yang belum diketahui bukan nol. Gaji final kemudian hanya menambah pengakuan yang belum tercakup, tidak menambahkan lagi hak yang sudah dibawa sebagai kewajiban awal.
 - Nominal hak gaji penuh, yang sudah dibayar, advance yang belum diterapkan, dan sisa payable dipisahkan. Advance yang sudah diperhitungkan dalam saldo payable tidak diterapkan dua kali. Nilai/rincian yang belum cocok masuk reconciliation pending; tidak boleh melakukan offset otomatis sampai opening disahkan.
 - Populasi saat cutoff bukan DOC baru. Data sebelum C memakai opening/summary tersendiri; event baru memakai waktu >C. Bila timestamp sama dengan C, tetapkan cakupan opening versus event secara eksplisit sebelum posting. Duplikat historis ditaut/dikeluarkan dari agregasi, bukan dijumlah.
-- R1 tidak mewajibkan histori pakan/mortalitas/panen terperinci. Jika kelak recording/estimasi diaktifkan, opening produksi mengikuti REC-03/REC-13 dan sumbernya. Tidak menghitung FCR/deplesi dari data yang tidak lengkap.
+- R1 tidak mewajibkan histori pakan/mortalitas/panen terperinci. Mode `DAILY` hanya mencatat pakan terpakai, mati/afkir, dan sampling sesuai REC-14–REC-19; detail/panen tetap R2. Opening produksi mengikuti cutoff dan sumbernya, dan tidak menghitung FCR/deplesi dari data yang tidak lengkap.
 - Jika biaya sebelum C belum lengkap, laporan menampilkan “cakupan pencatatan mulai ...; biaya sebelumnya belum lengkap”. Boleh menyimpan snapshot operasional sesuai cutoff, tetapi `financial_status=LOCKED` dan laba **seluruh periode** menunggu rekonsiliasi cakupan historis; tidak membuat siklus fiktif atau biaya nol untuk meluluskan gate.
 
 ### 7.2 Status layanan dan limit
@@ -414,7 +439,7 @@ Pengecualian onboarding tengah siklus ONB-10: jika tanggal/populasi awal kandang
 
 - **CYC-05:** periode berikutnya boleh aktif setelah fisik sebelumnya `FINISHED`, walau keuangan sebelumnya `OPEN/REVIEW` atau RHPP belum cair.
 - **CYC-06:** tidak mengubah `FINISHED` kembali ke `ACTIVE` jika sudah ada periode fisik lain aktif. Koreksi historis populasi melalui review owner, bukan membuat dua periode aktif.
-- **CYC-07:** selesai fisik pada mode OFF/rekap membutuhkan deklarasi owner tanggal selesai, tidak ada ayam hidup tersisa, sumber/bukti atau alasan, serta rekonsiliasi kepala ayam sejauh diketahui; tidak mensyaratkan recording harian/tiket DO. Komponen panen/mati yang belum diketahui tetap unknown dan tidak dipalsukan menjadi kematian. Status kelengkapan produksi terpisah dari penyelesaian fisik; metrik yang tidak didukung tetap unavailable.
+- **CYC-07:** selesai fisik pada mode OFF/DAILY membutuhkan deklarasi owner tanggal selesai, tidak ada ayam hidup tersisa, sumber/bukti atau alasan, serta rekonsiliasi kepala ayam sejauh diketahui; tidak mensyaratkan tiket DO atau daily recording lengkap. Komponen panen/mati yang belum diketahui tetap unknown dan tidak dipalsukan menjadi kematian. Status kelengkapan recording/produksi terpisah dari penyelesaian fisik; metrik yang tidak didukung tetap unavailable.
 
   Simpan deklarasi terstruktur: cycle, tanggal selesai sebenarnya, owner deklarator, waktu persetujuan, pernyataan kandang kosong, hitungan akhir jika diukur, rekap disposition/selisih yang diketahui, bukti/alasan, serta versi. Pernyataan kosong tanpa pengukuran tidak ditampilkan sebagai sensus terukur. Tombol/command “Selesai fisik” berbeda dari “Kunci laporan keuangan”; yang pertama tidak otomatis menutup hak/biaya atau mengubah financial_status menjadi LOCKED.
 - **CYC-08:** masa kosong dihitung dari selesai fisik ke chick-in berikutnya, bukan tanggal RHPP atau tanggal uang diterima.
@@ -431,7 +456,7 @@ Kunci keuangan dapat menyimpan utang/piutang belum lunas jika nilai dan alokasin
 
 **CYC-11:** `financial_status=LOCKED` hanya diperbolehkan bila:
 
-1. Fisik telah FINISHED menurut CYC-07; mode DETAIL memerlukan rekonsiliasi populasi, mode OFF cukup deklarasi akhir yang disahkan dan pengungkapan komponen produksi yang tidak diketahui. Kekurangan produksi tidak otomatis menghalangi final biaya jika hak/biaya aktual tidak bergantung pada angka tersebut, tetapi tetap memblokir klaim performa lengkap. Rencana CANCELLED sebelum DOC dapat dikunci setelah semua biaya persiapannya direkonsiliasi; tidak memerlukan panen fiktif.
+1. Fisik telah FINISHED menurut CYC-07; mode DETAIL memerlukan rekonsiliasi populasi, mode DAILY memerlukan status coverage recording yang jujur bila performa hendak diklaim, dan mode OFF cukup deklarasi akhir yang disahkan serta pengungkapan komponen produksi yang tidak diketahui. Kekurangan recording/produksi tidak otomatis menghalangi final biaya jika hak/biaya aktual tidak bergantung pada angka tersebut, tetapi tetap memblokir klaim performa lengkap. Rencana CANCELLED sebelum DOC dapat dikunci setelah semua biaya persiapannya direkonsiliasi; tidak memerlukan panen fiktif.
 2. Semua klaim belanja yang ditaut ke periode sudah mempunyai resolusi terminal, tidak ada pengajuan biaya yang masih menunggu review untuk periode tersebut.
 3. Gaji yang berlaku sudah difinalkan; pekerjaan berupah yang selesai pada periode sudah disetujui/ditolak dengan alasan. Pembatalan agreement menyelesaikan advance yang terkait.
 4. Semua consumption yang dibebankan ke periode sudah bernilai; tidak ada unknown valuation atau reconciliation pending INV-16 yang memengaruhi biaya tersebut. Sisa gas terpasang telah diukur/diestimasi eksplisit sesuai INV-15, atau periode tetap REVIEW. Metode ESTIMATED tetap tampil pada snapshot yang telah disahkan; final administrasi bukan klaim pengukuran sempurna.
@@ -440,7 +465,7 @@ Kunci keuangan dapat menyimpan utang/piutang belum lunas jika nilai dan alokasin
 7. Owner mengakui waktu sinkron terakhir dan komponen di luar cakupan laporan, misalnya depresiasi otomatis yang tidak dibangun. Ini tidak mengizinkan melewati klaim kas/gaji/valuation yang belum selesai.
 8. Cakupan historis biaya sejak awal periode sudah direkonsiliasi jika menggunakan onboarding tengah siklus. Snapshot dengan cakupan parsial tetap boleh diterbitkan sebagai laporan sejak cutoff, bukan laba final seluruh periode.
 
-Utang/piutang yang jumlahnya final tetapi belum dibayar **tidak memblokir lock**. Kontrak estimasi/recording harian yang tidak diaktifkan juga tidak memblokir lock jika data final aktual sudah cukup. Snapshot sementara boleh diekspor saat REVIEW, tetapi tidak berlabel final dan tidak mengubah state menjadi LOCKED. Tidak ada tombol “paksa final” yang mengabaikan gate di atas.
+Utang/piutang yang jumlahnya final tetapi belum dibayar **tidak memblokir lock**. Recording `DAILY` yang partial/gap atau tidak diaktifkan tidak memblokir lock jika data finansial/aktual final sudah cukup, tetapi snapshot tidak boleh mengklaim coverage/performa yang tidak ada. Snapshot sementara boleh diekspor saat REVIEW, tetapi tidak berlabel final dan tidak mengubah state menjadi LOCKED. Tidak ada tombol “paksa final” yang mengabaikan gate di atas.
 
 | Aksi | Physical DRAFT | Physical ACTIVE | Physical FINISHED + finance OPEN/REVIEW | Finance LOCKED |
 |---|---|---|---|---|
@@ -661,6 +686,7 @@ Coverage mempunyai ID, cost allocation, settlement component/version, nominal, d
 - **INV-02:** minimum satu gudang per kandang; lokasi bangunan dapat ditambahkan. Mutasi antar lokasi dalam kandang yang sama bukan pemakaian dan bukan biaya.
 - **INV-03:** stok operasional milik owner dipisahkan dari sapronak milik/ditagihkan PT. Nilai sapronak untuk analisis kontrak tidak otomatis menjadi biaya owner di luar settlement.
 - **INV-04:** penerimaan menyimpan tanggal, surat jalan opsional, item, jumlah, unit, lokasi, sumber, serta nilai perolehan jika milik owner. Nilai perolehan = net nilai barang setelah diskon + biaya perolehan yang dipilih untuk dikapitalisasi; pajak refundable tidak dimasukkan tanpa klasifikasi. Alokasi ongkos bersama disimpan eksplisit. Penerimaan fisik tidak harus sekaligus pembayaran; nilai tidak diketahui mengikuti INV-14, bukan diisi nol.
+- **INV-17:** pada R1 Owner mencatat DOC, pakan yang datang, dan penerimaan sapronak mitra, serta boleh membuat transaksi usaha langsung. ABK dapat membeli/menerima gas atau solar operasional atas namanya sendiri dalam scope kandang yang sah; itu tidak memberi hak menerima DOC/sapronak mitra dan tidak mengubahnya menjadi gaji atau kasbon. Semua input tetap menyimpan actor, sumber dana, scope, dan status review yang benar.
 
 ### 12.2 Mutasi dan penilaian
 
@@ -827,25 +853,29 @@ Usulan aman untuk mencegah pemakaian uang usaha sebagai uang pribadi tanpa jejak
 <a id="s16"></a>
 ## 16. Recording opsional dan sumber data
 
-**Scope:** R1 memakai OFF dan konteks awal/akhir CYC-01–CYC-07/ONB-10. SUMMARY/DETAIL dan metrik pada bagian 16–18 diaktifkan bertahap pada R2; tidak menjadi syarat pencatatan uang.
+**Scope:** R1 memakai `OFF` atau `DAILY`. `OFF` menyelesaikan operasional dan keuangan sampai hasil usaha/settlement aktual tanpa recording. `DAILY` menambahkan pakan terpakai, mati/afkir, sampling dan ABW sampel sederhana REC-10. `SUMMARY`, event produksi/detail, panen, FCR/ABW panen/deplesi/IP, serta mesin kontrak tetap R2; tidak menjadi syarat pencatatan uang R1. Kontrak 26 layar dan 35 skenario di `UX_UI_SPEC.md` tidak menggantikan validasi server, FIN, AC, atau GOLD.
 
 ### 16.1 Mode periode
 
 | Mode | Penggunaan | Konsekuensi |
 |---|---|---|
-| `OFF` | Hanya operasi/keuangan, DOC awal dan informasi periode minimum | Performa tidak tersedia kecuali rekap akhir dimasukkan; tidak memblokir belanja |
-| `SUMMARY` | Owner/Mandor memasukkan rekap dari mitra atau catatan sendiri | Simpan cutoff, cakupan, sumber, dan bukti; tidak perlu detail harian |
-| `DETAIL` | Event produksi/pakan/panen dicatat di aplikasi | Agregasi berasal dari event; rekap luar hanya pembanding, bukan ditambahkan lagi |
+| `OFF` | Operasional/keuangan, DOC awal, informasi periode minimum, dan settlement aktual | Recording tidak diminta; hasil usaha aktual tetap dapat dicatat; FCR/performa tidak tersedia dan tidak memblokir belanja atau settlement |
+| `DAILY` | Owner atau ABK aktif yang berwenang mencatat pakan terpakai, mati/afkir, dan sampling harian | Satu rekap kanonis per `cycle + building + business_date`; revisi menggantikan versi efektif, bukan menambah kuantitas; detail produksi/panen tetap R2 |
+| `SUMMARY` | Owner/Mandor memasukkan rekap dari mitra atau catatan sendiri | R2; simpan cutoff, cakupan, sumber, dan bukti; tidak perlu detail harian |
+| `DETAIL` | Event produksi/pakan/panen dicatat di aplikasi | R2; agregasi berasal dari event; rekap luar hanya pembanding, bukan ditambahkan lagi |
 
-- **REC-01:** R1 memakai OFF; setelah perluasan produksi diaktifkan, owner dapat memilih SUMMARY/OFF/DETAIL sesuai sumber yang tersedia. User tidak harus menginput mortalitas setiap hari agar boleh mengisi pengeluaran.
-- **REC-02:** suatu dataset/metrik pada scope dan rentang yang sama hanya mempunyai satu sumber otoritatif. Rekap kumulatif terbaru menggantikan versi rekap sebelumnya pada cakupan itu, bukan dijumlah.
+- **REC-01:** Owner memilih `OFF` atau `DAILY` per siklus pada R1. `OFF` tidak menunggu recording untuk menjalankan operasional, biaya, gaji, atau settlement aktual. `DAILY` tidak menjadikan FCR, panen, mesin kontrak, atau impor otomatis sebagai kewajiban. User tidak harus menginput recording setiap hari agar boleh mengisi pengeluaran.
+- **REC-02:** suatu dataset/metrik pada scope dan rentang yang sama hanya mempunyai satu sumber otoritatif. Rekap harian/kumulatif terbaru menggantikan versi rekap sebelumnya pada cakupan itu, bukan dijumlah.
 - **REC-03:** beralih mode di tengah periode membutuhkan cutoff dan opening balance yang direkonsiliasi. Aktivasi modul tidak otomatis menggabungkan event lama dengan cumulative summary yang overlap.
 - **REC-04:** setiap rekap mencatat `as_of_date`, source type (manual lapangan/rekap mitra), unit, scope kandang/bangunan, pencatat, versi, dan status kelengkapan. Nilai FCR dari mitra disimpan sebagai nilai dilaporkan terpisah dari nilai dihitung aplikasi.
 - **REC-05:** sumber satu kandang tidak boleh diproratakan otomatis ke bangunan lalu diklaim sebagai pengukuran nyata.
 
 ### 16.2 Pemilihan sumber yang deterministik
 
-**REC-13:** simpan `RecordingAuthority` untuk `(cycle, metric, farm_or_building_scope)` dengan source `DETAIL`, `OWNER_SUMMARY`, atau `PARTNER_SUMMARY`, lineage, dan versi keputusan owner. Versi awal modul recording memakai satu sumber otoritatif per metrik selama periode, kecuali migrasi cutoff yang eksplisit dan direkonsiliasi.
+**REC-13:** simpan `RecordingAuthority` untuk `(cycle, metric, farm_or_building_scope)` dengan source `DAILY` pada R1; `DETAIL`, `OWNER_SUMMARY`, atau `PARTNER_SUMMARY` hanya saat perluasan terkait aktif. Simpan lineage dan versi keputusan owner. Satu sumber otoritatif per metrik/rentang, kecuali migrasi cutoff yang eksplisit dan direkonsiliasi.
+
+- Pada DAILY, nilai pakan/mati/afkir adalah kuantitas **hari tersebut**, bukan rekap kumulatif. Agregasi rentang menjumlah tepat satu revisi efektif pada setiap tanggal dalam rentang yang berhak/aktif, dengan daftar gap/partial dan opening cutoff jika diperlukan. Jangan mengambil hanya tanggal terbaru sebagai total periode, menjumlah revisi lama, atau menambahkan consumption tertaut sebagai pemakaian lain. Sampling point-in-time tidak dijumlah menjadi bobot harian seluruh populasi.
+- Aturan snapshot kumulatif berikut berlaku pada SUMMARY/R2 atau hasil agregasi DAILY yang diturunkan, bukan mengganti arti input harian. Ringkasan produksi RECEIVED dan kuantitas/biaya stok POSTED memiliki status/basis masing-masing sesuai REC-19; satu sumber tidak menyamakan dua status ini.
 
 - Metrik kumulatif seperti pakan/mati/panen memakai coverage dari chick-in sampai `as_of_date`, bukan rentang arbitrer yang dijumlahkan. Sampling adalah point-in-time dataset terpisah.
 - Untuk laporan cutoff T, ambil snapshot sah pada lineage terpilih dengan `as_of_date` paling akhir yang ≤T; jika tanggal sama, ambil revisi terakhir yang disahkan. Waktu upload tidak menentukan prioritas. Versi sebelumnya tetap tersedia untuk audit; tidak digabungkan dengan revisinya.
@@ -856,13 +886,19 @@ Usulan aman untuk mencegah pemakaian uang usaha sebagai uang pribadi tanpa jejak
 
 ### 16.3 Catatan detail
 
-- **REC-06:** mortalitas/afkir, feed consumption, sampling, dan kejadian dapat berupa beberapa event per hari. Daily summary adalah hasil agregasi, bukan record tunggal yang bebas ditimpa oleh beberapa HP.
+- **REC-06:** draft/submit recording dapat datang dari Owner, ABK, beberapa perangkat, atau beberapa percobaan pada hari yang sama, tetapi server membentuk satu daily summary efektif per scope. Revisi versioned menaut versi sebelumnya dan tidak dihitung sebagai event/kuantitas tambahan. Satu ABK aktif tidak menghilangkan konflik Owner/dua device; expected version menentukan apakah submit dapat diterima atau harus direkonsiliasi.
 - **REC-07:** field mati/afkir tidak boleh terisi otomatis dari hari sebelumnya. Angka nol harus dikonfirmasi jika dipakai sebagai data lengkap hari itu; kosong berarti belum ada laporan.
 - **REC-08:** catatan pakan memilih jenis/varian dan jumlah yang benar-benar digunakan. Sistem boleh menyarankan barang terakhir tetapi meminta konfirmasi; umur ayam tidak membuktikan jenis pakan yang dipakai.
 - **REC-09:** bila konsumsi pakan berasal dari event inventory yang sama, gunakan referensi event tersebut untuk recording; jangan input ulang atau menghitung dua kali.
 - **REC-10:** sampling memuat bangunan, waktu, jumlah sampel >0, total bobot bersih >0, unit, dan metode/catatan. ABW dihitung, tidak harus diisi manual. Tidak menentukan jumlah sampel universal sebagai standar medis/peternakan.
 - **REC-11:** suhu/kelembapan manual boleh dicatat sebagai konteks dengan unit/waktu/lokasi; bukan integrasi sensor yang sudah berjalan.
 - **REC-12:** user dapat mencatat OVK/vaksin yang diberikan tanpa sistem meresepkan obat/jadwal. Hubungkan pemakaian stok jika memang item yang sama.
+- **REC-14:** R1 `DAILY` hanya memuat pakan terpakai, mati/afkir, dan sampling. `business_date` memakai zona waktu kandang; `as_of_date`, waktu input, actor, mode, dan status kelengkapan dibedakan. Sampling tetap point-in-time dan tidak dipaksa menjadi nilai harian bila belum ada.
+- **REC-15:** default rancangan key logical recording adalah `(cycle_id, building_id, business_date)`. Status per bangunan versus gabungan belum merupakan keputusan eksplisit pengguna dan harus diuji melalui Q-12; kandang tanpa bangunan yang dipakai tetap mempunyai scope eksplisit dan data satu kandang tidak diprorata fiktif ke bangunan. Revisi menyimpan `revision`, `supersedes_id`, dan alasan.
+- **REC-16:** tepat satu versi efektif dapat dipakai dalam rekap harian untuk setiap default key. Submit awal, correction, dan retry dengan operation ID berbeda tidak boleh membuat jumlah feed/mati/afkir/sampling terakumulasi dua kali. Versi lama tetap tersedia untuk audit.
+- **REC-17:** data `PARTIAL`, `GAP`, atau di luar cutoff diberi label dan tidak dipakai untuk klaim metrik final. Pergantian `OFF`/`DAILY` membuat coverage/cutoff yang dapat direkonsiliasi; tidak menghapus data atau menciptakan event pengganti.
+- **REC-18:** bila feed used berasal dari pemakaian stok, daily summary menyimpan source consumption ID dan paling banyak satu efek ekonomi kanonis setelah command inventory/finance yang berwenang. Koreksi recording tidak mengulangi pengurangan stok/biaya; koreksi inventory mengikuti reversal/revision biasa.
+- **REC-19:** recording rutin yang memenuhi validasi struktural boleh berstatus `RECEIVED` tanpa approval manual Owner setiap hari. `RECEIVED` hanya berarti laporan produksi diterima/tervalidasi pada jalur recording; bukan `APPROVED`, `POSTED`, atau pembayaran. Pemakaian stok, valuasi, dan cost entry yang belum disahkan tetap berada di pending inventory/reconciliation dan tunduk FIN-01–FIN-09, INV-14/16, serta kontrol Owner.
 
 <a id="s17"></a>
 ## 17. Panen, DO, kendaraan, dan asal bangunan
@@ -912,13 +948,13 @@ Rumus `(N0 - Nlive)/N0` **tidak boleh** dipakai sebagai deplesi setelah ada pane
 
 | ID | Metrik | Rumus dan prasyarat |
 |---|---|---|
-| MET-02 | ABW sampling | Total kg sampel / total ekor sampel pada sesi yang sama; jangan merata-ratakan rata-rata tanpa pembobot. |
-| MET-03 | ABW panen | Total kg panen bersih / total ekor panen aktual. Unit keluaran kg/ekor; gram hanya konversi tampilan. |
-| MET-04 | Umur panen rata-rata | `Σ(umur_tiket × ekor_tiket) / Σ(ekor_tiket)`. Default dibobot ekor, bukan rata-rata sederhana tanggal. Basis alternatif kontrak harus berlabel. |
-| MET-05 | FCR final operasional | Total pakan benar-benar dikonsumsi (kg) / total bobot hidup panen (kg), setelah fisik selesai dan data direkonsiliasi. Pakan diterima/tersisa bukan otomatis konsumsi. |
-| MET-06 | FCR berjalan estimasi | Pakan konsumsi kumulatif / `(kg panen kumulatif + estimasi biomassa hidup tersisa)` pada cutoff yang sama. |
-| MET-07 | Biomassa hidup estimasi | `Σ(populasi hidup bangunan × ABW sampling representatif bangunan)`; jika rekap hanya sekandang, gunakan basis sekandang berlabel. Jangan memasukkan bangunan tanpa sampel sebagai nol kg. |
-| MET-08 | IP final operasional | `(daya_hidup_final_persen × ABW_panen_kg × 100) / (FCR_final × umur_panen_rata_rata)`. Daya hidup mengikuti MET-01, pada periode rekonsiliasi lengkap tanpa selisih populasi yang belum dijelaskan. |
+| MET-02 | ABW sampling (R1 `DAILY`) | Total kg sampel / total ekor sampel pada sesi yang sama; jangan merata-ratakan rata-rata tanpa pembobot. Ini hanya ringkasan sampling sederhana, bukan ABW panen atau performa penuh. |
+| MET-03 | ABW panen (R2) | Total kg panen bersih / total ekor panen aktual. Unit keluaran kg/ekor; gram hanya konversi tampilan. |
+| MET-04 | Umur panen rata-rata (R2) | `Σ(umur_tiket × ekor_tiket) / Σ(ekor_tiket)`. Default dibobot ekor, bukan rata-rata sederhana tanggal. Basis alternatif kontrak harus berlabel. |
+| MET-05 | FCR final operasional (R2) | Total pakan benar-benar dikonsumsi (kg) / total bobot hidup panen (kg), setelah fisik selesai dan data direkonsiliasi. Pakan diterima/tersisa bukan otomatis konsumsi. |
+| MET-06 | FCR berjalan estimasi (R2) | Pakan konsumsi kumulatif / `(kg panen kumulatif + estimasi biomassa hidup tersisa)` pada cutoff yang sama. |
+| MET-07 | Biomassa hidup estimasi (R2) | `Σ(populasi hidup bangunan × ABW sampling representatif bangunan)`; jika rekap hanya sekandang, gunakan basis sekandang berlabel. Jangan memasukkan bangunan tanpa sampel sebagai nol kg. |
+| MET-08 | IP final operasional (R2) | `(daya_hidup_final_persen × ABW_panen_kg × 100) / (FCR_final × umur_panen_rata_rata)`. Daya hidup mengikuti MET-01, pada periode rekonsiliasi lengkap tanpa selisih populasi yang belum dijelaskan. |
 
 **MET-09:** IP final tidak ditampilkan jika umur/FCR/bobot tidak valid atau rekonsiliasi populasi belum lengkap. IP proyeksi, bila dibuat, harus memakai skenario berlabel; tidak menampilkan nilai berjalan sebagai hasil final.
 
@@ -1090,31 +1126,36 @@ Rincian laba dan status penutupan keuangan memerlukan classification COMPLETE. R
 - **UX-06:** input angka memakai keyboard numerik yang sesuai locale; tetap bisa paste/edit dan diakses pembaca layar. Keypad khusus bukan kewajiban jika native input lebih mudah digunakan.
 - **UX-07:** target sentuh minimal 44×44 CSS px, target utama 48×48; teks utama minimal 16 px usulan. Kontras target WCAG AA, label bukan placeholder saja, error dekat field, navigasi keyboard/focus jelas.
 - **UX-08:** rancangan diuji pada lebar 360, 390, 768, dan 1280 CSS px; tidak ada horizontal scroll halaman utama. Tabel kompleks memakai detail/baris adaptif atau scroll di kontainer berlabel.
+- **UX-10:** arah visual R1 adalah modern, mudah digunakan, dan glassmorphism secara terukur. Translucent/frosted surface dipakai pada shell, header, atau dekorasi yang tidak membawa input kritis; efek bukan tujuan yang mengalahkan keterbacaan.
+- **UX-11:** bidang angka, form, keypad, status penting, dan area validasi memakai permukaan opaque dengan teks/border/focus yang kontras. Kontras diuji pada kondisi transparansi, gambar latar, cahaya rendah, dan ukuran mobile; angka/status tidak boleh menjadi samar karena blur.
+- **UX-12:** sediakan fallback solid untuk browser/perangkat yang tidak mendukung efek, pengguna yang memilih reduced transparency, atau kondisi kontras tidak lulus. Fallback mempertahankan hierarki, aksi, status, dan akses keyboard; tidak menjadi layar darurat yang berbeda maknanya.
+- **UX-13:** warna, radius, blur, shadow, ikon, komposisi detail glassmorphism, pola tutorial, dan baseline visual masih draft sampai mockup dan uji usability/accessibility disetujui. Implementer tidak mengunci token visual dari screenshot referensi atau menganggap pola eksplorasi sebagai brand final.
+- **UX-14:** setiap alur ABK mengutamakan satu aksi utama, progressive disclosure, konteks kandang/periode/tanggal yang terlihat, dan status tersimpan/terkirim yang eksplisit. Pusat panduan berisi tutorial singkat kontekstual, pencarian topik, dan bantuan saat error; bukan LMS atau kurikulum wajib.
 
 ### 21.2 Navigasi usulan
 
 | Peran | Navigasi utama |
 |---|---|
 | Owner | Ringkasan · Kandang · Transaksi · Laporan · Lainnya |
-| ABK | Hari Ini · Catat · Kas Saya · Upah Pekerjaan · Akun |
+| ABK | Hari Ini · Catat · Uang Kas · Riwayat · Lainnya |
 | Mandor | Ringkasan Tugas · Catat · Kandang · Pekerjaan · Akun |
 | PPL | Kandang Undangan · Kunjungan · Tindak Lanjut · Akun |
 | Administrator | Tenant · Limit/Layanan · Audit Administrasi · Akun |
 
-Di ABK, rincian gaji/kasbon sendiri berada pada “Akun/Keuangan Saya” dengan bagian terpisah dari “Kas Saya” yang berarti uang usaha. Uji istilah agar kas pegangan tidak disalahartikan sebagai uang milik ABK.
+Di ABK, **Catat** memberi jalur Recording, Transaksi belanja, dan Pemakaian operasional; **Uang Kas** berarti uang usaha yang dipegang ABK, bukan uang pribadi. **Lainnya** memuat gaji, kasbon, upah pekerjaan, Pusat Panduan, dan Akun. Uji istilah agar kas pegangan tidak disalahartikan sebagai uang milik ABK. Owner mempertahankan navigasi lama dan dapat melakukan direct input.
 
 Navigasi Mandor/PPL hanya pada perluasan R2. R1 tidak menampilkan menu task/perawatan/produksi/kontrak/pribadi yang belum diaktifkan, termasuk sebagai kartu kosong atau ajakan mengisi data yang belum dibutuhkan.
 
 ### 21.3 Layar minimum dan aksi utama
 
-R1 membangun SCR-01 sampai SCR-11, sisi **Aktual PT/Pencairan** SCR-14, serta SCR-17. SCR-12/13/15/16 dan tab Estimasi adalah perluasan. Pemulihan akses, onboarding cutoff, review valuasi, dan ekspor data usaha menjadi alur pada layar inti, bukan modul tambahan yang harus mempunyai navigasi sendiri.
+R1 membangun SCR-01 sampai SCR-11, sisi **Aktual PT/Pencairan** SCR-14, serta SCR-17. Recording dasar `DAILY` tampil sebagai bagian dari SCR-03/SCR-04; pada `OFF` layar tidak memaksa form recording. SCR-12/13/15/16 dan tab Estimasi adalah perluasan. Pemulihan akses, onboarding cutoff, review valuasi, dan ekspor data usaha menjadi alur pada layar inti, bukan modul tambahan yang harus mempunyai navigasi sendiri.
 
 | ID | Layar | Informasi/aksi wajib |
 |---|---|---|
 | SCR-01 | Login dan pemilih ruang | Identitas, undangan, tenant berhak, last sync, offline availability; tidak membocorkan nama tenant yang tidak berhak |
 | SCR-02 | Beranda Owner | Kartu kandang/periode, biaya berjalan, kas, tugas/perhatian, kelengkapan dan timestamp data |
-| SCR-03 | Detail periode | Tab Ringkasan, Operasional, Keuangan, Riwayat; aksi Selesai Fisik dan Kunci/Buka Kembali Keuangan terpisah; cutoff/history coverage serta DOC belum teralokasi terlihat; tab Produksi/Panen dan Kontrak/Estimasi hanya setelah perluasan aktif |
-| SCR-04 | Beranda ABK | Penugasan, tindakan Catat Belanja/Pakai Barang/Upah Pekerjaan, catatan kejadian tunai, antrean sinkron; tidak dipaksa mengisi produksi atau task umum |
+| SCR-03 | Detail periode | Tab Ringkasan, Operasional, Keuangan, Riwayat; bila `DAILY`, ringkasan recording dengan status partial/gap/cutoff; aksi Selesai Fisik dan Kunci/Buka Kembali Keuangan terpisah; tab Produksi/Panen dan Kontrak/Estimasi hanya setelah perluasan aktif |
+| SCR-04 | Beranda ABK | Penugasan, aksi Recording/Pakan terpakai/Mati-afkir/Sampling, Catat Belanja, Pakai Barang, Uang Kas, catatan kejadian tunai, antrean sinkron; tidak dipaksa mengisi detail produksi/panen atau task umum |
 | SCR-05 | Catat belanja | Jalur singkat CASH-16; klasifikasi/alokasi yang belum diketahui dilengkapi owner sebelum posting, bukan dipaksakan kepada ABK |
 | SCR-06 | Kas pegangan | Saldo tercatat, belanja belum diperiksa, perkiraan uang di tangan, transfer masuk/keluar, pertanggungjawaban |
 | SCR-07 | Pemeriksaan Owner | Daftar/umur pengajuan, bukti, saldo terkait, approve/correction/reject, batch FIN-13; alasan dan penyelesaian klaim kas tetap per dokumen |
@@ -1142,6 +1183,13 @@ R1 membangun SCR-01 sampai SCR-11, sisi **Aktual PT/Pencairan** SCR-14, serta SC
 
 Mode gelap dapat ditambahkan setelah uji keterbacaan; bukan syarat utama R1 dan bukan pengganti kontras yang benar.
 
+### 21.5 Tutorial kontekstual dan arahan visual
+
+- Pusat Panduan tersedia dari **Lainnya** dan dari titik kebingungan di form (misalnya beda uang kas, kasbon, dan upah). Tutorial maksimal berupa langkah singkat dengan contoh sintetis, dapat dilewati, dan tidak memblokir transaksi yang sudah dipahami.
+- Mengikuti default `D-24`, glassmorphism diterapkan sebagai progressive enhancement pada shell. Jika efek dimatikan atau gagal uji kontras, solid surface menjadi perilaku normal, bukan error. Bidang angka/form dan status finansial tidak memakai background transparan yang membuat nilai sulit dibaca.
+- Mockup visual berikutnya menentukan token/radius/blur/shadow setelah uji pada lebar mobile dan kondisi lapangan. Pola tutorial dan baseline glass yang ada di spesifikasi UX adalah eksplorasi, bukan pilihan brand final. PRD ini menetapkan prinsip dan acceptance, bukan pixel-perfect styling.
+- `UX_UI_SPEC.md` adalah handoff pendamping untuk inventaris layar dan skenario UX; saat implementasi, semua layar harus membawa state loading/empty/error/offline/pending/no-permission/success tanpa melonggarkan otorisasi atau efek ledger PRD.
+
 <a id="s22"></a>
 ## 22. Offline, sinkronisasi, lampiran, dan konflik
 
@@ -1153,7 +1201,7 @@ Mode gelap dapat ditambahkan setelah uji keterbacaan; bukan syarat utama R1 dan 
 | Draft/ajukan belanja, pemakaian barang, upah pekerjaan | Ya dalam scope cached dan lease berlaku | Validasi izin, status periode, versi, stok, dan efek finansial |
 | Mencatat penyerahan/penerimaan uang yang sudah nyata | Ya sebagai catatan kejadian OFF-16, bukan posting | Owner memeriksa, menghubungkan kejadian yang sama dan dependensi, lalu mengesahkan online |
 | Catatan baru setelah lease habis | Capture-only terbatas OFF-17; bukan akses cache usaha | Reauth, pilih scope yang masih sah, konfirmasi pengajuan; tidak auto-post |
-| Recording, panen detail, kunjungan | Tidak dibangun R1 | Jalur offline diuji sebelum modul R2 diaktifkan |
+| Recording dasar `DAILY` | Ya, bila mode aktif dan scope cycle/building/date sudah tercache; `OFF` tidak menampilkan form recording | Validasi actor/grant, assignment kandang, mode, revision, cutoff, dan link stok; `SUMMARY`, panen detail, dan kunjungan tetap R2 |
 | Mengambil foto bukti | Ya jika ruang lokal cukup | Upload terpisah setelah metadata diterima |
 | Menyetujui/menolak finansial, mengesahkan pencairan kasbon atau posting pembayaran | Tidak; berbeda dari mencatat uang yang sudah berpindah | Memerlukan server, izin terkini, dan validasi atomik |
 | Mengaktifkan/menutup/mengunci periode, mengubah grant, approve kontrak | Tidak | Operasi online berizin |
@@ -1176,6 +1224,7 @@ Mode gelap dapat ditambahkan setelah uji keterbacaan; bukan syarat utama R1 dan 
 - **OFF-12:** request persistent storage bila didukung, pantau quota, dan tampilkan peringatan antrean lama/ruang menipis. Penghapusan data browser, uninstall, perangkat rusak/hilang tetap dapat menghilangkan data yang belum terkirim. Jangan menjanjikan “data tidak pernah hilang”.
 - **OFF-13:** update web/versi skema lokal harus memigrasikan draft/antrean dan mempertahankan dukungan payload lama selama masa transisi yang ditetapkan ADR. Versi tidak kompatibel masuk kondisi update-required tanpa membuang payload.
 - **OFF-14:** waktu HP tidak dipercaya sebagai waktu posting. Selisih jam besar ditandai; tanggal kejadian yang dimasukkan tetap dapat ditinjau, bukan diganti diam-diam dengan tanggal kirim.
+- **OFF-18:** daily recording offline memakai operation ID dan expected revision yang sama dengan kontrak umum. Reconnect memeriksa mode masih `DAILY`, actor masih owner/ABK pada assignment yang sah, scope/date/cutoff, dan stok bila ada link pakan. Revisi atau retry menghasilkan satu versi efektif; tidak mengubah data menjadi `SUMMARY/DETAIL`, tidak mem-posting efek finansial saat offline, dan tidak membuat efek feed kedua. Dua device atau Owner versus ABK dengan versi dasar sama harus menghasilkan `VERSION_CONFLICT`/review untuk pihak kedua, bukan last-write-wins.
 
 ### 22.3 Lampiran
 
@@ -1205,7 +1254,7 @@ Saat reauth, hanya author yang sama atau recovery SEC-13 yang sah boleh mengonve
 
 - **NOT-01:** inbox server adalah sumber notifikasi, push hanya kanal pengantar. Membaca push tidak sama dengan menyetujui dokumen.
 - **NOT-02:** R1 memuat pengajuan perlu review beserta umurnya, stok di bawah ambang yang dikonfigurasi, klaim kas belum selesai, gaji/upah siap ditinjau, serta kelengkapan data/konflik valuasi/sinkron. Task jatuh tempo baru mengikuti modul R2.
-- **NOT-03:** peringatan produksi hanya jika recording aktif dan data cukup; ambang per owner/standar harus diatur. Tidak ada alert medis berbasis angka tebakan.
+- **NOT-03:** pada R1 `DAILY` hanya boleh memberi pengingat kelengkapan/stale recording jika data dan ambang disepakati; alert performa/FCR atau diagnosis produksi tetap R2. Ambang per owner/standar harus diatur. Tidak ada alert medis berbasis angka tebakan.
 - **NOT-04:** tidak menuduh ABK belum mencatat hanya karena server belum menerima data. Pesan “belum ada data terkirim” dan waktu terakhir sinkron lebih tepat.
 - **NOT-05:** event ID dan penerima dipakai untuk dedupe notifikasi. Retry worker tidak mengirim rangkaian pesan yang sama. User dapat memilih jenis nonkritis dan jam tenang.
 - **NOT-06:** jangan menaruh nominal kasbon, gaji, atau keuangan pribadi di lock screen secara default. Tautan membuka objek setelah login serta otorisasi ulang.
@@ -1225,7 +1274,7 @@ Saat reauth, hanya author yang sama atau recovery SEC-13 yang sah boleh mengonve
 | REP-06 | Gaji dan kasbon | R1; offset pribadi R2 | Agreement, hak bruto, advance/offset usaha, pembayaran, sisa, pinjaman lintas periode; per-user privacy |
 | REP-07 | Upah pekerjaan | R1 | Pekerjaan/unit/tarif, biaya diakui, pembayaran, sisa; terpisah dari slip gaji |
 | REP-08 | Persediaan/gas | R1 | Opening/receipt/mutation/use/return/closing, nilai untuk role berhak, metode nominal/terukur, selisih opname, status rekonsiliasi |
-| REP-09 | Produksi dan panen | R2 | Sumber data, cutoff, ekor/kg, per-bangunan bila tersedia, metrik aktual/estimasi dan missing data |
+| REP-09 | Recording, produksi, dan panen | R1 untuk ringkasan `DAILY`; R2 untuk detail/panen | R1: pakan terpakai, mati/afkir, sampling, business_date, revision efektif, completeness/cutoff; R2: sumber detail, ekor/kg, per-bangunan bila tersedia, metrik aktual/estimasi dan missing data |
 | REP-10 | Kemitraan | Aktual R1; kontrak/estimasi R2 | Settlement aktual manual, tabungan/piutang/utang dan payout pada R1; versi kontrak/estimasi/selisih estimasi baru pada perluasan |
 | REP-11 | Hasil manajerial | R1 | Penghasilan kemitraan + sampingan - biaya owner yang tidak sudah masuk settlement, kelengkapan, exclusion seperti depresiasi |
 | REP-12 | Pribadi | R2 | Saldo, arus uang, biaya pribadi, pinjaman, transfer usaha, hanya owner-user |
@@ -1250,14 +1299,14 @@ Ini kamus logis, bukan DDL yang memaksa satu ORM. Developer wajib mempertahankan
 
 ### 25.1 Entitas minimum
 
-Tabel adalah katalog lintas-rilis. R1 tidak membutuhkan private account/cross-space pair, task/perawatan/visit, production event/authority, harvest DO, contract rule, atau calculation run. Referensi ke entitas tertunda harus opsional/tidak dibuat; jangan memakai row dummy agar transaksi inti bisa tersimpan. Data awal/akhir periode cukup melalui cycle dan opening positions. Settlement aktual R1 tidak mempunyai FK wajib ke contract version/calculation run.
+Tabel adalah katalog lintas-rilis. R1 tidak membutuhkan private account/cross-space pair, task/perawatan/visit, production event/authority, harvest DO, contract rule, atau calculation run. R1 tetap membutuhkan `recording_mode` pada cycle dan entitas daily summary/revision bila mode `DAILY`; referensi ke entitas R2 harus opsional/tidak dibuat. Jangan memakai row dummy agar transaksi inti bisa tersimpan. Data awal/akhir periode cukup melalui cycle dan opening positions. Settlement aktual R1 tidak mempunyai FK wajib ke contract version/calculation run.
 
 | Grup/entitas | Field dan hubungan kritis |
 |---|---|
 | User, tenant, membership, grant, device registration | user identity, primary owner/version, role/capability, scope kandang/bangunan, active/revoked timestamps; origin registration server-issued mengikat author/device/tenant, bukan grant baru |
 | Farm, building, stock location | tenant, zona waktu, kapasitas, status, lokasi; building selalu milik farm yang sama dengan transaksi |
-| Employee, assignment | identitas minimum, login opsional, scope penugasan, effective dates; histori tetap saat nonaktif |
-| Cycle, building allocation, physical close declaration | farm, physical_status dan financial_status terpisah, chick-in, DOC/capacity snapshot, source mode, tracking_started_at/history_coverage, building_allocation_status/unallocated_doc_count; deklarasi kosong/tanggal selesai/owner/bukti/rekap diketahui/versi |
+| Employee, assignment | identitas minimum, login opsional, scope penugasan, effective dates, `assignment_version`, grant/revocation timestamps; histori tetap saat nonaktif dan constraint satu ABK aktif per kandang berlaku tanpa membatasi payroll/multi-kandang |
+| Cycle, building allocation, physical close declaration | farm, physical_status dan financial_status terpisah, chick-in, DOC/capacity snapshot, `recording_mode` (`OFF`/`DAILY` R1; `SUMMARY`/`DETAIL` R2), tracking_started_at/history_coverage, building_allocation_status/unallocated_doc_count; deklarasi kosong/tanggal selesai/owner/bukti/rekap diketahui/versi |
 | Counterparty, partner | tenant-private identity, supplier/broker/mitra/owner/employee role; rekening sensitif terpisah |
 | Business account, cash movement | account owner/custodian, currency, opening balance, transfer pair, value date, source document |
 | Purchase/expense, line, payment, cash claim | supplier, event date, recognition class, qty/rate, payer, approval, posting, actual claim, installments |
@@ -1269,7 +1318,7 @@ Tabel adalah katalog lintas-rilis. R1 tidak membutuhkan private account/cross-sp
 | Work compensation, payment | task reference opsional, worker, date, qty/unit/rate snapshot, approval, cycle allocation, separate payment |
 | Private account/transaction, cross-space link | owner_user_id, private category, balance, related business pair, no broad tenant read |
 | Task, asset, maintenance, visit, operational note | scope, assignment, due/completed, cost link, visitor versus entered_by, recommendation follow-up, visibility INTERNAL/PPL_VISIBLE untuk catatan/task/visit nonfinansial |
-| Production event, recording authority, summary snapshot, sampling | building/farm scope, metric, coverage/cutoff, source, lineage, authority version, completeness, values/units, revision, superseded relation |
+| Production event, recording authority, summary snapshot, sampling (R2 detail/source authority) | building/farm scope, metric, coverage/cutoff, source, lineage, authority version, completeness, values/units, revision, superseded relation |
 | Harvest DO, trip, ticket, allocation | vehicle, driver, broker, event time, DO link, heads/net kg, building breakdown, measured/unknown weight |
 | Contract version, rule, lookup table | ownership, validity, primitive, typed input/output, intervals, dependencies, rounding, immutable snapshot |
 | Calculation run, scenario | engine version, input snapshots, assumptions, matched rules, intermediates, warnings, results |
@@ -1278,6 +1327,7 @@ Tabel adalah katalog lintas-rilis. R1 tidak membutuhkan private account/cross-sp
 | Opening position, coverage declaration | cutoff, account/party/cycle, source, quantity/value known flags, recognized historical cost, applied/payable breakdown, coverage completeness |
 | Valuation reconciliation | pool, source revision/event-set hash, economic order, base versions, impact/delta lines, affected periods, approval, effective revision, command receipt |
 | Cash event claim, capture-only note linkage | origin note/operation ID, origin registration/author/device/tenant, occurred_at, claim type, canonical movement link, state, satu conversion efektif; note tanpa grant tidak menjadi command tenant sebelum reauth |
+| Daily recording summary, revision | cycle, building, `business_date`, feed used, mortality/cull, sampling, actor/source, completeness (`COMPLETE`/`PARTIAL`/`GAP`), cutoff, revision, supersedes/effective version, inventory consumption source link |
 | Recovery/export manifest | recovery epoch atau snapshot ID, cutoff, approved procedure/audit, file hashes/status, permissions; tanpa secret/kredensial |
 | Attachment, audit, notification, outbox receipt | scope, parent object ref/ACL inheritance, private storage key, status/version, actor, request/operation IDs |
 
@@ -1289,6 +1339,7 @@ Tabel adalah katalog lintas-rilis. R1 tidak membutuhkan private account/cross-sp
 - **MOD-04:** satu cost source effect, application kasbon, dan payment allocation mempunyai uniqueness/idempotency yang mencegah double posting.
 - **MOD-05:** optimistic lock version disertakan pada record mutable; immutable records memakai correction reference. Index minimal tenant+scope+date/status dan foreign keys yang diperlukan untuk laporan.
 - **MOD-06:** lampiran, export, dan notification merujuk objek dengan scope yang sama. Lampiran, revisi, dan histori mewarisi ACL/visibility parent di server; tidak mempunyai override yang memperluas akses. `PPL_VISIBLE` tidak tersedia pada objek finansial. Lampiran draft tanpa parent final hanya dapat dilihat pembuat yang berhak sampai linkage disahkan. Resource ID yang ditebak tidak boleh mengungkap keberadaan objek tenant lain.
+- **MOD-07:** untuk mode `DAILY`, uniqueness kanonis berlaku pada default rancangan `(cycle_id, building_id, business_date)` untuk satu versi efektif; granularity per bangunan versus gabungan tetap terbuka pada Q-12. Revision/supersedes menjaga histori tanpa menjumlahkan payload lama; actor/grant dan assignment version diperiksa saat submit maupun sync. Link ke pemakaian feed hanya boleh menghasilkan satu efek inventory/biaya setelah kontrol finansial yang sesuai.
 
 ### 25.3 Kontrak layanan minimum, tanpa mengunci path API
 
@@ -1612,6 +1663,20 @@ Semua contoh berdiri sendiri kecuali dinyatakan berurutan. Nilai adalah fixture 
 - Jika X masih ada pada titik restore, replay mengembalikan receipt lama tanpa efek tambahan. Jika payload/bukti X tidak tersedia, laporkan celah data dan jangan mengarang recovery sukses.
 - Command Z yang pasti belum pernah diposting tetap memakai ID Z setelah reauth/validasi. Foto belum lengkap tetap pending/missing, bukan alasan menghapus efek teks atau menggandakan transaksi. Grant yang tercabut sesudah backup tidak boleh hidup kembali hanya karena row lama dipulihkan.
 
+### GOLD-28 — Mode DAILY dan revisi recording tidak menggandakan efek
+
+- Siklus C pada bangunan B memakai mode `DAILY`. Pada business date D, submit awal mencatat feed terpakai 100 kg, mati 2 ekor, afkir 1 ekor, dan sampling 10 ekor dengan total bobot bersih 2,0 kg (ABW sampel 0,2 kg).
+- Koreksi ber-versioned mengubah feed menjadi 95 kg dan mati menjadi 3 ekor; retry submit yang sama boleh mengembalikan receipt lama. Rekap efektif D adalah feed 95 kg, mati 3 ekor, afkir 1 ekor, sampling 10 ekor/2,0 kg total, bukan feed 195 kg atau mati 5 ekor.
+- Jika feed 100 kg berasal dari satu consumption inventory yang sama, recording dan revisinya menghasilkan satu link/effect. Koreksi tidak mengurangi stok atau biaya sekali lagi. Hari tanpa laporan ditandai `GAP`, angka nol yang sengaja dikonfirmasi dibedakan dari kosong.
+- Dengan stok awal 200 kg bernilai Rp2.000.000 tanpa mutasi lain, setelah consumption 100 kg disahkan saldo 100 kg/biaya Rp1.000.000. Koreksi berizin menjadi 95 kg menghasilkan saldo 105 kg/biaya Rp950.000 melalui delta tertaut -Rp50.000; bukan menyisakan biaya lama atau membuat beban tambahan 95 kg. Sebelum koreksi disahkan, UI menjelaskan recording 95 kg dan efek stok masih menunggu koreksi.
+- Pada D+1 ada rekap efektif 20 kg pakan, mati 1 ekor, afkir 0 terkonfirmasi. Total rentang D sampai D+1 adalah 115 kg, mati 4, afkir 1; bukan hanya angka hari terakhir atau penjumlahan semua revisi. Sampling tetap pengukuran bertanggal, bukan bobot populasi yang dijumlah per hari.
+
+### GOLD-29 — Pergantian ABK per kandang dan histori tetap pada orang asal
+
+- Kandang K memiliki ABK A aktif dan Owner tetap dapat mengaksesnya. ABK A memiliki antrean belanja serta recording yang belum tersinkron, kas pegangan, kasbon, dan gaji historis.
+- Pergantian ke ABK B dengan assignment version baru menutup grant A dan membuka grant B secara atomik. A tidak dapat posting setelah pencabutan; antrean A tidak pindah ke B dan tidak dihapus, melainkan menunggu sinkron/review pada identitas asal. B tidak dapat memakai ulang operation ID A.
+- Tidak ada assignment ABK kedua yang aktif pada K, tetapi A atau B tetap dapat ditugaskan pada kandang lain dan jumlah karyawan/payroll tenant tidak dibatasi oleh constraint ini. Kas, kasbon, dan gaji lama tetap tertaut ke A; akses Owner tetap utuh.
+
 <a id="s29"></a>
 ## 29. Kriteria penerimaan dan matriks pengujian
 
@@ -1649,7 +1714,7 @@ Format setiap baris: kondisi awal (**Given**), tindakan (**When**), dan hasil te
 | AC-28 | Modal/prive → GOLD-13 → tidak masuk omzet/biaya kandang; user tidak berhak gagal membaca private data. | PER-02, PER-03 |
 | AC-29 | Recording OFF/kontrak kosong → ABK mencatat belanja → berhasil; dashboard metrik menyatakan unavailable. | REC-01, CON-06 |
 | AC-30 | Rekap kumulatif dan detail overlap → GOLD-16 → tidak double count, sumber authoritative jelas. | REC-02, REC-03 |
-| AC-31 | Sample belum ada atau stale → dashboard → bukan FCR0 atau status aman; timestamp/alasan terlihat. | DATA-07, MET-11, UX-09 |
+| AC-31 | DAILY memiliki sampling valid 25 ekor/30 kg → UI menghitung ABW sampling **1,2 kg/ekor** dari sesi yang sama. Input belum cukup → unavailable dengan alasan, bukan 0. Sampel historis tetap boleh dibaca dengan tanggal/cakupan dan penanda bukan pengukuran hari ini; tidak menjadi status aman atau klaim ABW panen/FCR/IP/performa penuh. | K-24, K-25, DATA-07, REC-04, REC-10, REC-14, UX-09 |
 | AC-32 | Dua mobil/DO dan satu tiket dua bangunan → posting → heads sum benar, asal tersimpan, populasi berkurang sekali. | HAR-01, HAR-03, HAR-05 |
 | AC-33 | Total kg tiket diketahui, kg asal tidak → tampilkan performa bangunan → bukan bobot prorata yang diklaim aktual. | HAR-07, REC-05 |
 | AC-34 | Afkir dijual → catat sebagai harvest afkir → tidak sekaligus mortality; habis panen bukan deplesi100%. | MET-01 |
@@ -1705,6 +1770,12 @@ Format setiap baris: kondisi awal (**Given**), tindakan (**When**), dan hasil te
 | AC-84 | Scope R1 tanpa production/contract/private/task/PPL → alur kas–stok–gaji–settlement aktual–close OFF → tanpa FK/menu/grant dummy R2; command/tombol selesai fisik tidak otomatis LOCKED, incomplete settlement tetap REVIEW dan periode berikutnya boleh aktif. | CYC-07, CYC-11, CASH-15, SET-11 |
 | AC-85 | Template R2 belum punya fixture terverifikasi/jalur input, atau tier ambigu → tidak boleh aktif sebagai estimasi lengkap; template sah menjalankan GOLD-26 dan tes batas tanpa hardcode satu PT. | CON-23, CON-24, CON-22 |
 | AC-86 | UAT pola lapangan dan pilot berjalan → rekonsiliasi sampel serta baseline GOAL-07 sampai GOAL-10 → hasil, kegagalan, beban input/review dan keputusan lanjut tercatat; tidak mengklaim lolos dari screenshot atau unit test saja. | GOAL-07, GOAL-08, GOAL-09, GOAL-10 |
+| AC-87 | Siklus mode `OFF` → owner mencatat belanja, stok/gas, gaji, kasbon, dan settlement aktual → semua alur operasional/keuangan selesai tanpa recording; dashboard menyebut performa unavailable, bukan error atau FCR nol. | K-24, REC-01, CYC-03, SET-03 |
+| AC-88 | Siklus mode `DAILY` → owner/ABK aktif mengirim feed terpakai, mati/afkir, dan sampling pada scope yang sah → satu rekap efektif per cycle/building/business_date; submit/revisi/retry tidak dijumlah, dan link inventory feed hanya satu effect. | K-24, K-25, REC-06, REC-14, REC-16, REC-18 |
+| AC-89 | DAILY memiliki hari kosong, input parsial, pergantian mode, atau data di luar cutoff → buka dashboard/lock → status `PARTIAL`/`GAP`/cutoff terlihat, tidak dipakai sebagai metrik final, tidak menghapus histori, dan tidak memblokir alur finansial yang tidak bergantung recording. | K-25, REC-03, REC-17, UX-09 |
+| AC-90 | Kandang K memiliki satu ABK aktif, Owner, dan payroll beberapa orang → dua assignment ABK paralel atau assignment user yang juga bekerja di kandang lain → paling banyak satu grant ABK aktif di K secara atomik; Owner tetap dapat akses; payroll tidak dibatasi dan user lintas kandang sah. | K-26, SEC-15, MOD-07 |
+| AC-91 | ABK A diganti ABK B saat A memiliki grant, draft, antrean, kas, gaji, atau kasbon historis → replace assignment → grant A dicabut, grant B aktif, antrean A tidak diwariskan/dihapus diam-diam, dan kewajiban/efek lama tetap tertaut A. | K-26, SEC-15, OFF-06, OFF-18 |
+| AC-92 | Owner menerima DOC/pakan/sapronak mitra dan input transaksi langsung; ABK membeli/menerima gas/solar operasional dari HP sendiri → actor/scope/source benar, hak ABK tidak meluas ke sapronak mitra, dan approval/posting finansial tetap mengikuti FIN/RBAC. | K-27, INV-17, SEC-01, SEC-05 |
 
 ### 29.1 Jenis pengujian wajib
 
@@ -1722,17 +1793,17 @@ Semua ID dipertahankan untuk traceability. Penundaan berikut adalah perubahan sc
 
 | Scope | Acceptance gate |
 |---|---|
-| R1 | AC-01, AC-04–AC-26, AC-28–AC-29, AC-31, AC-41–AC-51, AC-54–AC-58, AC-60, AC-63–AC-68, AC-71–AC-84, AC-86 |
+| R1 | AC-01, AC-04–AC-26, AC-28–AC-29, AC-31, AC-41–AC-51, AC-54–AC-58, AC-60, AC-63–AC-68, AC-71–AC-84, AC-86–AC-92 |
 | R2/fitur tertunda | AC-02–AC-03, AC-27, AC-30, AC-32–AC-40, AC-52–AC-53, AC-59, AC-61–AC-62, AC-69–AC-70, AC-85 |
 
-Kasus campuran: pada R1, AC-19 menguji unit stok operasional; AC-21 histori stok/gaji/upah (kontrak menyusul); AC-28 sisi usaha modal/prive dan penolakan akses fitur pribadi, bukan pair; AC-29/31 tidak menampilkan angka performa palsu dan menguji freshness data inti (sampling menyusul); AC-60 menguji hasil aktual/biaya belum lengkap (skenario EST menyusul). Saat modul terkait aktif, bagian tertundanya juga wajib diuji. AC-55/71 menguji pencabutan akses ABK/Owner pada R1, PPL menyusul. Semua guard tenant/file/cache tetap wajib, bukan hanya guard role yang aktif.
+Kasus campuran: pada R1, AC-19 menguji unit stok operasional; AC-21 histori stok/gaji/upah (kontrak menyusul); AC-28 sisi usaha modal/prive dan penolakan akses fitur pribadi, bukan pair; AC-29/31 menguji OFF, ABW sampling sederhana, freshness, dan tidak menampilkan angka performa panen/FCR/IP palsu; AC-60 menguji hasil aktual/biaya belum lengkap (skenario EST menyusul). Saat modul terkait aktif, bagian tertundanya juga wajib diuji. AC-55/71 menguji pencabutan akses ABK/Owner pada R1, PPL menyusul. Semua guard tenant/file/cache tetap wajib, bukan hanya guard role yang aktif.
 
 | Scope | Golden gate |
 |---|---|
-| R1 | GOLD-01–GOLD-07, GOLD-12–GOLD-14, GOLD-18–GOLD-25, GOLD-27 |
+| R1 | GOLD-01–GOLD-07, GOLD-12–GOLD-14, GOLD-18–GOLD-25, GOLD-27–GOLD-29 |
 | R2/fitur tertunda | GOLD-08–GOLD-11, GOLD-15–GOLD-17, GOLD-26 |
 
-GOLD-13 pada R1 menguji sisi usaha modal/prive; pair pribadi baru setelah modul aktif. GOLD-12/18/20 menguji settlement **aktual manual**, bukan estimasi kontrak. Semua tes baru valuasi, opening, offline, recovery dan ekspor adalah gate R1, bukan pekerjaan sesudah pilot.
+GOLD-13 pada R1 menguji sisi usaha modal/prive; pair pribadi baru setelah modul aktif. GOLD-12/18/20 menguji settlement **aktual manual**, bukan estimasi kontrak. GOLD-28 menguji DAILY dan GOLD-29 menguji assignment ABK R1. Semua tes baru valuasi, opening, recording dasar, offline, recovery dan ekspor adalah gate R1, bukan pekerjaan sesudah pilot.
 
 <a id="s30"></a>
 ## 30. Urutan pengembangan dan Definition of Done
@@ -1742,12 +1813,12 @@ GOLD-13 pada R1 menguji sisi usaha modal/prive; pair pribadi baru setelah modul 
 | Milestone | Output | Exit gate |
 |---|---|---|
 | M0 — keputusan dan desain pilot | Pilih owner/kandang/cutoff pilot, baseline, Q blocking R1, ADR stack/threat/recovery, wireframe alur inti, API/data contract | Tidak ada makna uang/gaji yang ambigu; tidak mensyaratkan desain builder, produksi detail, atau buku pribadi |
-| M1 — fondasi dan onboarding | Tenant/auth/RBAC R1, kandang/bangunan/periode OFF, opening/cutoff, audit, akun dana, local queue, recovery identitas | AC-01, AC-04 sampai AC-08; guard modul tertunda dan recovery akun diuji; tidak ada kebocoran tenant |
+| M1 — fondasi dan onboarding | Tenant/auth/RBAC R1, kandang/bangunan/periode OFF/DAILY, assignment ABK versioned, opening/cutoff, audit, akun dana, local queue, recovery identitas | AC-01, AC-04 sampai AC-08, AC-87 sampai AC-91; guard modul tertunda dan recovery akun diuji; tidak ada kebocoran tenant |
 | M2 — kas dan pertanggungjawaban | Belanja cepat, batch review, kas pegangan, utang toko/reimbursement, alokasi, sisi usaha owner, offline kejadian tunai/capture-only | GOLD-01/02/07/14/23; AC kas/offline/idempotensi serta AC-76/77/79; tanpa private ledger |
 | M3 — stok/gas dan tenaga kerja | Stok/pending valuation/replay, gaji periode, advance/pinjaman usaha, upah terpisah, opening historis | GOLD-03 sampai GOLD-06, bagian gas GOLD-18, GOLD-19/21/22/24/25; AC-72 sampai AC-75, AC-78/80 dan tes stok/payroll terkait |
 | M4 — hasil aktual dan kepercayaan data | Settlement aktual manual/pencairan, laporan, ekspor paket, recovery server/runbook, notifikasi | GOLD-12/20/27, coverage GOLD-18, sisi usaha GOLD-13; AC-41/42/43/54/57/65/66/68/81/82/83/84 |
-| M5 — pilot terverifikasi | Integrasi seluruh R1, UX/accessibility, restore/load/UAT representatif, baseline versus hasil satu siklus, dokumentasi batas | Seluruh gate R1 di 29.2 mempunyai evidence, tidak ada blocker integritas/otorisasi P0/P1; hasil teknis dan hasil adopsi dilaporkan terpisah |
-| M6 — perluasan berbasis bukti | Template estimasi dahulu bila data tersedia; recording/PPL/pribadi/task/APK/push/impor dipilih satu per satu | Scope dan Q terkait disahkan; semua tes fitur tertunda yang diaktifkan ikut menjadi gate, tidak sekadar membuka feature flag |
+| M5 — pilot terverifikasi | Integrasi seluruh R1, UX/accessibility termasuk fallback visual, restore/load/UAT representatif, baseline versus hasil satu siklus, dokumentasi batas | Seluruh gate R1 di 29.2 mempunyai evidence, tidak ada blocker integritas/otorisasi P0/P1; hasil teknis dan hasil adopsi dilaporkan terpisah |
+| M6 — perluasan berbasis bukti | Template estimasi dahulu bila data tersedia; SUMMARY/DETAIL/panen/PPL/pribadi/task/APK/push/impor dipilih satu per satu | Scope dan Q terkait disahkan; semua tes fitur tertunda yang diaktifkan ikut menjadi gate, tidak sekadar membuka feature flag |
 
 M1–M5 adalah urutan internal untuk scope R1 pada bagian 4, bukan versi lengkap seluruh visi. Sebelum transaksi produksi, gabungan alur yang dipakai harus lulus gate integrasi/security/recovery; jangan menguji uang nyata pada M1 yang hanya berisi fondasi. Demo sintetis bertahap boleh. M6 bukan syarat selesai pilot dan tidak mempunyai tanggal otomatis.
 
@@ -1787,13 +1858,14 @@ M1–M5 adalah urutan internal untuk scope R1 pada bagian 4, bukan versi lengkap
 | Q-02 | Identitas primary owner, metode recovery, bukti kewenangan pergantian, dan penanggung jawab dukungan? | Satu primary owner per tenant; Admin/Owner/ABK R1; recovery/transfer SEC-13/14. Co-owner/patungan di luar scope | Wajib sebelum login/tenant produksi; pengelola tambahan bukan otomatis pemilik dan admin bukan pemegang hak baca bisnis |
 | Q-03 | Wajib nota per kategori, siapa melengkapi klaim, jadwal pemeriksaan, dan kebutuhan delegasi nyata? | Owner-only posting, ABK form ringkas, batch review dengan validasi per dokumen; tidak ada auto-approval nominal kecil | Wajib sebelum finansial go-live; target umur pengajuan diuji. Mandor/delegasi baru mengikuti perluasan berizin |
 | Q-04 | Unit/pola gas pilot, metode sisa, urutan kejadian bila tanggal sama, alokasi masa kosong/overhead? | Weighted average final lewat INV-16; gas utuh/terpasang/habis dan cutoff terukur/estimasi; unknown tetap pending | Wajib sebelum laporan biaya final; replay dan koreksi lintas periode diuji, tidak memilih urutan upload sebagai kebijakan ekonomi |
-| Q-05 | Basis umur, standar strain, pengelompokan afkir, capacity override, dan prioritas source recording? | Umur+1 saat chick-in, standar tidak universal, klasifikasi eksplisit, source modes | Wajib sebelum metrik/kontrak dipakai untuk keputusan pembayaran |
+| Q-05 | Basis umur, standar strain, pengelompokan afkir, capacity override, dan prioritas source recording? | Umur+1 saat chick-in, standar tidak universal, klasifikasi eksplisit; R1 hanya OFF/DAILY, sedangkan SUMMARY/DETAIL/source authority metrik tetap R2 | Wajib sebelum metrik/kontrak dipakai untuk keputusan pembayaran; tidak memblokir operasional/settlement aktual R1 |
 | Q-06 | Browser/perangkat, durasi putus jaringan nyata, local unlock/capture-only, dan kebijakan login/logout? | Lease scope awal 72 jam diuji, OFF-16/17, antrean tidak dibuang; buku pribadi ditunda dan online-only | Wajib sebelum offline pilot; ADR threat model dan uji perangkat, bukan mengganti batas secara diam-diam saat pengguna terblokir |
 | Q-07 | Pola kontrak yang akan diaktifkan, contoh settlement terverifikasi, rounding/pajak, serta kemampuan memasok input? | R2 template-first CON-23/24; missing→incomplete, unsupported/manual beralasan; tanpa builder umum wajib | Hanya memblokir aktivasi estimasi/template terkait, bukan R1 kas/settlement aktual manual |
 | Q-08 | Detail RHPP yang tersedia dan klasifikasi tabungan/pajak/utang/biaya yang telah dipotong PT? | Net settlement reconciled; jika hanya net cash, status belum lengkap | Wajib sebelum angka disebut penghasilan/laba lengkap |
 | Q-09 | Hak gaji berhenti dini, batas/persetujuan kasbon, saldo historis, carry lintas periode, dan apakah pilot membutuhkan offset pinjaman pribadi? | Finalisasi eksplisit; no negative pay/auto carry/cut job; opening direkonsiliasi. Offset pribadi ditunda, tidak ditandai lunas otomatis | Wajib sebelum payroll pilot; bila kasus di luar scope penting, perluas dengan tes atau nyatakan batas sebelum penggunaan |
 | Q-10 | Stack, hosting, anggaran, login/recovery, backup/log/PITR dan biaya pencapaian RPO/RTO? | ADR modular monolith/API-first; sasaran NFR-06, drill NFR-11; tanpa vendor final | Wajib sebelum infrastruktur produksi; biaya belum disetujui bukan alasan mengklaim target recovery sudah terpenuhi |
 | Q-11 | Retensi finansial/lampiran/backup, penghapusan akun, dukungan terverifikasi, ekspor paket, dan legal/privacy? | Tidak purge otomatis posted finance; ekspor terstruktur privat REP-19; admin tanpa baca bisnis; catatan incident/recovery jelas | Wajib sebelum data pelanggan produksi; prosedur bantuan dan kehilangan data diuji, bukan hanya kebijakan tertulis |
+| Q-12 | Granularitas recording DAILY: satu rekap per bangunan dan tanggal atau rekap gabungan per kandang, termasuk perilaku kandang tanpa bangunan, cutoff, migrasi, dan konflik antar-actor/device? | Prototype memakai key per `cycle + building + business_date` karena sumber sampling dapat berbeda per bangunan; keputusan pilot harus membuktikan apakah gabungan diperlukan. Tidak boleh memprorata atau menggabungkan diam-diam. | Wajib sebelum DAILY dipakai sebagai kontrak operasional pilot; tidak memblokir mode OFF atau alur keuangan yang tidak bergantung recording |
 
 Q tidak mengizinkan agent memilih aturan finansial sesuka hati. Pemilik produk mengesahkan jawaban; default hanya mendukung diskusi/prototype sampai gate terkait ditutup.
 
@@ -1803,7 +1875,7 @@ Q tidak mengizinkan agent memilih aturan finansial sesuka hati. Pemilik produk m
 |---|---|
 | Kebutuhan dinamis berubah menjadi formula bebas yang tidak aman | Primitive terbatas, validator, contoh uji, unsupported status, versi immutable |
 | Pengguna sulit mengerti kas versus biaya | Bahasa layar sederhana, source account jelas, contoh ringkas, saldo/biaya terpisah |
-| ABK mencatat dua kali di aplikasi PT dan aplikasi ini | Mode recording opsional/summary, link sumber, tidak memaksa detail |
+| ABK mencatat dua kali di aplikasi PT dan aplikasi ini | OFF/DAILY opsional, satu rekap efektif per hari, link sumber, revisi tidak dijumlah, tidak memaksa SUMMARY/DETAIL |
 | Offline membuat owner merasa data lengkap padahal belum terkirim | Last sync, claim/pending count, kelengkapan laporan, no real-time guarantee |
 | Kehilangan data lokal sebelum sync | Persistent storage bila tersedia, peringatan queue/quota, recovery; tidak memberi jaminan palsu |
 | Upah pekerjaan bercampur payroll pada implementasi murah | Entitas/layar/slip/payment terpisah, GOLD-05, AC-22/25 |
@@ -1815,14 +1887,17 @@ Q tidak mengizinkan agent memilih aturan finansial sesuka hati. Pemilik produk m
 | Urutan sinkron mengubah laba antarperiode | Valuasi sementara, replay urutan ekonomi, impact semua periode, approval delta/version dan GOLD-21/22 |
 | Owner kehilangan akses atau grant lama hidup setelah restore | Recovery identitas, transfer terverifikasi, epoch/reverification hak, deny bila bukti tidak cukup |
 | Aplikasi rapi tetapi belanja nyata tidak tercatat | Baseline/sampel independen GOAL-07 sampai GOAL-10, UAT kasus tidak ideal dan pengukuran umur review |
+| Pergantian ABK memindahkan antrean atau kewajiban ke orang yang salah | SEC-15, assignment version atomik, queue tetap pada actor asal, reconciliation owner, histori kas/gaji/kasbon immutable |
+| Glassmorphism membuat angka/form sulit dibaca di lapangan | Shell translucent saja, field opaque, kontras/fallback solid, uji mobile dan cahaya nyata sebelum token visual dikunci |
 
 ### 31.3 Checklist persetujuan PRD sebelum development produksi
 
-- [ ] Pemilik produk menyetujui visi dan kebutuhan K-01 sampai K-23.
+- [ ] Pemilik produk menyetujui visi dan kebutuhan K-01 sampai K-30.
 - [ ] Owner/kandang/cutoff pilot dan batas R1 bagian 4 dipahami; gate R1/R2 pada 29.2 tercermin pada backlog, bukan semua fitur dibangun sekaligus.
 - [ ] Default finansial/RBAC/offline yang berisiko disahkan melalui Q terkait.
 - [ ] R1 mempunyai contoh kejadian kas/stok/gaji/settlement aktual yang representatif dan sudah disamarkan; tidak mewajibkan kontrak untuk mulai belanja. Sebelum perluasan estimasi, tiap pola template mempunyai fixture kontrak dan settlement terverifikasi sesuai CON-23.
-- [ ] Wireframe alur belanja, kas, gaji/kasbon, upah pekerjaan, dan periode diuji dengan calon pengguna.
+- [ ] Wireframe alur Owner dan ABK (Hari Ini/Catat/Uang Kas/Riwayat/Lainnya), recording OFF/DAILY, belanja, kas, gaji/kasbon, upah pekerjaan, periode, dan pusat panduan diuji dengan calon pengguna.
+- [ ] Mockup glassmorphism diuji: shell translucent, form/angka opaque, kontras lulus, dan fallback solid berfungsi; token detail belum dianggap final sebelum review aksesibilitas.
 - [ ] Kebijakan data, keamanan, retensi, backup, dan dukungan perangkat ditetapkan.
 - [ ] Sasaran RPO/RTO dibuktikan melalui drill; recovery akun, restore+queue, pencabutan hak, dan ekspor paket diuji. Baseline serta target dampak pilot dicatat sebelum pengukuran hasil.
 - [ ] Backlog implementasi mengacu requirement/AC dan tidak memindahkan upah pekerjaan ke payroll.
@@ -1856,5 +1931,6 @@ Rumus pada bagian18 adalah konvensi operasional eksplisit untuk produk, disertai
 |---|---|---|
 | 0.1 | 20 September 2026 | Draft awal terintegrasi: arah produk, keputusan/proposal, modul, state/aturan, UX/offline, kontrak, golden tests, acceptance, roadmap, dan keputusan terbuka. |
 | 0.2 | 20 September 2026 | Revisi hasil review kritis: pilot R1 terfokus dan gate per rilis; template-first R2; input ABK/batch review; onboarding tengah siklus; valuasi kronologis dengan delta berizin; kejadian tunai offline/capture-only; recovery akun/server, ekspor portabel, sasaran dampak pilot, GOLD-21 sampai GOLD-27 dan AC-72 sampai AC-86. Kebutuhan jangka panjang tetap disimpan; belum merupakan hasil UAT atau janji kesempurnaan. |
+| 0.3 | 20 September 2026 | Recording dasar R1 opsional OFF/DAILY, rekap sekali sehari dan ABW sampling sederhana; panen/FCR/IP/mesin kontrak/impor tetap R2. Satu ABK berakses per kandang, penerimaan Owner, transaksi langsung, tutorial, dan arah modern glassmorphism; detail navigasi/visual/granularitas adalah rancangan. Handoff UX_UI_SPEC.md v0.1: 26 layar/35 skenario, bukan hasil UAT. Menambah K-24–K-30, D-20–D-24, Q-12, REC-14–REC-19, SEC-15, INV-17, UX-10–UX-14, OFF-18, MOD-07, GOLD-28–GOLD-29, AC-87–AC-92. Memisahkan agregasi DAILY dari snapshot kumulatif, rekap diterima dari efek stok/biaya, serta revisi dari penambahan. Gate mencakup sampling R1 tanpa performa panen R2. K-01–K-23 tetap. Mockup/pilot/usability/accessibility belum dijalankan. |
 
 **Dokumen ini belum menyatakan aplikasi sudah diimplementasikan, diverifikasi di lapangan, atau siap menerima transaksi produksi.**
