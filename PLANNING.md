@@ -2,7 +2,7 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.7 |
+| Versi | 0.8 |
 | Tanggal | 23 September 2026 |
 | Fase aktif | Perencanaan tertulis dalam file `.md`, dengan desain visual final dari pengguna di `design/` (K-39) |
 | Arahan pengguna | Selesaikan seluruh dokumen perencanaan; Implementation Plan harus rinci dan spesifik untuk AI agent dengan kemampuan penalaran terbatas; audit agar UI/UX sangat mudah, jelas, mengarahkan tetapi bebas, pintar, dengan keypad angka, buka-tutup detail, dan sedikit pindah halaman (K-38) |
@@ -25,17 +25,17 @@
 | [PRD.md](PRD.md) v0.6 | Makna bisnis, keputusan K, usulan D, pertanyaan Q, batas rilis, aturan dan kriteria penerimaan | Draft tersedia; keputusan dan usulan dibedakan |
 | [UX_UI_SPEC.md](UX_UI_SPEC.md) v0.4 | Prinsip pengalaman, keypad angka, bantuan pintar, pola kerja di tempat, glosarium, navigasi, layar, label, status, arah visual tertulis dan skenario UX | Draft tersedia; bukan hasil uji UI |
 | [UX_FLOWS_WIREFRAMES.md](UX_FLOWS_WIREFRAMES.md) v0.3 | Sepuluh alur, aturan arahan bebas, sketsa teks, data minimum, cabang gagal/offline, dan rencana validasi | Draft tersedia; lima layar penting punya mockup di `mockups/` |
-| [UX_AUDIT.md](UX_AUDIT.md) v0.1 | Audit kemudahan: temuan, perbaikan yang diterapkan, batas yang sengaja dijaga, risiko dan cara membuktikan | Audit dokumen; bukan hasil uji pengguna |
-| [ARCHITECTURE.md](ARCHITECTURE.md) v0.1 | Batas modul R1, aliran data/transaksi, offline, isolasi, pemulihan, opsi teknologi dan biaya | Draft tersedia; pilihan teknis belum final, bukan sistem yang sudah berjalan atau diuji |
-| [SECURITY_OPERATIONS.md](SECURITY_OPERATIONS.md) v0.1 | Izin/privasi, akun tanpa email, data lokal, lampiran/ekspor, retensi, operasional, backup/restore dan insiden | Draft tersedia; kebijakan Q dan parameter ADR belum disetujui, drill belum dijalankan |
+| [UX_AUDIT.md](UX_AUDIT.md) v0.2 | Audit kemudahan: temuan, perbaikan yang diterapkan, batas yang sengaja dijaga, risiko dan cara membuktikan | Audit dokumen; bukan hasil uji pengguna |
+| [ARCHITECTURE.md](ARCHITECTURE.md) v0.2 | Batas modul R1, aliran data/transaksi, offline, isolasi, pemulihan, opsi teknologi dan biaya | Draft tersedia; pilihan teknis belum final, bukan sistem yang sudah berjalan atau diuji |
+| [SECURITY_OPERATIONS.md](SECURITY_OPERATIONS.md) v0.2 | Izin/privasi, akun tanpa email, data lokal, lampiran/ekspor, retensi, operasional, backup/restore dan insiden | Draft tersedia; kebijakan Q dan parameter ADR belum disetujui, drill belum dijalankan |
 | [DATA_MODEL.md](DATA_MODEL.md) v0.2 | Entitas/relasi R1, tipe/status/key/constraint, sumber/efek, saldo awal, koreksi, concurrency dan recovery | Model logis tersedia; bukan DDL/migrasi yang telah dijalankan atau pilihan ORM |
 | [API_SYNC_SPEC.md](API_SYNC_SPEC.md) v0.4 | 69 command/14 query, envelope, izin, hasil/error, idempotensi, antrean/konflik, file, ekspor dan recovery | Kontrak logis tersedia; endpoint dan versi teknis belum diimplementasikan |
-| [TEST_PLAN.md](TEST_PLAN.md) v0.3 | Pemetaan individual 100 AC, 30 GOLD dan 49 UT; fixtures, suite, gate teknis dan pilot, format bukti | Rencana lengkap tersedia; semua tes aplikasi belum dijalankan |
-| [Implementation Plan.md](Implementation%20Plan.md) v0.3 | 63 kartu berurutan, termasuk fondasi UI: prasyarat, area perubahan, sumber, langkah, hasil, tes, stop conditions, review dan handoff | Semua tugas NOT_STARTED; sangat rinci tetapi bukan izin coding/deploy/pilot |
+| [TEST_PLAN.md](TEST_PLAN.md) v0.4 | Pemetaan individual 100 AC, 30 GOLD dan 49 UT; fixtures, suite, gate teknis dan pilot, format bukti | Rencana lengkap tersedia; semua tes aplikasi belum dijalankan |
+| [Implementation Plan.md](Implementation%20Plan.md) v0.4 | 63 kartu berurutan, termasuk fondasi UI: prasyarat, area perubahan, sumber, langkah, hasil, tes, stop conditions, review dan handoff | Semua tugas NOT_STARTED; sangat rinci tetapi bukan izin coding/deploy/pilot |
 | [AGENTS.md](AGENTS.md) | Batas dan cara kerja agent di proyek | Panduan kerja, bukan persetujuan produk |
 | [.agents/README.md](.agents/README.md) | Sumber, versi, penggunaan, serta verifikasi instalasi skill | Dokumentasi alat bantu; bukan bukti mutu UI aplikasi |
-| [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md) v0.1 | Aturan implementasi desain final: sumber kebenaran, fondasi teknis tanpa CDN, token, kerangka/navigasi, katalog komponen, blueprint tujuh layar (termasuk Recording Harian bertab), resep layar tanpa mockup, koreksi wajib, kontras, pemeriksaan visual | Keputusan desain pengguna K-39; belum ada frontend yang dibangun atau diuji |
-| [design/](design/README.md) | Tujuh mockup Google Stitch (`code.html`, screenshot asli, screenshot acuan 390 px), `DESIGN.md`, konfigurasi Tailwind, aset | Sumber visual final; tidak diubah |
+| [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md) v0.2 | Aturan implementasi desain final: sumber kebenaran, fondasi teknis tanpa CDN, token, kerangka/navigasi, katalog komponen, blueprint tujuh layar (termasuk Recording Harian bertab), resep layar tanpa mockup, koreksi wajib, kontras, pemeriksaan visual | Keputusan desain pengguna K-39; belum ada frontend yang dibangun atau diuji |
+| [design/](design/README.md) | Tujuh mockup Google Stitch (`code.html` asli, `corrected.html` terkoreksi, screenshot asli dan acuan 390 px), `DESIGN.md`, konfigurasi Tailwind, aset, alat pemeriksa di `design/tools/` | Sumber visual final; file asli tidak diubah, acuan terkoreksi dibuat ulang lewat skrip |
 | [mockups/README.md](mockups/README.md) v0.1 | Mockup HTML/CSS lima layar penting, token, kontrak komponen, dan batas porting ke frontend | Mockup berjalan dengan data contoh; desain visualnya dinilai pengguna kurang bagus, jadi bukan acuan tampilan |
 | [BRIEF_MOCKUP.md](BRIEF_MOCKUP.md) v0.1 | Brief satu file untuk membuat mockup di alat lain: konsep, aturan isi, bahasa layar, dan isi 16 halaman penting tanpa arahan visual | Rangkuman dokumen sumber; desain diarahkan sendiri oleh pengguna |
 
@@ -87,3 +87,4 @@ Penyelesaian checklist perencanaan dan adanya mockup tidak mengubah fase menjadi
 | 0.5 | 23 September 2026 | Atas permintaan pengguna, menambah mockup HTML/CSS lima layar penting di `mockups/` beserta token, kontrak komponen dan tes format/istilah. Implementasi aplikasi tetap belum dimulai. |
 | 0.6 | 23 September 2026 | Pengguna menilai desain mockup kurang bagus. Menambah `BRIEF_MOCKUP.md` agar pengguna mengarahkan desain sendiri di Google AI Studio; isi dan aturan halaman tetap mengikuti dokumen sumber. |
 | 0.7 | 23 September 2026 | Pengguna menyerahkan mockup Google Stitch dan `DESIGN.md` sebagai desain final (K-39). Menambah `design/` dan FRONTEND_DESIGN_SPEC.md; menyelaraskan PRD v0.6, UX/UI v0.4, alur v0.3, model data v0.2, API v0.4, rencana tes v0.3, dan Implementation Plan v0.3. Implementasi belum dimulai. |
+| 0.8 | 23 September 2026 | Penyelarasan desain final di semua dokumen (PRD, UX/UI, alur, audit, arsitektur, keamanan, model data, API, tes, Implementation Plan) dan alat pemeriksa tampilan di `design/tools/` dengan acuan terkoreksi. Resep fondasi terbukti lulus 20/20 screenshot. |

@@ -2,11 +2,11 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.1 |
+| Versi | 0.2 |
 | Tanggal | 23 September 2026 |
 | Permintaan pengguna | Pastikan aplikasi sangat mudah dipakai: bahasa singkat dan tidak ambigu, mengarahkan seperti Duolingo tetapi bebas memilih tindakan, terasa pintar dan memanjakan, keypad angka khusus, detail mudah dibuka-tutup, dan sedikit pindah halaman |
 | Cakupan | PRD, UX/UI, alur, arsitektur, keamanan, model data, API, rencana tes, Implementation Plan, PLANNING, dan AGENTS |
-| Status | Audit dokumen dan perbaikan rancangan tertulis. **Belum ada mockup, aplikasi, atau uji pengguna**; kemudahan baru terbukti setelah uji pada HP nyata |
+| Status | Audit dokumen dan perbaikan rancangan tertulis. Desain visual final kemudian diberikan pengguna (K-39, [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md)); **belum ada aplikasi atau uji pengguna**, jadi kemudahan baru terbukti setelah uji pada HP nyata |
 | Keputusan baru | [PRD K-38](PRD.md#s03) mencatat arahan pengguna; D-26 dan D-27 adalah rancangan yang masih diuji |
 
 ## Daftar isi
@@ -79,7 +79,7 @@ Referensi publik membantu memilih pola. Referensi tersebut bukan persetujuan pen
 | UXA-14 | P2 | Layar mencampur “siklus” dan “periode” | Layar memakai **Periode**; “siklus” hanya istilah teknis | Diperbaiki pada wireframe dan glosarium |
 | UXA-15 | P2 | Aturan bahasa belum terukur | Aturan §16.6: judul kata benda, tombol kata kerja + objek, bantuan satu kalimat, format error tiga bagian | Diperbaiki |
 | UXA-16 | P2 | Owner harus membuka detail tiap belanja untuk memeriksa | Baris buka-tutup dengan pratinjau dampak dan aksi di tempat; tidak ada bukukan dengan geser | Diperbaiki: V-11, WF-13, IMP-029 |
-| UXA-17 | P2 | Catat Belanja belum memanfaatkan tanggal cepat, saran keperluan, dan cek mirip | WF-12 diperbarui sebagai lembar dengan keypad dan bantuan pintar | Diperbaiki |
+| UXA-17 | P2 | Catat Belanja belum memanfaatkan tanggal cepat, saran keperluan, dan cek mirip | WF-12 diperbarui dengan keypad dan bantuan pintar; sesuai mockup K-39 kini berupa halaman fokus dengan keypad terpasang | Diperbaiki |
 | UXA-18 | P3 | Tes belum mengukur kemudahan secara objektif | Ukuran pindah halaman, ketukan, klik pertama, dan temuan langkah berikut di UX/UI §17.1, IMP-059, UT-44–UT-49 | Diperbaiki |
 
 <a id="uxa05"></a>
@@ -121,9 +121,9 @@ Beberapa usulan populer terlihat “pintar”, tetapi dapat merusak angka atau k
 | Lembar bawah tertutup keyboard atau tombol kembali mengejutkan | Uji 320–390 CSS px, keyboard terbuka, tombol kembali Android, refresh | IMP-006, IMP-056 |
 | Saran terasa mengganggu | Hitung saran yang ditunda/diabaikan dan wawancara singkat Owner/ABK | IMP-047, IMP-059 |
 | Label baru tetap membingungkan di lapangan | Uji klik pertama: “Anda menerima uang dari Owner”, “Anda membeli solar”, “ABK meminjam uang” | IMP-059 |
-| Agent menambah pola atau istilah sendiri | Pemeriksa istilah otomatis dan review diff terhadap glosarium | IMP-006, IMP-056 |
+| Agent menambah pola atau istilah sendiri | Pemeriksa istilah otomatis, daftar kelas yang diizinkan, pemeriksaan visual terhadap mockup (FRONTEND_DESIGN_SPEC §11), dan review diff terhadap glosarium | IMP-006, IMP-056 |
 
-Target awal yang diuji tercantum di [UX/UI §16.4](UX_UI_SPEC.md#ux16): catat belanja 1 ketuk membuka lembar dan 0 pindah halaman, Owner membukukan belanja lengkap tanpa pindah halaman, serta target GOAL-01/02 yang sudah ada. Target ini usulan dan boleh direvisi hanya berdasarkan hasil uji.
+Target awal yang diuji tercantum di [UX/UI §16.4](UX_UI_SPEC.md#ux16): catat belanja 1 ketuk membuka halaman fokus dan kembali ke layar asal setelah kirim (mockup K-39), Owner membukukan belanja lengkap tanpa pindah halaman, serta target GOAL-01/02 yang sudah ada. Target ini usulan dan boleh direvisi hanya berdasarkan hasil uji.
 
 <a id="uxa08"></a>
 ## 8. Referensi dan riwayat
@@ -145,3 +145,4 @@ Diperiksa 23 September 2026. Dipakai sebagai acuan pola, bukan persetujuan atau 
 | Versi | Tanggal | Perubahan |
 |---|---|---|
 | 0.1 | 23 September 2026 | Audit kemudahan seluruh dokumen perencanaan dan perbaikan rancangan tertulis (K-38, D-26, D-27, UX-17–UX-20, UX/UI v0.3, alur v0.2, UT-44–UT-49, IMP-006). Belum ada mockup, aplikasi, atau uji pengguna. |
+| 0.2 | 23 September 2026 | Menyesuaikan dengan desain final K-39: Catat Belanja menjadi halaman fokus sesuai mockup, dan penjagaan pola ditambah daftar kelas yang diizinkan serta pemeriksaan visual. Temuan lain tetap. |

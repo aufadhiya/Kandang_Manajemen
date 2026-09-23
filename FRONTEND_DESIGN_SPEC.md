@@ -2,11 +2,11 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.1 |
+| Versi | 0.2 |
 | Tanggal | 23 September 2026 |
 | Status | Keputusan pengguna **K-39**: tampilan final mengikuti mockup Google Stitch dan `DESIGN.md` yang diberikan pengguna. Dokumen ini menerjemahkannya menjadi aturan implementasi |
 | Pembaca utama | AI agent yang mengerjakan [IMP-006](Implementation%20Plan.md#imp-006) dan semua kartu layar WEB |
-| Sumber visual | [design/](design/README.md): tujuh layar Stitch (`code.html`, screenshot asli, screenshot acuan 390 px), `DESIGN.stitch.md`, `DESIGN.md`, konfigurasi Tailwind, aset |
+| Sumber visual | [design/](design/README.md): tujuh layar Stitch (`code.html` asli, `corrected.html` terkoreksi, screenshot asli, screenshot acuan 390 px), `DESIGN.stitch.md`, `DESIGN.md`, konfigurasi Tailwind, aset, alat pemeriksa |
 | Sumber isi dan aturan | [PRD](PRD.md), [UX_UI_SPEC](UX_UI_SPEC.md), [UX_FLOWS_WIREFRAMES](UX_FLOWS_WIREFRAMES.md), [DATA_MODEL](DATA_MODEL.md), [API_SYNC_SPEC](API_SYNC_SPEC.md) |
 | Bukan | Kode aplikasi, hasil uji pengguna, atau bukti aksesibilitas. Belum ada frontend yang dibangun |
 
@@ -41,14 +41,14 @@ K-39 hanya mengatur **tampilan**. Aturan bisnis, izin, uang, offline, dan bahasa
 |---|---|---|---|
 | 1 | PRD, UX_UI_SPEC, DATA_MODEL, API_SYNC_SPEC | Arti data, izin, efek uang, status kanonis, glosarium, perilaku offline | Selalu menang atas tampilan |
 | 2 | Dokumen ini | Struktur layar, komponen, teks final, koreksi mockup, layar/tab yang tidak ada di mockup | Menang atas file Stitch |
-| 3 | `design/stitch/<layar>/code.html` | Kelas Tailwind, ukuran, warna, jarak, radius, ikon, urutan elemen | Menang atas screenshot dan `DESIGN.md` |
-| 4 | `reference-390-*.png` dan `stitch-screen.png` | Pembanding visual hasil render | Hanya pembanding |
+| 3 | `design/stitch/<layar>/corrected.html`, lalu `code.html` | Kelas Tailwind, ukuran, warna, jarak, radius, ikon, urutan elemen. `corrected.html` adalah `code.html` yang sudah diberi koreksi tampilan §9 secara otomatis | Menang atas screenshot dan `DESIGN.md` |
+| 4 | `reference-390-terkoreksi-*.png`, lalu `reference-390-*.png` dan `stitch-screen.png` | Pembanding visual hasil render; yang **terkoreksi** adalah target lulus/gagal §11 | Hanya pembanding |
 | 5 | `design/stitch/DESIGN.stitch.md` | Ringkasan token Stitch | Kalah dari `code.html` |
 | 6 | `design/DESIGN.md` (gaya Notion, "warm paper") | Watak dasar: kanvas hangat, satu biru utama, teks bertingkat alfa | Kalah dari Stitch untuk kaca, blur, bayangan, radius 16 px, dan gradien halus, karena layar yang disetujui memakainya |
 
 ### 1.3 Aturan kerja untuk AI agent
 
-1. **Salin, jangan tafsir.** Untuk layar yang punya mockup, salin struktur dan kelas dari `code.html` pada rentang baris yang disebut di [§7](#fd07). Jangan mengganti kelas dengan nilai yang "mirip".
+1. **Salin, jangan tafsir.** Untuk layar yang punya mockup, salin struktur dan kelas dari `corrected.html` (teks sudah dikoreksi) atau `code.html` pada rentang baris yang disebut di [§7](#fd07); nomor baris merujuk `code.html`. Jangan mengganti kelas dengan nilai yang "mirip". Jalankan `python3 design/tools/cek_kelas.py <folder kode web>`; kelas di luar mockup ditolak.
 2. **Pakai token, bukan warna bebas.** Hanya kelas dari konfigurasi Tailwind di [§4](#fd04) dan palet bawaan Tailwind yang memang dipakai mockup (`emerald-*`, `amber-*`, `white`, `black/[alpha]`). Warna heksadesimal baru dilarang.
 3. **Terapkan koreksi.** Sebelum menulis teks layar, cek [§9](#fd09). Teks mockup yang ada di daftar koreksi tidak boleh dipakai.
 4. **Data contoh bukan data.** Nama, angka, dan tanggal di mockup (misalnya "Budi Santoso", "Token ID", "Rp148.500") hanya contoh. Layar selalu menampilkan data nyata dari API. Untuk tes visual, pakai fixture di [§11.2](#fd11).
@@ -57,7 +57,7 @@ K-39 hanya mengatur **tampilan**. Aturan bisnis, izin, uang, offline, dan bahasa
 7. **Tanpa CDN.** Tailwind dibangun saat build. Font Inter dan ikon Material Symbols disimpan di aplikasi ([§3](#fd03)). Aplikasi harus tampil sama saat offline.
 8. **Aksesibilitas tanpa mengubah tampilan.** Tambahkan label ARIA, peran tab/dialog, fokus, dan zoom seperti di [§10](#fd10). Perubahan ini tidak boleh mengubah piksel kecuali cincin fokus.
 9. **Perilaku mengikuti spesifikasi, bukan skrip demo.** Skrip di `code.html` hanya demo (misalnya `alert()`, nominal awal `150000`, animasi "Menyimpan..."). Perilaku final ada di §7 dan UX_UI_SPEC.
-10. **Bukti.** Setiap layar selesai hanya bila lolos pemeriksaan visual [§11](#fd11) dan tes perilaku kartunya.
+10. **Bukti.** Setiap layar selesai hanya bila lolos pemeriksaan visual [§11](#fd11) dengan `design/tools/bandingkan_screenshot.py` dan tes perilaku kartunya. Hasil perintah dilampirkan; klaim "sudah mirip" tanpa angka selisih tidak diterima.
 
 ### 1.4 Arti "persis"
 
@@ -80,9 +80,12 @@ Perbedaan yang diizinkan hanya:
 | `design/stitch/DESIGN.stitch.md` | Sistem "Modern Glassmorphism & Warm Paper" dari Stitch | Ringkasan token dan kaca |
 | `design/stitch/tailwind.config.json` | Konfigurasi Tailwind yang sama persis di ketujuh layar (sudah dinormalisasi) | Sumber token untuk build |
 | `design/stitch/<layar>/code.html` | HTML + Tailwind hasil Stitch, **tidak diubah** | Sumber kelas dan struktur |
+| `design/stitch/<layar>/corrected.html` | `code.html` + koreksi tampilan §9, dibuat otomatis oleh `design/tools/buat_acuan_terkoreksi.py`; jangan diedit manual | Sumber teks final dan acuan render |
 | `design/stitch/<layar>/stitch-screen.png` | Screenshot asli dari Stitch | Bukti persetujuan pengguna |
-| `design/stitch/<layar>/reference-390-*-viewport.png` | Render 390×844, layar pertama | Pembanding visual utama |
-| `design/stitch/<layar>/reference-390-*-full.png` | Render 390 px seluruh halaman | Pembanding bagian bawah |
+| `design/stitch/<layar>/reference-390-terkoreksi-*-viewport.png` dan `-full.png` | Render 390 px dari `corrected.html`, animasi dimatikan | **Target lulus/gagal** §11 |
+| `design/stitch/<layar>/reference-390-*-viewport.png` dan `-full.png` (tanpa "terkoreksi") | Render 390 px dari `code.html` asli | Arsip tampilan asli |
+| `design/stitch/masks.json` | Area yang tidak dihitung saat membandingkan (hanya logo sementara K-ALL-3) | Dipakai alat pembanding |
+| `design/tools/` | `buat_acuan_terkoreksi.py`, `render_acuan.sh`, `bandingkan_screenshot.py`, `cek_kelas.py` | Membuat acuan dan memeriksa hasil |
 | `design/stitch/assets/` | Salinan lokal gambar yang dipakai mockup | Hanya contoh; lihat [§12](#fd12) |
 
 Tujuh layar yang ada:
@@ -97,14 +100,14 @@ Tujuh layar yang ada:
 | `periksa_belanja_owner` | Periksa Belanja | V-11, V-10 |
 | `mulai_kandang_setup_3_langkah` | Mulai Kandang tiga langkah | V-04 |
 
-Screenshot acuan dibuat dengan Chromium headless dari `code.html` apa adanya (termasuk teks yang kelak dikoreksi). Keadaan tambahan: `recording…/reference-390-tab-pakan-*` (lembar ditutup), `recording…/reference-390-lembar-pakan-*` (lembar terbuka), `uang_kas_abk/reference-390-rincian-terbuka-*`, dan `ringkasan…/reference-390-pilih-kandang-*`.
+Screenshot acuan asli dibuat dengan Chromium headless dari `code.html` apa adanya (termasuk teks yang kelak dikoreksi). Screenshot **terkoreksi** dibuat dari `corrected.html` dengan `design/tools/render_acuan.sh` dan punya keadaan yang sama (`-tab-pakan`, `-lembar-pakan`, `-rincian-terbuka`, `-pilih-kandang`). Keadaan tambahan: `recording…/reference-390-tab-pakan-*` (lembar ditutup), `recording…/reference-390-lembar-pakan-*` (lembar terbuka), `uang_kas_abk/reference-390-rincian-terbuka-*`, dan `ringkasan…/reference-390-pilih-kandang-*`.
 
 <a id="fd03"></a>
 ## 3. Fondasi teknis tampilan
 
 ### 3.1 Tailwind CSS
 
-- Gunakan **Tailwind CSS v3** yang dibangun saat build (mockup memakai Tailwind Play CDN v3; format `tailwind.config` v3). Versi pasti dikunci lewat ADR/lockfile saat implementasi dimulai. Jangan memakai Tailwind v4 karena nama dan perilaku token berbeda.
+- Gunakan **Tailwind CSS v3** yang dibangun saat build (mockup memakai Tailwind Play CDN, yang saat dicek 23 September 2026 mengarah ke **v3.4.17**; format `tailwind.config` v3). Versi pasti dikunci lewat ADR/lockfile saat implementasi dimulai; 3.4.17 sudah terbukti sama dengan acuan ([§3.7](#fd03)). Jangan memakai Tailwind v4 karena nama dan perilaku token berbeda.
 - Isi `theme.extend` **persis** dari `design/stitch/tailwind.config.json`, termasuk `darkMode: 'class'`. Jangan menambah atau mengganti token.
 - Konfigurasi ini **mengganti** radius bawaan: `rounded` = 0,25rem, `rounded-lg` = 0,5rem, `rounded-xl` = 0,75rem, `rounded-full` = 9999px. `rounded-md` (0,375rem), `rounded-2xl` (1rem), dan `rounded-3xl` (1,5rem) tetap nilai bawaan Tailwind.
 - Semua kelas harus ditulis utuh di kode, tanpa digabung dari potongan string, agar tidak terhapus saat build.
@@ -124,7 +127,7 @@ Screenshot acuan dibuat dengan Chromium headless dari `code.html` apa adanya (te
 
 - Simpan font variabel **Material Symbols Outlined** di aplikasi (woff2), dengan sumbu `FILL 0..1` dan `wght 100..700`. Lisensi Apache 2.0.
 - Agar ringan untuk offline, buat subset hanya berisi ikon yang dipakai. Daftar ikon ada di bawah. Tambahkan ikon baru hanya bila resep §8 menyebutnya.
-- Kelas `.material-symbols-outlined` wajib punya: `font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr; font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;`. Ukuran diatur kelas `text-*` di mockup.
+- Kelas `.material-symbols-outlined` wajib punya: `font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr; font-feature-settings: 'liga'; -webkit-font-smoothing: antialiased; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;`. Ukuran diatur kelas `text-*` di mockup. **Wajib:** tulis aturan ini di `@layer components` (sebelum `@tailwind utilities`) agar `text-xl`, `text-sm`, dan sejenisnya menang. Tanpa aturan ini ikon tampil sebagai tulisan ("dashboard", "arrow_forward") dan tata letak rusak; uji §3.7 mencatat selisih 3–33% bila aturan ini lupa.
 - Ikon terisi memakai `style="font-variation-settings: 'FILL' 1;"` seperti di mockup (ikon `edit_note` pada Saran Utama dan beberapa ikon lain).
 - Setiap ikon dekoratif diberi `aria-hidden="true"`. Tombol yang hanya berisi ikon wajib punya `aria-label`.
 
@@ -183,6 +186,31 @@ Tampilan pada zoom 100% tidak berubah.
 - Gerak yang ada: `active:scale-95`, `active:scale-[0.98]`, `active:scale-90`, `transition-all`/`transition-colors`/`transition-transform` (durasi bawaan 150 ms), `animate-pulse` pada titik status koneksi, putar ikon chevron 180°. Tidak ada animasi lain.
 - `prefers-reduced-motion: reduce` mematikan `animate-pulse` dan skala tekan.
 - Animasi tidak menunda simpan. Pesan berhasil muncul hanya setelah penyimpanan berhasil.
+
+### 3.7 Resep yang sudah diuji
+
+Resep §3.1–§3.5 sudah diuji dengan `design/tools/uji_fondasi_lokal.sh`: setiap `corrected.html` diubah menjadi halaman tanpa sumber daring, CSS dibangun dengan Tailwind CLI, lalu dibandingkan dengan acuan terkoreksi. Hasil 23 September 2026: **20 dari 20 screenshot lulus**, selisih terbesar 0,16% (batas 1%), hanya pada beberapa huruf dan ikon terisi karena versi font berbeda; tata letak identik.
+
+| Bagian | Versi yang diuji |
+|---|---|
+| Tailwind CSS | `tailwindcss` 3.4.17, tanpa plugin |
+| Inter | `@fontsource/inter` 5.x, file `inter-latin-400/600/700-normal.woff2` |
+| Material Symbols Outlined | `material-symbols` 0.47.5, `material-symbols-outlined.woff2` (variabel) |
+
+Urutan CSS global yang lulus:
+
+```css
+@font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url(inter-400.woff2) format('woff2'); }
+/* ulangi untuk 600 dan 700 */
+@font-face { font-family: 'Material Symbols Outlined'; font-weight: 100 700; font-display: block; src: url(material-symbols-outlined.woff2) format('woff2'); }
+@tailwind base;
+@tailwind components;
+@layer components { .material-symbols-outlined { /* aturan §3.3 */ } }
+@tailwind utilities;
+/* lalu CSS dasar §3.4 */
+```
+
+Versi lain boleh dipilih lewat ADR asal uji yang sama tetap lulus. Uji ini membuktikan fondasi, bukan layar aplikasi; setiap layar tetap diperiksa menurut §11.
 
 <a id="fd04"></a>
 ## 4. Token desain
@@ -687,9 +715,9 @@ Bingkai lembar sama untuk ketiga tab (baris 246–365): kepala dengan kotak ikon
 **Isian tab Pakan** (persis mockup, dengan koreksi):
 
 - **Tanggal Catatan** (`event`): `DateSegment` "Hari ini (23)" · "Kemarin (22)" · "Pilih". Bila tanggal terpilih sudah tercatat, di bawah segmen tampil `text-[11px] text-ink-black-secondary` "Tanggal 22 Sep sudah dicatat Yanto. Mengirim akan mengoreksi catatan itu."
-- **Jenis Pakan** (`layers`): `Select` berisi jenis pakan tenant. **Tambah Jenis** membuka isian nama jenis di tempat (baris isian + tombol **Simpan Jenis**). Contoh mockup: "Pakan BR-1 (Starter Broiler)".
+- **Jenis Pakan** (`layers`): `Select` berisi nama dari daftar barang aktif (bila ada) ditambah nama jenis yang pernah dipakai di kandang ini ([DATA_MODEL §12.2](DATA_MODEL.md#122-daily_recording_revision)). Contoh mockup: "Pakan BR-1 (Starter Broiler)". **Tambah Jenis** membuka dua isian di tempat, di bawah label: **Nama jenis pakan** (`TextInput`) dan **Berat per sak (kg)** "Opsional" (`QtyInput` kecil, keypad kuantitas), lalu TextButton **Pakai Jenis Ini** yang memilih nama itu untuk catatan ini. Tidak membuat master data dan tidak butuh sinyal.
 - Beberapa jenis dalam satu hari: TextButton **+ Tambah jenis pakan lain** di bawah kuantitas menambah pasangan Jenis + Kuantitas berikutnya. Pasangan kedua dan seterusnya punya tombol hapus `close` `aria-label="Hapus jenis ini"`.
-- **Kuantitas Digunakan Hari Ini** (`scale`), kanan "Bukan saldo gudang": `QtyInput` angka + satuan (`kg` atau `sak`; dapat diketuk untuk berganti bila jenis mendukung keduanya) dan kotak konversi `≈ n sak` hanya bila berat per sak diketahui (K-REC-4).
+- **Kuantitas Digunakan Hari Ini** (`scale`), kanan "Bukan saldo gudang": `QtyInput` angka + satuan (`kg` atau `sak`; dapat diketuk untuk berganti bila jenis mendukung keduanya) dan kotak konversi `≈ n sak` hanya bila berat per sak diketahui dari isian **Tambah Jenis** atau catatan sebelumnya dengan nama jenis yang sama (K-REC-4).
 - Baris bantuan `text-[11px] text-ink-black-secondary`, muncul **setelah** angka diisi: kiri `history` "Kemarin: **96 kg** (+4 kg hari ini)"; kanan "Rata-rata 7 hari: 91 kg" (K-REC-5).
 - **Catatan Tambahan** (`edit_note`), kanan "Opsional": `Textarea` 2 baris, placeholder dari mockup.
 
@@ -960,6 +988,15 @@ Urutan prioritas meminta mockup berikutnya kepada pengguna: R-05 DOC Masuk, R-07
 
 Koreksi berikut **wajib**. Tata letak, ukuran, dan warna di sekitarnya tetap sama. Setiap koreksi punya alasan dari aturan yang lebih tinggi (§1.2). Kolom **Mockup** berisi teks atau perilaku asli; kolom **Terapkan** berisi hasil final.
 
+**Acuan terkoreksi.** Koreksi yang mengubah tampilan sudah diterapkan otomatis ke `corrected.html` dan screenshot `reference-390-terkoreksi-*` (kode koreksi tercatat di `design/tools/buat_acuan_terkoreksi.py`). Yang **tidak** terlihat di acuan dan tetap wajib dikerjakan dari tabel ini:
+
+- **Keadaan awal kosong** (K-CB-3, K-CB-4, K-PB-6, K-MK-1–K-MK-4): acuan memperlihatkan keadaan *setelah* pengguna mengisi. Saat halaman dibuka, isian dan pilihan kosong; screenshot acuan diambil setelah fixture mengisi nilai yang sama.
+- **Perilaku dan aksesibilitas** (K-ALL-5–K-ALL-7, K-NAV-3, K-CB-7, K-CB-8, K-MK-8): skrip demo di `corrected.html` tetap demo; perilaku final dari §7, §10, dan API.
+- **Isi turunan** (K-REC-9): tab Mortalitas dan Sampling belum punya acuan Stitch; diperiksa menurut §11.1 langkah 5.
+- **Logo** (K-ALL-3): tetap logo sementara dan di-mask (`design/stitch/masks.json`) sampai logo final ada.
+
+Bila teks `corrected.html` berbeda dengan tabel ini, tabel ini yang benar; perbaiki skripnya lalu buat ulang acuan.
+
 ### 9.1 Semua layar
 
 | Kode | Mockup | Terapkan | Alasan |
@@ -1103,12 +1140,21 @@ Keputusan sementara: implementasi **mengikuti mockup** (K-39). Risiko ini diuji 
 
 ### 11.1 Cara memeriksa
 
-1. Jalankan aplikasi dengan fixture §11.2 dan buka layar pada Chromium, viewport 390×844, skala 1, font aplikasi sudah dimuat.
-2. Ambil screenshot keadaan yang sama dengan file acuan (`reference-390-*-viewport.png` dan versi `-full`).
-3. Bandingkan berdampingan dan dengan selisih piksel. Area yang berisi teks koreksi §9 dan data berbeda ditutup (mask) sebelum menghitung selisih.
-4. Lulus bila, di luar area mask, selisih piksel ≤1% dan tidak ada perbedaan urutan, jarak, radius, warna, atau ikon yang terlihat mata. Perbedaan yang terlihat harus dijelaskan dengan kode §9 atau diperbaiki.
-5. Ulangi untuk keadaan tambahan: tab Mortalitas dan Sampling, lembar ketiga tab, tanpa sinyal, kosong, error, dan koreksi. Keadaan ini tidak punya acuan Stitch, sehingga diperiksa dengan daftar kelas §6–§7 dan disetujui pengguna sekali, lalu screenshot-nya menjadi acuan baru.
+1. Jalankan aplikasi dengan fixture §11.2 dan buka layar pada Chromium, viewport 390×844, skala 1, font aplikasi sudah dimuat, **animasi dan transisi dimatikan** (misalnya CSS uji `*{animation:none!important;transition:none!important}`), dengan keadaan yang sama seperti acuan (lembar terbuka, laci terbuka, dan sebagainya; lihat `design/tools/render_acuan.sh`).
+2. Ambil screenshot `-viewport` (390×844) dan `-full` (tinggi seluruh halaman).
+3. Bandingkan dengan acuan **terkoreksi**:
+
+   ```text
+   python3 design/tools/bandingkan_screenshot.py design/stitch/<layar>/reference-390-terkoreksi-<keadaan>-viewport.png <hasil>.png --mask-file design/stitch/masks.json --out <selisih>.png
+   ```
+
+   Mask hanya untuk logo sementara (K-ALL-3). Jangan menambah mask untuk menutupi perbedaan; perbedaan teks karena §9 sudah ada di acuan terkoreksi.
+4. Lulus bila alat mencetak **LULUS** (selisih ≤1% di luar mask) **dan** gambar selisih tidak memperlihatkan perbedaan urutan, jarak, radius, warna, atau ikon. Ukuran `-full` yang berbeda berarti tinggi halaman berbeda dan dihitung gagal. Perbedaan yang tersisa harus dijelaskan dengan kode §9 atau diperbaiki.
+5. Ulangi untuk keadaan tambahan: tab Mortalitas dan Sampling, lembar ketiga tab, tanpa sinyal, kosong, error, dan koreksi. Keadaan ini tidak punya acuan Stitch, sehingga diperiksa dengan daftar kelas §6–§7 dan `design/tools/cek_kelas.py`, lalu disetujui pengguna sekali; setelah itu screenshot-nya menjadi acuan baru di folder layar.
 6. Periksa juga 320 px, 360 px, zoom 200%, **Kurangi Efek Visual**, dan `prefers-reduced-motion`.
+7. Lampirkan ke laporan kartu: perintah, keluaran LULUS/GAGAL per screenshot, dan gambar selisih.
+
+Bila `code.html` atau koreksi §9 berubah: jalankan `python3 design/tools/buat_acuan_terkoreksi.py`, `bash design/tools/render_acuan.sh`, lalu `bash design/tools/uji_fondasi_lokal.sh` (§3.7).
 
 Pemeriksaan ini melengkapi, bukan menggantikan, tes perilaku dan aksesibilitas di TEST_PLAN.
 
@@ -1146,3 +1192,4 @@ Hasil yang diharapkan dari fixture: tab Pakan "545 kg (≈ 10,9 sak)", "6 hari d
 | Versi | Tanggal | Perubahan |
 |---|---|---|
 | 0.1 | 23 September 2026 | Dokumen pertama dari tujuh mockup Google Stitch dan `DESIGN.md` pengguna (K-39): sumber kebenaran, fondasi teknis tanpa CDN, token, kerangka dan navigasi per peran, sekitar 60 komponen dan varian, blueprint tujuh layar termasuk Recording Harian bertab tiga (Pakan persis mockup; Mortalitas dan Sampling turunan), 18 resep layar tanpa mockup, 63 koreksi wajib, risiko kontras, dan cara pemeriksaan visual. Belum ada frontend yang dibangun atau diuji |
+| 0.2 | 23 September 2026 | Acuan terkoreksi otomatis: `corrected.html` dan screenshot `reference-390-terkoreksi-*` untuk tujuh layar (koreksi tampilan §9 diterapkan skrip, animasi dimatikan, render stabil). Alat pemeriksa di `design/tools/`: pembanding screenshot, pengecek kelas, dan uji fondasi lokal. §3.7 mencatat resep yang terbukti lulus 20/20 (Tailwind 3.4.17, font dan ikon lokal) dan aturan wajib lapisan CSS ikon. §11 memakai acuan terkoreksi sebagai target lulus/gagal. Tambah Jenis pada Recording tidak membuat master data. |

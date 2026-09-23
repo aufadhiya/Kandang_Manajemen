@@ -2,10 +2,10 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.1 |
+| Versi | 0.2 |
 | Tanggal | 23 September 2026 |
 | Status | Rancangan untuk ditinjau; bukan persetujuan kebijakan, implementasi, atau kesiapan produksi |
-| Fase | Perencanaan Markdown saja; tidak membuat aplikasi, mockup, atau konfigurasi deployment |
+| Fase | Perencanaan Markdown dengan acuan desain visual final dari pengguna (K-39); tidak membuat aplikasi atau konfigurasi deployment |
 | Cakupan | Kontrol keamanan dan operasi yang harus dirancang sebelum implementasi R1 dan pilot |
 | Sumber aturan bisnis | [PRD.md](PRD.md), terutama §3, §6, §7, §9, §22–§27, dan §31 |
 | Sumber sistem | [ARCHITECTURE.md](ARCHITECTURE.md), terutama §3, §8–§11, dan §14–§15 |
@@ -186,7 +186,7 @@ HP pribadi ABK adalah batas kepercayaan lemah: dapat hilang, dibagi, di-root, di
 |---|---|---|
 | HP hilang/dicuri ketika terkunci | Cache/antrean lama dapat dibaca atau disalahgunakan | Minimalkan cache, kunci aplikasi, lease terbatas, sediakan revoke sesi/grant online, jelaskan bahwa revoke tidak menjangkau HP offline |
 | HP tidak terkunci atau profil OS dibagi | Catatan lokal terbuka untuk orang lain | Jangan simpan sesi lintas user tanpa keputusan; local unlock diperlukan untuk capture-only; uji keluar/beralih akun |
-| XSS atau dependency jahat pada origin aplikasi | Skrip dapat membaca data lokal dan mungkin meminta operasi atas nama user | Proteksi XSS, dependency/build review, CSP sesuai stack, minimalkan rahasia di browser; key non-exportable saja tidak menghentikan skrip aktif yang dapat meminta operasi |
+| XSS atau dependency jahat pada origin aplikasi | Skrip dapat membaca data lokal dan mungkin meminta operasi atas nama user | Proteksi XSS, dependency/build review, CSP sesuai stack (CSS, font, dan ikon hanya dari origin aplikasi; tanpa CDN pihak ketiga, lihat FRONTEND_DESIGN_SPEC §3), minimalkan rahasia di browser; key non-exportable saja tidak menghentikan skrip aktif yang dapat meminta operasi |
 | Akses fisik/browser devtools/root | Database lokal atau key browser dapat diekstrak/dimodifikasi | Anggap cache dan local key dapat dikompromikan pada perangkat yang dikuasai penyerang; jangan klaim keamanan setara hardware keystore |
 | Storage eviction, uninstall, ganti browser/perangkat | Draft/capture-only yang belum sinkron hilang | Minta persistent storage bila tersedia, pantau ruang bila bisa, tampilkan status antrean, jelaskan local-only bukan backup |
 | Jam perangkat dimundurkan | Lease lokal tampak belum habis | Waktu lokal tidak memperpanjang izin server; rancangkan pemeriksaan dan threat test clock rollback |
@@ -547,3 +547,4 @@ Sumber publik di bawah membantu menjelaskan pedoman/karakteristik teknologi. Sum
 | Versi | Tanggal | Perubahan |
 |---|---|---|
 | 0.1 | 23 September 2026 | Rancangan keamanan/operasi: capability dan field ACL, akun/recovery, sesi/MFA, threat model perangkat, capture-only provenance, logging, lampiran/ekspor, READ_ONLY, retensi terbuka, backup/PITR, grant evidence/epoch, incident runbooks, deployment gates, dan rujukan publik. |
+| 0.2 | 23 September 2026 | CSP menegaskan CSS, font, dan ikon hanya dari origin aplikasi sesuai desain final K-39. |

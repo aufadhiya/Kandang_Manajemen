@@ -44,7 +44,7 @@
 - Label bisnis ditampilkan ke pengguna; nama internal seperti `DRAFT`, `UNRECONCILED`, dan `LOCKED` hanya untuk handoff. **Persiapan** berarti DRAFT, bukan periode aktif.
 - Review/posting uang oleh Owner secara online mengikuti **default D-03/Q-03**. Tidak ada keputusan delegasi/auto-post baru. Recording valid langsung berlaku tanpa approval rutin Owner, sesuai K-25.
 - Tetap di luar R1: persediaan/pemakaian rutin, panen per DO, FCR/IP, kalkulasi kontrak, OCR/import otomatis, buku pribadi Owner, Mandor/PPL, IoT, dan CCTV. Jangan membuat menu contoh untuk fitur tersebut.
-- Dokumen ini tidak memilih stack, penyedia layanan, atau library. Token dan pilihan solid/kaca tetap mengikuti [UX/UI §4–5](UX_UI_SPEC.md#ux04); tidak ada font daring atau animasi baru.
+- Dokumen ini tidak memilih stack, penyedia layanan, atau library. Tampilan, token, dan pilihan solid/kaca mengikuti mockup final di [FRONTEND_DESIGN_SPEC](FRONTEND_DESIGN_SPEC.md) (K-39); sketsa teks di dokumen ini hanya menjelaskan urutan dan isi, bukan tata letak. Tidak ada font daring atau animasi baru.
 
 <a id="flow02"></a>
 ## 2. Peta perjalanan dan rujukan
@@ -621,7 +621,7 @@ Semua contoh tetap tertulis dan sintetis. Deskripsi offline, reset, posting, dan
 2. Tinjau [arsitektur](ARCHITECTURE.md), [keamanan/operasional](SECURITY_OPERATIONS.md), [model data](DATA_MODEL.md) dan [kontrak API/sync](API_SYNC_SPEC.md) yang kini tersedia. Semua berupa Markdown; pilihan teknologi masih usulan, bukan hasil otomatis generator atau persetujuan pengguna.
 3. Gunakan [rencana tes](TEST_PLAN.md) untuk menelusuri seluruh AC/GOLD/UT serta cabang tim, kasbon, penutupan, konflik dan keadaan gagal. Skenario tertulis tidak diberi status lulus aplikasi.
 4. Gunakan [Implementation Plan](Implementation%20Plan.md) yang menguraikan alur vertikal menjadi 63 kartu tugas/dependensi, bukan mulai coding. Bekukan hanya keputusan yang benar-benar disepakati dengan versi/tanggal dan sisa pertanyaan terbuka.
-5. Periksa konsistensi seluruh file `.md`. Pindah ke mockup atau implementasi hanya setelah permintaan eksplisit pengguna; selesainya dokumen bukan izin otomatis.
+5. Periksa konsistensi seluruh file `.md`. Pindah ke implementasi hanya setelah permintaan eksplisit pengguna; desain visual final sudah ada di `design/` (K-39); selesainya dokumen bukan izin otomatis.
 
 ### 15.2 Sesi uji yang direncanakan
 
@@ -681,4 +681,4 @@ Perintah dapat dijalankan ulang dari root proyek dengan `python3 -B .agents/skil
 |---|---|---|
 | 0.1 | 23 September 2026 | Alur R1 dan wireframe teks prioritas, beranda adaptif, cabang gagal/offline, rujukan PRD/UX, serta rencana validasi. Arahan pengguna berikutnya menetapkan fokus `.md` saja; urutan mockup diganti dokumen arsitektur dan perencanaan teknis melalui PLANNING.md. Belum mockup visual, implementasi, atau UAT. |
 | 0.2 | 23 September 2026 | Audit kemudahan K-38: aturan arahan bebas, kerja di tempat dengan lembar dan baris buka-tutup, keypad angka dan bantuan pintar pada Catat Belanja, serta label kanonis (Terima/Kembalikan Uang, Periksa Belanja, Riwayat Belanja, Status Kirim, Kandang Kosong, Tutup Buku). Masih sketsa teks, bukan mockup. |
-| 0.3 | 23 September 2026 | Menyesuaikan dengan mockup final K-39: navigasi per peran dengan tombol Catat di tengah, halaman fokus Catat Belanja/Mulai Kandang, WF-08 aksi cepat, dan WF-09 Recording Harian bertab (Pakan, Mortalitas, Sampling) yang tetap satu catatan bersama. |
+| 0.3 | 23 September 2026 | Menyesuaikan dengan mockup final K-39: navigasi per peran dengan tombol Catat di tengah, halaman fokus Catat Belanja/Mulai Kandang, WF-08 aksi cepat, dan WF-09 Recording Harian bertab (Pakan, Mortalitas, Sampling) yang tetap satu catatan bersama. Sketsa teks dinyatakan hanya menjelaskan urutan dan isi; tampilan mengikuti FRONTEND_DESIGN_SPEC. |

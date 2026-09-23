@@ -2,12 +2,12 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.1 — rancangan awal arsitektur R1 |
+| Versi | 0.2 — rancangan arsitektur R1 dengan keharusan tampilan dari desain final |
 | Tanggal | 23 September 2026 |
 | Sumber bisnis | [PRD v0.5](PRD.md), terutama bagian 4, 6, 9, 22, dan 25–27 |
 | Sumber perilaku | [UX/UI v0.2](UX_UI_SPEC.md) dan [Alur & Wireframe Teks v0.1](UX_FLOWS_WIREFRAMES.md) |
 | Status | Draft untuk ditinjau; pilihan teknologi, layanan, biaya, serta rincian keamanan belum disetujui |
-| Fase | Perencanaan `.md` saja menurut [PLANNING.md](PLANNING.md); bukan izin membuat mockup, prototype, atau aplikasi |
+| Fase | Perencanaan `.md` menurut [PLANNING.md](PLANNING.md), dengan desain visual final dari pengguna di `design/` (K-39); bukan izin membuat prototype atau aplikasi |
 | Batas bukti | Belum ada implementasi, benchmark, uji keamanan, uji perangkat, atau pemulihan sistem dari dokumen ini |
 
 ## Daftar isi
@@ -378,6 +378,8 @@ Paket awal yang layak dievaluasi: **web TypeScript + React dengan Vite, backend 
 | AT-08 | Hosting terkelola yang mendukung API/worker, database dengan PITR/setara, storage privat, secret store dan bukti recovery independen; bandingkan self-managed | Mengurangi pekerjaan rutin operator, bukan menghilangkan tanggung jawab recovery | Biaya tetap/backup/WAL/retensi/monitoring dan batas layanan berbeda. Self-managed menuntut tenaga on-call dan patching; tidak dianggap murah hanya dari sewa server. Q-10/Q-11 harus menyetujui anggaran dan kebijakan |
 | AT-09 | Web/API satu origin bila layak, sesi server dengan cookie Secure/HttpOnly/SameSite serta proteksi CSRF; adapter autentikasi native dievaluasi nanti | Mengurangi kebutuhan menyimpan bearer token jangka panjang dalam JavaScript dan menyederhanakan batas web awal | Cookie tidak menyelesaikan XSS/CSRF sendiri; expiry/rotasi/revoke, browser offline dan native memerlukan threat model. Username/password tetap keputusan produk; detail sesi adalah usulan keamanan |
 
+**Keharusan dari desain final (K-39):** web client memakai **Tailwind CSS v3** yang dibangun saat build dengan konfigurasi `design/stitch/tailwind.config.json`, serta font Inter dan ikon Material Symbols Outlined yang disimpan di aplikasi dan ikut di-cache service worker agar tampilan sama saat offline. Tidak ada CSS/font/ikon dari CDN pihak ketiga saat runtime. Detail di [FRONTEND_DESIGN_SPEC §3](FRONTEND_DESIGN_SPEC.md#fd03). Ini tidak memilih framework selain yang dibahas AT-01.
+
 Kriteria umum: dapat diuji dengan aturan PRD; dependensi terawat dan lisensinya cocok; versi stabil kompatibel dipin lewat ADR/lockfile saat implementasi diminta. Tidak memasang dependency `latest`, membuat cloud account, atau menetapkan langganan dari dokumen ini. Android tetap kandidat Capacitor sesuai ARC-05/ARC-06, bukan pekerjaan R1; storage/service worker/push WebView harus diuji sendiri nanti.
 
 ### 12.2 Kerangka biaya yang perlu dikonfirmasi
@@ -490,3 +492,4 @@ Diperiksa 23 September 2026. Referensi mendukung sifat teknologi/pola dan keterb
 | Versi | Tanggal | Perubahan |
 |---|---|---|
 | 0.1 | 23 September 2026 | Arsitektur logis R1, batas modul/transaksi, offline/isolasi/restore, opsi teknologi dan biaya, serta handoff; seluruhnya perencanaan Markdown, tanpa implementasi atau klaim lulus uji aplikasi. |
+| 0.2 | 23 September 2026 | Menambah keharusan dari desain final K-39: Tailwind CSS v3 build, font dan ikon disimpan di aplikasi dan di-cache untuk offline, tanpa CDN pihak ketiga. |

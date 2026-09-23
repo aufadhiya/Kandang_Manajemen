@@ -8,7 +8,7 @@
 | Platform utama | Web mobile-first; disiapkan untuk kemasan aplikasi Android |
 | Fokus | Operasional dan keuangan kandang; recording dasar OFF/DAILY sebagai pilihan, performa dan estimasi kemitraan tetap bertahap |
 | Pengguna awal yang diketahui | Dua owner berminat; jumlah kandang, pengguna aktif, dan transaksi belum terukur |
-| Status persetujuan | Memuat keputusan brainstorming sampai 23 September 2026: sederhana/dinamis, multi-ABK, recording global langsung berlaku, pembelian tanpa tracking pemakaian rutin, kasbon fleksibel, dan login username/password. Rincian rancangan, mockup, keamanan, dan gate produksi tetap harus diverifikasi |
+| Status persetujuan | Memuat keputusan brainstorming sampai 23 September 2026: sederhana/dinamis, multi-ABK, recording global langsung berlaku, pembelian tanpa tracking pemakaian rutin, kasbon fleksibel, dan login username/password. Desain visual final ditetapkan pengguna lewat mockup (K-39). Rincian rancangan, keamanan, dan gate produksi tetap harus diverifikasi |
 | Spesifikasi UX pendamping | `UX_UI_SPEC.md` v0.4; desain visual final di [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md); audit kemudahan di [UX_AUDIT.md](UX_AUDIT.md). ID layar/tes dikelola di dokumen pendamping dan tidak menggantikan AC/GOLD/ledger test PRD |
 | Rancangan alur pendamping | [Alur Layar & Wireframe v0.3](UX_FLOWS_WIREFRAMES.md); usulan interaksi R1, bukan perubahan keputusan bisnis atau hasil UAT |
 | Arsitektur pendamping | [Arsitektur v0.1](ARCHITECTURE.md); pembagian sistem, pengaman data, dan opsi teknis yang masih usulan |
@@ -67,7 +67,7 @@
 
 ### 1.2 Instruksi untuk implementer/AI agent
 
-**Batas fase aktif:** pengguna meminta fokus pada dokumen `.md`, bukan mockup atau aplikasi. Aturan pembangunan/pengujian di bawah adalah kontrak untuk saat implementasi kelak diminta secara eksplisit, bukan izin memulainya sekarang.
+**Batas fase aktif:** pengguna meminta fokus pada dokumen `.md`; desain visual final sudah diberikan pengguna (K-39, `design/`), tetapi aplikasi belum dibuat. Aturan pembangunan/pengujian di bawah adalah kontrak untuk saat implementasi kelak diminta secara eksplisit, bukan izin memulainya sekarang.
 
 1. Baca bagian 3, 4, 6, 9, 13, 19, 22, 28, dan 31 sebelum membangun modul terkait.
 2. Jangan mengubah kebutuhan K untuk menyesuaikan library, demo, atau keterbatasan implementasi.
@@ -85,7 +85,7 @@
 
 ### 1.3 Dokumen lanjutan, bukan prasyarat untuk memahami kebutuhan
 
-Urutan fase perencanaan tertulis mengikuti [PLANNING.md](PLANNING.md): perincian arsitektur, keamanan/operasional, model data, kontrak API/sinkronisasi, rencana tes, dan backlog pembangunan. Semua berupa `.md`; tidak membuat mockup atau menjalankan migrasi/implementasi. PRD ini menjadi sumber makna bisnis; dokumen teknis tidak boleh mengubah makna uang, periode, atau hak akses secara sepihak.
+Urutan fase perencanaan tertulis mengikuti [PLANNING.md](PLANNING.md): perincian arsitektur, keamanan/operasional, model data, kontrak API/sinkronisasi, rencana tes, dan backlog pembangunan. Semua berupa `.md`, ditambah acuan desain visual final dari pengguna di `design/`; tidak menjalankan migrasi/implementasi. PRD ini menjadi sumber makna bisnis; dokumen teknis tidak boleh mengubah makna uang, periode, atau hak akses secara sepihak.
 
 [UX_FLOWS_WIREFRAMES.md](UX_FLOWS_WIREFRAMES.md) menyediakan bahan peninjauan alur dan wireframe awal sebelum persetujuan desain final. Rujuk ID layar/tes UX serta requirement PRD; tersedianya dokumen pendamping tidak berarti gate persetujuan/produksi sudah lulus.
 
@@ -175,7 +175,7 @@ Target di atas adalah target uji, bukan hasil yang sudah dicapai. Tidak menjanji
 | K-27 | Owner mencatat pakan datang, DOC, dan penerimaan sapronak mitra serta dapat menginput transaksi langsung. ABK tetap boleh membeli/menerima operasional gas/solar sendiri. Owner mobile-first; setiap ABK menggunakan HP dan identitasnya sendiri untuk input yang berwenang. |
 | K-28 | Fokus ABK adalah Recording, Belanja, dan Uang Kas; pemakaian operasional tidak menjadi tugas input R1. Gaji/kasbon/upah/panduan tetap tersedia sesuai hak. Owner juga dapat mencatat langsung. |
 | K-29 | Aplikasi menyediakan tutorial bagi pengguna. Bentuk panduan kontekstual dan batas tanpa LMS mengikuti rancangan UX, bukan fitur pelatihan tambahan yang telah diminta. |
-| K-30 | Arah UI dikonfirmasi modern, mudah digunakan, dan bergaya glassmorphism. Detail implementasi translucent/frosted, surface opaque, kontras, fallback solid, warna, radius, blur, dan shadow adalah rancangan UX yang masih menunggu mockup/usability/accessibility review. |
+| K-30 | Arah UI dikonfirmasi modern, mudah digunakan, dan bergaya glassmorphism. Detail implementasi translucent/frosted, surface opaque, kontras, fallback solid, warna, radius, blur, dan shadow adalah rancangan UX yang masih menunggu mockup/usability/accessibility review. Tampilan kini ditetapkan oleh K-39; uji usability/accessibility tetap diperlukan. |
 | K-31 | Aplikasi sangat dinamis dan sederhana: Owner dibimbing bertahap sesuai keadaan usaha, setup dapat dilanjutkan kemudian, data diminta saat dibutuhkan. Label judul/tombol pendek dan jelas; penjelasan lewat teks bantuan. |
 | K-32 | Jalur awal utama sebelum DOC masuk: Data Kandang → Tim Kandang opsional → Recording Harian OFF/DAILY → persiapan. Owner boleh mencatat sendiri dan belanja persiapan tanpa seluruh master/gaji/RHPP lengkap. |
 | K-33 | R1 mencatat pembelian, termasuk gas, solar, dan peralatan; tidak mewajibkan tracking pemakaian, tabung habis, sisa, atau stok operasional. Recording pakan DAILY tetap ada, terpisah dari pembukuan persediaan. |
@@ -216,7 +216,7 @@ Target di atas adalah target uji, bukan hasil yang sudah dicapai. Tidak menjanji
 | D-24 | Arah visual glassmorphism mengikuti mockup (K-39): kartu kaca putih 75–95% dengan blur di atas kanvas kertas hangat, sedangkan isian, tombol keypad, dan tampilan nominal tetap solid. Solid fallback dipakai bila efek tidak didukung, pengguna memilih Kurangi Efek Visual, atau preferensi sistem meminta transparansi rendah. Token final ada di FRONTEND_DESIGN_SPEC §4; kontras tetap diuji. | Q-01, Q-10 |
 | D-25 | Username dinormalisasi dan unik global agar cukup username/password saat masuk; akun ABK yang dikelola Owner terikat satu tenant, boleh beberapa kandang dalam tenant melalui grant eksplisit. Detail namespace adalah rancangan, tidak memerlukan email atau kode usaha tambahan saat login. | K-37, Q-02 |
 | D-26 | Keypad angka aplikasi dipakai untuk nominal rupiah, kuantitas, dan hitungan ekor: tombol besar, tombol `000`, hapus, tampilan `Rp` langsung, serta ejaan nominal. Username, password, dan teks bebas tetap memakai keyboard HP. Pengguna selalu dapat beralih ke keyboard HP, menempel angka, memakai keyboard fisik, dan pembaca layar; bila keypad gagal uji aksesibilitas pada perangkat pilot, keyboard angka HP menjadi default. | K-38, Q-01, Q-06 |
-| D-27 | Pola kerja di tempat: input singkat dibuka sebagai lembar bawah (panel samping di layar lebar), detail daftar dibuka-tutup di baris yang sama, dan aksi pemeriksaan tersedia dari baris yang dibuka. Formulir panjang tetap satu halaman fokus. Tombol kembali menutup lembar tanpa menghapus draf, alamat layar dapat dibuka ulang, dan tidak ada lembar bertumpuk. Pengecualian sesuai mockup (K-39): Catat Belanja dan Mulai Kandang adalah halaman fokus; Recording Harian adalah halaman bertab dengan lembar input per tab. | K-38, K-39, Q-01 |
+| D-27 | Pola kerja di tempat: input singkat dibuka sebagai lembar bawah (di layar ≥640 px tampil sebagai kartu di tengah, sesuai mockup K-39), detail daftar dibuka-tutup di baris yang sama, dan aksi pemeriksaan tersedia dari baris yang dibuka. Formulir panjang tetap satu halaman fokus. Tombol kembali menutup lembar tanpa menghapus draf, alamat layar dapat dibuka ulang, dan tidak ada lembar bertumpuk. Pengecualian sesuai mockup (K-39): Catat Belanja dan Mulai Kandang adalah halaman fokus; Recording Harian adalah halaman bertab dengan lembar input per tab. | K-38, K-39, Q-01 |
 
 <a id="s04"></a>
 ## 4. Cakupan rilis dan dependensi
@@ -1231,8 +1231,8 @@ Mode gelap dapat ditambahkan setelah uji keterbacaan; bukan syarat utama R1 dan 
 ### 21.5 Tutorial kontekstual dan arahan visual
 
 - Pusat Panduan tersedia dari **Lainnya** dan dari titik kebingungan di form (misalnya beda uang kas, kasbon, dan upah). Tutorial maksimal berupa langkah singkat dengan contoh sintetis, dapat dilewati, dan tidak memblokir transaksi yang sudah dipahami.
-- Mengikuti default `D-24`, glassmorphism diterapkan sebagai progressive enhancement pada shell. Jika efek dimatikan atau gagal uji kontras, solid surface menjadi perilaku normal, bukan error. Bidang angka/form dan status finansial tidak memakai background transparan yang membuat nilai sulit dibaca.
-- Mockup visual berikutnya menentukan token/radius/blur/shadow setelah uji pada lebar mobile dan kondisi lapangan. Pola tutorial dan baseline glass yang ada di spesifikasi UX adalah eksplorasi, bukan pilihan brand final. PRD ini menetapkan prinsip dan acceptance, bukan pixel-perfect styling.
+- Mengikuti `D-24` dan mockup K-39, glassmorphism dipakai pada header, navigasi, dan kartu (putih 75–95% di atas kanvas rata). Jika efek dimatikan atau tidak didukung, versi solid menjadi perilaku normal, bukan error. Isian, tombol keypad, dan tampilan nominal selalu solid; nilai uang dan status tidak boleh menjadi sulit dibaca karena transparansi.
+- Token, radius, blur, shadow, dan tata letak ditetapkan mockup pengguna (K-39) dan diterjemahkan di `FRONTEND_DESIGN_SPEC.md`. Frontend harus sama dengan mockup menurut pemeriksaan visual di dokumen itu; perubahan token hanya lewat revisi yang disetujui pengguna setelah uji lapangan atau aksesibilitas. PRD tetap menetapkan makna, izin, dan acceptance.
 - `UX_UI_SPEC.md` adalah handoff pendamping untuk inventaris layar dan skenario UX; saat implementasi, semua layar harus membawa state loading/empty/error/offline/pending/no-permission/success tanpa melonggarkan otorisasi atau efek ledger PRD.
 
 <a id="s22"></a>
@@ -1961,7 +1961,7 @@ Keputusan sudah ditutup tidak ditanyakan ulang sebagai syarat pilot: global DAIL
 | Beberapa ABK menimpa recording atau membaca keuangan rekan | Rekap bersama versioned/author terlihat, draft personal, API field whitelist dan saldo per orang; pencabutan satu anggota tidak mencabut yang lain |
 | Owner reset akun lalu mendapat akses usaha lain | Akun ABK dikelola satu tenant; reset berizin/reauth, pencabutan sesi, password sementara dan audit, tidak reset identitas Owner/Admin/PPL |
 | “Dinamis” berubah menjadi terlalu banyak pengaturan | Default terlihat dan bisa dikoreksi, setup bertahap saat dibutuhkan, tanpa form/rumus bebas tak terbatas atau nominal tebakan |
-| Glassmorphism membuat angka/form sulit dibaca di lapangan | Shell translucent saja, field opaque, kontras/fallback solid, uji mobile dan cahaya nyata sebelum token visual dikunci |
+| Glassmorphism membuat angka/form sulit dibaca di lapangan | Kaca hanya sesuai mockup K-39, isian/keypad/nominal solid, fallback solid dan Kurangi Efek Visual, risiko kontras tercatat di FRONTEND_DESIGN_SPEC §10 dan diuji pada HP serta cahaya nyata |
 
 ### 31.3 Checklist persetujuan PRD sebelum development produksi
 
@@ -1970,7 +1970,7 @@ Keputusan sudah ditutup tidak ditanyakan ulang sebagai syarat pilot: global DAIL
 - [ ] Default finansial/RBAC/offline yang berisiko disahkan melalui Q terkait.
 - [ ] R1 mempunyai contoh pembelian/kas/gaji/kasbon/recording bersama/settlement aktual representatif yang disamarkan; tanpa kontrak atau stok wajib. Perluasan estimasi memakai fixture kontrak/settlement terverifikasi sesuai CON-23.
 - [ ] Wireframe onboarding adaptif, username/password/Tim Kandang, rekap global multi-ABK, belanja tanpa bukti/pemakaian wajib, kasbon fleksibel, hasil periode, dan label pendek diuji dengan calon pengguna.
-- [ ] Mockup glassmorphism diuji: shell translucent, form/angka opaque, kontras lulus, dan fallback solid berfungsi; token detail belum dianggap final sebelum review aksesibilitas.
+- [ ] Frontend lolos pemeriksaan visual terhadap mockup K-39 (FRONTEND_DESIGN_SPEC §11); isian/angka solid, fallback solid berfungsi, dan risiko kontras §10 sudah diuji atau diputuskan pengguna.
 - [ ] Kebijakan data, keamanan, retensi, backup, dan dukungan perangkat ditetapkan.
 - [ ] Sasaran RPO/RTO dibuktikan melalui drill; recovery akun, restore+queue, pencabutan hak, dan ekspor paket diuji. Baseline serta target dampak pilot dicatat sebelum pengukuran hasil.
 - [ ] Backlog implementasi mengacu requirement/AC dan tidak memindahkan upah pekerjaan ke payroll.
@@ -2008,6 +2008,6 @@ Rumus pada bagian18 adalah konvensi operasional eksplisit untuk produk, disertai
 | 0.3 | 20 September 2026 | Recording dasar R1 opsional OFF/DAILY, rekap sekali sehari dan ABW sampling sederhana; panen/FCR/IP/mesin kontrak/impor tetap R2. Satu ABK berakses per kandang, penerimaan Owner, transaksi langsung, tutorial, dan arah modern glassmorphism; detail navigasi/visual/granularitas adalah rancangan. Handoff UX_UI_SPEC.md v0.1: 26 layar/35 skenario, bukan hasil UAT. Menambah K-24–K-30, D-20–D-24, Q-12, REC-14–REC-19, SEC-15, INV-17, UX-10–UX-14, OFF-18, MOD-07, GOLD-28–GOLD-29, AC-87–AC-92. Memisahkan agregasi DAILY dari snapshot kumulatif, rekap diterima dari efek stok/biaya, serta revisi dari penambahan. Gate mencakup sampling R1 tanpa performa panen R2. K-01–K-23 tetap. Mockup/pilot/usability/accessibility belum dijalankan. |
 | 0.4 | 23 September 2026 | Penyelarasan brainstorming: dinamis/sederhana, onboarding sebelum DOC bertahap, label pendek, username/password tanpa email wajib, akun ABK dikelola Owner, banyak ABK per kandang dan rekap global langsung berlaku. Pembelian tanpa tracking pemakaian R1; inventory detail/valuasi menjadi R2. Kasbon mandiri boleh melebihi gaji, potongan pilihan Owner, sisa tetap lintas periode. Nota opsional, RHPP lengkap/pembayaran saja, rupiah bulat dan alokasi nonnegatif. Menambah K-31–K-37, D-25, SEC-16, ONB-11, UX-15/16, GOLD-30, AC-93–AC-100; Q-12 ditutup, gate diselaraskan dengan UX v0.2. Riwayat versi lama deskriptif, bukan aturan R1 saat ini. Belum implementasi/UAT. |
 | 0.5 | 23 September 2026 | Audit kemudahan atas permintaan pengguna: K-38 (arahan seperti Duolingo dengan kebebasan memilih, bahasa jelas, pintar/memanjakan, keypad angka, buka-tutup, sedikit pindah halaman), D-26 keypad, D-27 kerja di tempat, UX-05/UX-06 diperbarui, UX-17–UX-20, label layar Terima/Kembalikan Uang, Riwayat Belanja, dan Status Kirim. Tidak mengubah aturan uang, izin, atau batas R1. Belum mockup/UAT. |
-| 0.6 | 23 September 2026 | Pengguna menyerahkan tujuh mockup Google Stitch dan `DESIGN.md` serta meminta frontend persis seperti mockup, dengan Recording Harian bertab. Menambah K-39; D-23 (navigasi per peran sesuai mockup), D-24 (kaca sesuai mockup dengan fallback solid), D-27 (halaman fokus Catat Belanja/Mulai Kandang dan Recording bertab), UX-10, UX-11, dan UX-13 diselaraskan. Aturan uang, izin, dan batas R1 tidak berubah. Belum ada frontend atau UAT. |
+| 0.6 | 23 September 2026 | Pengguna menyerahkan tujuh mockup Google Stitch dan `DESIGN.md` serta meminta frontend persis seperti mockup, dengan Recording Harian bertab. Menambah K-39; D-23 (navigasi per peran sesuai mockup), D-24 (kaca sesuai mockup dengan fallback solid), D-27 (halaman fokus Catat Belanja/Mulai Kandang dan Recording bertab), UX-10, UX-11, dan UX-13 diselaraskan. Sisa aturan lama ikut dirapikan: status fase, K-30, glassmorphism, token/pixel-perfect, lembar di layar lebar, risiko dan checklist kontras. Aturan uang, izin, dan batas R1 tidak berubah. Belum ada frontend atau UAT. |
 
 **Dokumen ini belum menyatakan aplikasi sudah diimplementasikan, diverifikasi di lapangan, atau siap menerima transaksi produksi.**
