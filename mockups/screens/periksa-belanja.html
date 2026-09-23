@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f6fb">
+  <title>Periksa Belanja · Owner — Kandang Manajemen (mockup)</title>
+  <link rel="stylesheet" href="../assets/tokens.css">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="../assets/components.css">
+  <script type="module" src="./periksa-belanja.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+  <header class="app-bar">
+    <div class="app-bar__inner">
+      <div class="app-bar__titles">
+        <h1 class="app-bar__title">Periksa Belanja</h1>
+        <p class="app-bar__context">Kandang Utara · Periode 01</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="konten" class="page-main">
+    <div class="banner banner--warning offline-banner" role="status">
+      <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-offline"></use></svg>
+      <p class="banner__body">Tidak ada sinyal. Anda bisa memeriksa, tetapi membukukan perlu sinyal.</p>
+    </div>
+
+    <fieldset class="field">
+      <legend class="visually-hidden">Tampilkan belanja</legend>
+      <div class="choice-group choice-group--scroll" data-filter>
+        <span class="choice">
+          <input class="choice__input" type="radio" id="filter-periksa" name="filter" value="periksa" checked>
+          <label class="choice__label" for="filter-periksa"><span>Perlu diperiksa (<span data-count="periksa">0</span>)</span></label>
+        </span>
+        <span class="choice">
+          <input class="choice__input" type="radio" id="filter-lengkapi" name="filter" value="lengkapi">
+          <label class="choice__label" for="filter-lengkapi"><span>Perlu dilengkapi (<span data-count="lengkapi">0</span>)</span></label>
+        </span>
+        <span class="choice">
+          <input class="choice__input" type="radio" id="filter-ditolak" name="filter" value="ditolak">
+          <label class="choice__label" for="filter-ditolak"><span>Ditolak (<span data-count="ditolak">0</span>)</span></label>
+        </span>
+        <span class="choice">
+          <input class="choice__input" type="radio" id="filter-dibukukan" name="filter" value="dibukukan">
+          <label class="choice__label" for="filter-dibukukan"><span>Dibukukan (<span data-count="dibukukan">0</span>)</span></label>
+        </span>
+      </div>
+    </fieldset>
+
+    <div class="row row--between">
+      <p class="text-secondary" data-list-summary aria-live="polite">3 belanja · Rp700.000</p>
+      <button type="button" class="btn btn--tertiary btn--sm" data-disclosure-close-all="daftar-belanja">Tutup Semua</button>
+    </div>
+
+    <ul class="disclosure-list" id="daftar-belanja">
+      <!-- Listrik -->
+      <li class="disclosure-item" data-purchase data-status="periksa" data-title="Listrik" data-amount="150000" data-amount-text="Rp150.000" data-by="Rudi">
+        <button type="button" class="disclosure__toggle" data-disclosure data-url-key="belanja" data-url-value="b-101" aria-expanded="false" aria-controls="b-101-panel">
+          <span class="disclosure__summary">
+            <span class="disclosure__title">Listrik</span>
+            <span class="text-meta">Rudi · 23 Sep · Uang Kas Rudi · Tanpa foto</span>
+            <span class="status status--info" data-status-badge>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-history"></use></svg>
+              <span data-status-text>Menunggu Owner</span>
+            </span>
+          </span>
+          <span class="disclosure__side"><span class="num">Rp150.000</span></span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <div class="disclosure__panel" id="b-101-panel" hidden>
+          <dl class="detail-list">
+            <dt>Dicatat</dt><dd>Rudi, 23 Sep 09.12</dd>
+            <dt>Tanggal belanja</dt><dd>23 Sep 2026</dd>
+            <dt>Dibayar dengan</dt><dd>Uang Kas Rudi</dd>
+            <dt>Foto nota</dt><dd>Tanpa foto (boleh)</dd>
+          </dl>
+          <div class="field">
+            <label class="field__label" for="b-101-nominal">Nominal dibayar</label>
+            <input class="input input--amount" type="text" id="b-101-nominal" data-numeric="rupiah" data-min="1" data-value="150000" data-claim="150000" data-row-amount
+              data-required data-required-message="Nominal dibayar belum diisi." aria-describedby="b-101-nominal-terbilang b-101-nominal-hint">
+            <p class="terbilang" id="b-101-nominal-terbilang" data-terbilang-for="b-101-nominal"></p>
+            <p class="field__hint" id="b-101-nominal-hint">Dari catatan Rudi. Ubah bila nota berbeda.</p>
+            <div class="field__notice" data-claim-diff hidden>
+              <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-alert"></use></svg>
+              <div class="field__notice-body"><p>Berbeda dari catatan Rudi (Rp150.000). Pastikan sesuai nota.</p></div>
+            </div>
+          </div>
+          <fieldset class="field" id="b-101-diterima" data-required data-required-message="Pastikan barang atau jasa sudah diterima.">
+            <legend class="fieldset__legend">Barang atau jasa sudah diterima?</legend>
+            <div class="choice-group">
+              <span class="choice"><input class="choice__input" type="radio" id="b-101-diterima-ya" name="b-101-diterima" value="ya"><label class="choice__label" for="b-101-diterima-ya"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Sudah</label></span>
+              <span class="choice"><input class="choice__input" type="radio" id="b-101-diterima-belum" name="b-101-diterima" value="belum"><label class="choice__label" for="b-101-diterima-belum"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Belum</label></span>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label class="field__label" for="b-101-beban">Dibebankan ke</label>
+            <select class="select" id="b-101-beban" data-cost-select>
+              <option data-cost-template="Biaya Periode 01 naik {amount}, sekali saja.">Periode 01 · Kandang Utara</option>
+              <option data-cost-template="Biaya umum usaha naik {amount}, tidak masuk Periode 01.">Di luar periode (biaya umum)</option>
+            </select>
+          </div>
+          <div class="impact" aria-live="polite">
+            <p class="impact__title">Jika dibukukan</p>
+            <p data-impact data-template="Uang Kas Rudi turun {amount}."></p>
+            <p data-impact-cost data-template="Biaya Periode 01 naik {amount}, sekali saja."></p>
+          </div>
+          <p class="disabled-reason" data-offline-reason hidden>Perlu sinyal untuk membukukan.</p>
+          <div class="row-actions">
+            <button type="button" class="btn btn--primary row-actions__primary" data-approve data-requires-online>Setujui &amp; Bukukan</button>
+            <button type="button" class="btn btn--secondary" data-request-fix>Minta Perbaikan</button>
+            <button type="button" class="btn btn--danger-text row-actions__danger" data-reject>Tolak</button>
+          </div>
+        </div>
+      </li>
+
+      <!-- Solar: mirip belanja kemarin -->
+      <li class="disclosure-item" data-purchase data-status="periksa" data-title="Solar 20 liter" data-amount="200000" data-amount-text="Rp200.000" data-by="Yanto">
+        <button type="button" class="disclosure__toggle" data-disclosure data-url-key="belanja" data-url-value="b-102" aria-expanded="false" aria-controls="b-102-panel">
+          <span class="disclosure__summary">
+            <span class="disclosure__title">Solar 20 liter</span>
+            <span class="text-meta">Yanto · 23 Sep · Uang Kas Yanto · 1 foto</span>
+            <span class="status status--info" data-status-badge>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-history"></use></svg>
+              <span data-status-text>Menunggu Owner</span>
+            </span>
+          </span>
+          <span class="disclosure__side"><span class="num">Rp200.000</span></span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <div class="disclosure__panel" id="b-102-panel" hidden>
+          <div class="banner banner--warning">
+            <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-alert"></use></svg>
+            <p class="banner__body">Mirip belanja Solar Rp200.000 kemarin oleh Yanto. Pastikan bukan belanja yang sama.</p>
+          </div>
+          <div class="row">
+            <div class="photo-placeholder" role="img" aria-label="Foto nota solar (contoh)">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-camera"></use></svg>
+              Foto nota
+            </div>
+            <dl class="detail-list">
+              <dt>Dicatat</dt><dd>Yanto, 23 Sep 07.40</dd>
+              <dt>Toko</dt><dd>SPBU Contoh</dd>
+              <dt>Dibayar dengan</dt><dd>Uang Kas Yanto</dd>
+            </dl>
+          </div>
+          <div class="field">
+            <label class="field__label" for="b-102-nominal">Nominal dibayar</label>
+            <input class="input input--amount" type="text" id="b-102-nominal" data-numeric="rupiah" data-min="1" data-value="200000" data-claim="200000" data-row-amount
+              data-required data-required-message="Nominal dibayar belum diisi." aria-describedby="b-102-nominal-terbilang b-102-nominal-hint">
+            <p class="terbilang" id="b-102-nominal-terbilang" data-terbilang-for="b-102-nominal"></p>
+            <p class="field__hint" id="b-102-nominal-hint">Dari catatan Yanto. Ubah bila nota berbeda.</p>
+            <div class="field__notice" data-claim-diff hidden>
+              <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-alert"></use></svg>
+              <div class="field__notice-body"><p>Berbeda dari catatan Yanto (Rp200.000). Pastikan sesuai nota.</p></div>
+            </div>
+          </div>
+          <fieldset class="field" id="b-102-diterima" data-required data-required-message="Pastikan barang atau jasa sudah diterima.">
+            <legend class="fieldset__legend">Barang atau jasa sudah diterima?</legend>
+            <div class="choice-group">
+              <span class="choice"><input class="choice__input" type="radio" id="b-102-diterima-ya" name="b-102-diterima" value="ya"><label class="choice__label" for="b-102-diterima-ya"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Sudah</label></span>
+              <span class="choice"><input class="choice__input" type="radio" id="b-102-diterima-belum" name="b-102-diterima" value="belum"><label class="choice__label" for="b-102-diterima-belum"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Belum</label></span>
+            </div>
+          </fieldset>
+          <div class="impact" aria-live="polite">
+            <p class="impact__title">Jika dibukukan</p>
+            <p data-impact data-template="Uang Kas Yanto turun {amount}."></p>
+            <p data-impact-cost data-template="Biaya Periode 01 naik {amount}, sekali saja."></p>
+          </div>
+          <p class="disabled-reason" data-offline-reason hidden>Perlu sinyal untuk membukukan.</p>
+          <div class="row-actions">
+            <button type="button" class="btn btn--primary row-actions__primary" data-approve data-requires-online>Setujui &amp; Bukukan</button>
+            <button type="button" class="btn btn--secondary" data-request-fix>Minta Perbaikan</button>
+            <button type="button" class="btn btn--danger-text row-actions__danger" data-reject>Tolak</button>
+          </div>
+        </div>
+      </li>
+
+      <!-- Sekam: sumber uang belum tahu -->
+      <li class="disclosure-item" data-purchase data-status="periksa" data-title="Sekam 10 karung" data-amount="350000" data-amount-text="Rp350.000" data-by="Rudi">
+        <button type="button" class="disclosure__toggle" data-disclosure data-url-key="belanja" data-url-value="b-103" aria-expanded="false" aria-controls="b-103-panel">
+          <span class="disclosure__summary">
+            <span class="disclosure__title">Sekam 10 karung</span>
+            <span class="text-meta">Rudi · 22 Sep · Sumber belum tahu</span>
+            <span class="status status--info" data-status-badge>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-history"></use></svg>
+              <span data-status-text>Menunggu Owner</span>
+            </span>
+          </span>
+          <span class="disclosure__side"><span class="num">Rp350.000</span></span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <div class="disclosure__panel" id="b-103-panel" hidden>
+          <dl class="detail-list">
+            <dt>Dicatat</dt><dd>Rudi, 22 Sep 16.20</dd>
+            <dt>Toko</dt><dd>Belum diisi</dd>
+            <dt>Foto nota</dt><dd>Tanpa foto (boleh)</dd>
+          </dl>
+          <fieldset class="field" id="b-103-sumber" data-required data-required-message="Pilih cara belanja ini dibayar." data-impact-source>
+            <legend class="fieldset__legend">Dibayar dengan</legend>
+            <p class="field__hint">Rudi memilih “Belum tahu”. Lengkapi sebelum dibukukan.</p>
+            <div class="choice-group choice-group--stack">
+              <span class="choice"><input class="choice__input" type="radio" id="b-103-kas" name="b-103-sumber" value="kas" data-impact-template="Uang Kas Rudi turun {amount}."><label class="choice__label" for="b-103-kas"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Uang Kas Rudi</label></span>
+              <span class="choice"><input class="choice__input" type="radio" id="b-103-pribadi" name="b-103-sumber" value="pribadi" data-impact-template="Utang penggantian ke Rudi {amount} (bukan kasbon). Uang Kas tidak berubah."><label class="choice__label" for="b-103-pribadi"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Uang pribadi Rudi, diganti nanti</label></span>
+              <span class="choice"><input class="choice__input" type="radio" id="b-103-utang" name="b-103-sumber" value="utang" data-impact-template="Utang ke toko {amount}. Kas belum turun sampai dibayar."><label class="choice__label" for="b-103-utang"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Belum dibayar ke toko</label></span>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label class="field__label" for="b-103-nominal">Nominal dibayar</label>
+            <input class="input input--amount" type="text" id="b-103-nominal" data-numeric="rupiah" data-min="1" data-value="350000" data-claim="350000" data-row-amount
+              data-required data-required-message="Nominal dibayar belum diisi." aria-describedby="b-103-nominal-terbilang b-103-nominal-hint">
+            <p class="terbilang" id="b-103-nominal-terbilang" data-terbilang-for="b-103-nominal"></p>
+            <p class="field__hint" id="b-103-nominal-hint">Dari catatan Rudi. Ubah bila nota berbeda.</p>
+            <div class="field__notice" data-claim-diff hidden>
+              <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-alert"></use></svg>
+              <div class="field__notice-body"><p>Berbeda dari catatan Rudi (Rp350.000). Pastikan sesuai nota.</p></div>
+            </div>
+          </div>
+          <fieldset class="field" id="b-103-diterima" data-required data-required-message="Pastikan barang atau jasa sudah diterima.">
+            <legend class="fieldset__legend">Barang atau jasa sudah diterima?</legend>
+            <div class="choice-group">
+              <span class="choice"><input class="choice__input" type="radio" id="b-103-diterima-ya" name="b-103-diterima" value="ya"><label class="choice__label" for="b-103-diterima-ya"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Sudah</label></span>
+              <span class="choice"><input class="choice__input" type="radio" id="b-103-diterima-belum" name="b-103-diterima" value="belum"><label class="choice__label" for="b-103-diterima-belum"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Belum</label></span>
+            </div>
+          </fieldset>
+          <div class="impact" aria-live="polite">
+            <p class="impact__title">Jika dibukukan</p>
+            <p data-impact data-template="" data-impact-default="Pilih cara bayar untuk melihat dampaknya."></p>
+            <p data-impact-cost data-template="Biaya Periode 01 naik {amount}, sekali saja."></p>
+          </div>
+          <p class="disabled-reason" data-offline-reason hidden>Perlu sinyal untuk membukukan.</p>
+          <div class="row-actions">
+            <button type="button" class="btn btn--primary row-actions__primary" data-approve data-requires-online>Setujui &amp; Bukukan</button>
+            <button type="button" class="btn btn--secondary" data-request-fix>Minta Perbaikan</button>
+            <button type="button" class="btn btn--danger-text row-actions__danger" data-reject>Tolak</button>
+          </div>
+        </div>
+      </li>
+
+      <!-- Perlu dilengkapi -->
+      <li class="disclosure-item" data-purchase data-status="lengkapi" data-title="Servis pompa air" data-amount="120000" data-amount-text="Rp120.000" data-by="Yanto" hidden>
+        <button type="button" class="disclosure__toggle" data-disclosure aria-expanded="false" aria-controls="b-099-panel">
+          <span class="disclosure__summary">
+            <span class="disclosure__title">Servis pompa air</span>
+            <span class="text-meta">Yanto · 21 Sep · Uang Kas Yanto</span>
+            <span class="status status--warning" data-status-badge>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-alert"></use></svg>
+              <span data-status-text>Perlu Dilengkapi</span>
+            </span>
+          </span>
+          <span class="disclosure__side"><span class="num">Rp120.000</span></span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <div class="disclosure__panel" id="b-099-panel" hidden>
+          <p class="text-meta"><strong>Anda meminta:</strong> tambahkan nama bengkel. Menunggu Yanto melengkapi.</p>
+        </div>
+      </li>
+
+      <!-- Dibukukan -->
+      <li class="disclosure-item" data-purchase data-status="dibukukan" data-title="Gas 3 kg, 2 tabung" data-amount="200000" data-amount-text="Rp200.000" data-by="Rudi" hidden>
+        <button type="button" class="disclosure__toggle" data-disclosure aria-expanded="false" aria-controls="b-090-panel">
+          <span class="disclosure__summary">
+            <span class="disclosure__title">Gas 3 kg, 2 tabung</span>
+            <span class="text-meta">Rudi · 19 Sep · Uang Kas Rudi</span>
+            <span class="status status--success" data-status-badge>
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check-circle"></use></svg>
+              <span data-status-text>Dibukukan</span>
+            </span>
+          </span>
+          <span class="disclosure__side"><span class="num">Rp200.000</span></span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <div class="disclosure__panel" id="b-090-panel" hidden>
+          <p class="text-meta">Dibukukan 20 Sep. Perubahan memakai Koreksi, tidak menghapus catatan.</p>
+        </div>
+      </li>
+    </ul>
+
+    <p class="text-secondary" data-empty hidden>Tidak ada belanja di bagian ini.</p>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navigasi utama">
+    <ul class="bottom-nav__list">
+      <li>
+        <a class="bottom-nav__item" href="ringkasan-owner.html">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-home"></use></svg>
+          Ringkasan
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="#" data-mock-missing>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-barn"></use></svg>
+          Kandang
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="periksa-belanja.html" aria-current="page">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-list"></use></svg>
+          Transaksi
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="#" data-mock-missing>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chart"></use></svg>
+          Laporan
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="#" data-mock-missing>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-more"></use></svg>
+          Lainnya
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="toast-region" data-toast-region role="status" aria-live="polite"></div>
+
+  <div class="keypad" data-keypad hidden></div>
+
+  <!-- Lembar: konfirmasi bukukan -->
+  <dialog class="sheet" id="sheet-bukukan" data-sheet aria-labelledby="sheet-bukukan-judul">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <header class="sheet__header">
+      <div class="sheet__titles">
+        <h2 class="sheet__title" id="sheet-bukukan-judul" tabindex="-1" data-sheet-title>Bukukan belanja?</h2>
+        <p class="text-meta" data-confirm-context></p>
+      </div>
+      <button type="button" class="icon-btn" data-sheet-close aria-label="Batal">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-x"></use></svg>
+      </button>
+    </header>
+    <div class="sheet__body">
+      <p class="amount" data-confirm-amount></p>
+      <div class="impact">
+        <p class="impact__title">Yang berubah</p>
+        <p data-confirm-impact></p>
+      </div>
+      <p class="text-meta">Setelah dibukukan, perubahan memakai Koreksi. Catatan lama tetap tersimpan.</p>
+    </div>
+    <div class="sheet__footer">
+      <p class="disabled-reason" data-offline-reason hidden>Perlu sinyal untuk membukukan.</p>
+      <div class="sheet__footer-actions">
+        <button type="button" class="btn btn--secondary" data-sheet-close>Batal</button>
+        <button type="button" class="btn btn--primary" data-confirm-approve data-requires-online>Bukukan</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Lembar: minta perbaikan -->
+  <dialog class="sheet" id="sheet-perbaikan" data-sheet aria-labelledby="sheet-perbaikan-judul">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <header class="sheet__header">
+      <div class="sheet__titles">
+        <h2 class="sheet__title" id="sheet-perbaikan-judul" tabindex="-1" data-sheet-title>Minta Perbaikan</h2>
+        <p class="text-meta" data-fix-context></p>
+      </div>
+      <button type="button" class="icon-btn" data-sheet-close aria-label="Batal">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-x"></use></svg>
+      </button>
+    </header>
+    <form class="sheet__body form" id="form-perbaikan" data-submit="perbaikan" novalidate>
+      <div class="field">
+        <label class="field__label" for="perbaikan-pesan">Apa yang perlu dilengkapi?</label>
+        <textarea class="textarea" id="perbaikan-pesan" name="pesan" placeholder="Contoh: tambahkan nama toko." data-required data-required-message="Tulis apa yang perlu dilengkapi."></textarea>
+        <p class="field__hint">Pesan ini terlihat oleh pencatat. Foto nota tetap opsional.</p>
+      </div>
+    </form>
+    <div class="sheet__footer">
+      <div class="sheet__footer-actions">
+        <button type="submit" class="btn btn--primary" form="form-perbaikan">Kirim Permintaan</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Lembar: tolak -->
+  <dialog class="sheet" id="sheet-tolak" data-sheet aria-labelledby="sheet-tolak-judul">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <header class="sheet__header">
+      <div class="sheet__titles">
+        <h2 class="sheet__title" id="sheet-tolak-judul" tabindex="-1" data-sheet-title>Tolak belanja?</h2>
+        <p class="text-meta" data-reject-context></p>
+      </div>
+      <button type="button" class="icon-btn" data-sheet-close aria-label="Batal">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-x"></use></svg>
+      </button>
+    </header>
+    <form class="sheet__body form" id="form-tolak" data-submit="tolak" novalidate>
+      <div class="banner banner--warning">
+        <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-alert"></use></svg>
+        <p class="banner__body">Menolak tidak menghapus uang yang sudah keluar. Bila uang benar terpakai, pilih Minta Perbaikan.</p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="tolak-alasan">Alasan</label>
+        <textarea class="textarea" id="tolak-alasan" name="alasan" data-required data-required-message="Tulis alasan menolak."></textarea>
+      </div>
+    </form>
+    <div class="sheet__footer">
+      <div class="sheet__footer-actions">
+        <button type="button" class="btn btn--secondary" data-sheet-close>Batal</button>
+        <button type="submit" class="btn btn--danger" form="form-tolak">Tolak Belanja</button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

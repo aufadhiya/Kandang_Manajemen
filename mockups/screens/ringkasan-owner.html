@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f6fb">
+  <title>Ringkasan · Owner — Kandang Manajemen (mockup)</title>
+  <link rel="stylesheet" href="../assets/tokens.css">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="../assets/components.css">
+  <script type="module" src="./ringkasan-owner.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+  <header class="app-bar">
+    <div class="app-bar__inner">
+      <div class="app-bar__titles">
+        <button type="button" class="context-switch" data-mock-missing aria-label="Ganti usaha. Sekarang Hadi Farm, Kandang Utara">
+          Hadi Farm
+          <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <p class="app-bar__context" data-context-line>Kandang Utara · Persiapan</p>
+      </div>
+      <button type="button" class="btn btn--primary btn--sm" data-sheet-open="sheet-catat-owner">
+        <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-plus"></use></svg>
+        Catat
+      </button>
+      <a class="icon-btn" href="#" data-mock-missing aria-label="Akun Owner">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-user"></use></svg>
+      </a>
+    </div>
+  </header>
+
+  <main id="konten" class="page-main">
+    <h1 class="visually-hidden">Ringkasan</h1>
+
+    <div class="banner banner--warning offline-banner" role="status">
+      <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-offline"></use></svg>
+      <p class="banner__body">Tidak ada sinyal. Pengaturan kandang dan pembukuan perlu sinyal; belanja tetap bisa disimpan di HP.</p>
+    </div>
+
+    <section class="next-step" aria-labelledby="saran-judul" data-next-step>
+      <p class="next-step__eyebrow">
+        <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-flag"></use></svg>
+        Saran berikutnya
+      </p>
+      <h2 class="next-step__title" id="saran-judul" data-next-title tabindex="-1">Siapkan Periode</h2>
+      <p class="text-secondary" data-next-text>Agar DOC bisa dicatat saat datang.</p>
+      <div class="next-step__actions">
+        <button type="button" class="btn btn--primary" data-next-action data-sheet-open="sheet-periode">Siapkan Periode</button>
+        <button type="button" class="btn btn--tertiary" data-next-later>Nanti</button>
+        <button type="button" class="next-step__why-toggle" data-disclosure aria-expanded="false" aria-controls="saran-alasan">
+          <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-help"></use></svg>
+          Kenapa?
+        </button>
+      </div>
+      <p class="next-step__why" id="saran-alasan" data-next-why hidden>Data Kandang dan pilihan recording sudah ada. Periode belum disiapkan, jadi DOC belum bisa dicatat.</p>
+    </section>
+
+    <div class="suggestion" data-next-hidden-note hidden>
+      <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-info"></use></svg>
+      <p class="suggestion__text">Saran disembunyikan sampai ada perubahan.</p>
+      <button type="button" class="btn btn--tertiary btn--sm" data-next-show>Tampilkan</button>
+    </div>
+
+    <div class="banner banner--info" data-active-banner hidden>
+      <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check-circle"></use></svg>
+      <p class="banner__body" data-active-text></p>
+    </div>
+
+    <section class="disclosure-list" aria-labelledby="persiapan-judul" data-setup-card>
+      <div class="disclosure-item is-open">
+        <button type="button" class="disclosure__toggle" data-disclosure aria-expanded="true" aria-controls="persiapan-daftar">
+          <span class="disclosure__summary">
+            <span class="disclosure__title" id="persiapan-judul">Persiapan kandang</span>
+            <span class="text-meta"><span data-setup-done>2</span> dari 5 selesai · boleh dikerjakan urutan mana saja</span>
+            <span class="progress" aria-hidden="true"><span class="progress__bar" data-setup-bar style="width:40%"></span></span>
+          </span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <ul class="checklist" id="persiapan-daftar">
+          <li class="checklist__item checklist__item--done">
+            <span class="checklist__mark"><svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg></span>
+            <span class="checklist__text">
+              <span class="checklist__label">Data Kandang</span>
+              <span class="text-meta" style="display:block">Selesai · Kandang Utara, 2 bangunan</span>
+            </span>
+            <button type="button" class="btn btn--tertiary btn--sm" data-mock-missing>Ubah</button>
+          </li>
+          <li class="checklist__item checklist__item--done">
+            <span class="checklist__mark"><svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg></span>
+            <span class="checklist__text">
+              <span class="checklist__label">Pilihan recording</span>
+              <span class="text-meta" style="display:block">Selesai · Harian</span>
+            </span>
+            <button type="button" class="btn btn--tertiary btn--sm" data-mock-missing>Ubah</button>
+          </li>
+          <li class="checklist__item" data-setup-item="tim">
+            <span class="checklist__mark"><svg class="icon icon--xs" aria-hidden="true" focusable="false" hidden><use href="../assets/icons.svg#i-check"></use></svg></span>
+            <span class="checklist__text">
+              <span class="checklist__label">Tim Kandang <span class="field__optional">(opsional)</span></span>
+              <span class="text-meta" style="display:block">Belum ada ABK. Anda tetap bisa mencatat sendiri.</span>
+            </span>
+            <button type="button" class="btn btn--secondary btn--sm" data-mock-missing>Tambah</button>
+          </li>
+          <li class="checklist__item" data-setup-item="periode">
+            <span class="checklist__mark"><svg class="icon icon--xs" aria-hidden="true" focusable="false" hidden><use href="../assets/icons.svg#i-check"></use></svg></span>
+            <span class="checklist__text">
+              <span class="checklist__label">Siapkan Periode</span>
+              <span class="text-meta" style="display:block" data-setup-status>Belum disiapkan</span>
+            </span>
+            <button type="button" class="btn btn--secondary btn--sm" data-sheet-open="sheet-periode" data-setup-button>Siapkan</button>
+          </li>
+          <li class="checklist__item" data-setup-item="doc">
+            <span class="checklist__mark"><svg class="icon icon--xs" aria-hidden="true" focusable="false" hidden><use href="../assets/icons.svg#i-check"></use></svg></span>
+            <span class="checklist__text">
+              <span class="checklist__label">DOC Masuk</span>
+              <span class="text-meta" style="display:block" data-setup-status id="doc-reason">Perlu periode dulu</span>
+            </span>
+            <button type="button" class="btn btn--secondary btn--sm" data-sheet-open="sheet-doc" data-setup-button disabled aria-describedby="doc-reason">Catat</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card stack" aria-labelledby="uang-judul">
+      <h2 class="card__title" id="uang-judul">Uang dan belanja</h2>
+      <dl class="value-list">
+        <div class="value-row">
+          <dt class="value-row__label">Kas kandang</dt>
+          <dd class="value-row__value"><span class="unknown-value">—</span> <span class="text-meta">Belum ada catatan</span></dd>
+        </div>
+        <div class="value-row">
+          <dt class="value-row__label">Belanja menunggu Owner</dt>
+          <dd class="value-row__value">0</dd>
+        </div>
+      </dl>
+      <p class="text-meta">Belanja sebelum DOC tetap bisa dicatat. Nanti dibebankan ke periode yang tepat.</p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Navigasi utama">
+    <ul class="bottom-nav__list">
+      <li>
+        <a class="bottom-nav__item" href="ringkasan-owner.html" aria-current="page">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-home"></use></svg>
+          Ringkasan
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="#" data-mock-missing>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-barn"></use></svg>
+          Kandang
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="periksa-belanja.html">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-list"></use></svg>
+          Transaksi
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="#" data-mock-missing>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chart"></use></svg>
+          Laporan
+        </a>
+      </li>
+      <li>
+        <a class="bottom-nav__item" href="#" data-mock-missing>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-more"></use></svg>
+          Lainnya
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="toast-region" data-toast-region role="status" aria-live="polite"></div>
+
+  <!-- Lembar: Catat (menu Owner) -->
+  <dialog class="sheet" id="sheet-catat-owner" data-sheet aria-labelledby="sheet-catat-owner-judul">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <header class="sheet__header">
+      <div class="sheet__titles">
+        <h2 class="sheet__title" id="sheet-catat-owner-judul" tabindex="-1" data-sheet-title>Catat</h2>
+        <p class="text-meta">Kandang Utara</p>
+      </div>
+      <button type="button" class="icon-btn" data-sheet-close aria-label="Tutup">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-x"></use></svg>
+      </button>
+    </header>
+    <div class="sheet__body">
+      <ul class="menu-list">
+        <li>
+          <button type="button" class="menu-item" data-mock-missing>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-receipt"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Catat Belanja</span><span class="text-meta">Langsung dibukukan, tanpa antre persetujuan</span></span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="menu-item" data-mock-missing>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-banknote"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Beri Uang Kas</span><span class="text-meta">Uang tunai untuk ABK memegang belanja</span></span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="menu-item" data-sheet-open="sheet-doc" data-menu-doc aria-disabled="true" aria-describedby="menu-doc-reason">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-truck"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">DOC Masuk</span><span class="text-meta" id="menu-doc-reason" data-menu-doc-text>Perlu periode dulu</span></span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="menu-item" data-mock-missing>
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-truck"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Pakan Masuk</span><span class="text-meta">Catatan pakan yang diterima</span></span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </dialog>
+
+  <!-- Lembar: Siapkan Periode -->
+  <dialog class="sheet" id="sheet-periode" data-sheet aria-labelledby="sheet-periode-judul">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <header class="sheet__header">
+      <div class="sheet__titles">
+        <h2 class="sheet__title" id="sheet-periode-judul" tabindex="-1" data-sheet-title>Siapkan Periode</h2>
+        <p class="text-meta">Kandang Utara</p>
+      </div>
+      <button type="button" class="icon-btn" data-sheet-close aria-label="Tutup">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-x"></use></svg>
+      </button>
+    </header>
+    <form class="sheet__body form" id="form-periode" data-draft-key="periode-owner" data-submit="periode" novalidate>
+      <div class="error-summary" id="periode-errors" data-error-summary tabindex="-1" hidden></div>
+      <div class="field">
+        <label class="field__label" for="periode-nama">Nama periode</label>
+        <input class="input" type="text" id="periode-nama" name="nama" value="Periode 01" autocomplete="off"
+          data-required data-required-message="Nama periode belum diisi.">
+      </div>
+      <div class="field">
+        <label class="field__label" for="periode-rencana">Rencana DOC datang <span class="field__optional">(opsional)</span></label>
+        <input class="input" type="date" id="periode-rencana" name="rencana" min="2026-09-23">
+        <p class="field__hint">Hanya rencana. Periode aktif saat DOC benar-benar datang.</p>
+      </div>
+      <div class="field">
+        <label class="field__label" for="periode-mitra">Mitra <span class="field__optional">(opsional)</span></label>
+        <select class="select" id="periode-mitra" name="mitra">
+          <option value="">Belum ditentukan</option>
+          <option value="pt-contoh">PT Contoh Mitra</option>
+        </select>
+      </div>
+      <div class="impact">
+        <p class="impact__title">Yang terjadi</p>
+        <p>Periode 01 masuk tahap <strong>Persiapan</strong>. Belum ada ayam atau umur yang dihitung.</p>
+      </div>
+    </form>
+    <div class="sheet__footer">
+      <p class="disabled-reason" data-offline-reason hidden>Perlu sinyal untuk menyimpan pengaturan kandang.</p>
+      <div class="sheet__footer-actions">
+        <button type="submit" class="btn btn--primary" form="form-periode" data-requires-online>Siapkan Periode</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Lembar: DOC Masuk -->
+  <dialog class="sheet" id="sheet-doc" data-sheet aria-labelledby="sheet-doc-judul">
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <header class="sheet__header">
+      <div class="sheet__titles">
+        <h2 class="sheet__title" id="sheet-doc-judul" tabindex="-1" data-sheet-title>DOC Masuk</h2>
+        <p class="text-meta">Kandang Utara · Periode 01</p>
+      </div>
+      <button type="button" class="icon-btn" data-sheet-close aria-label="Tutup. Draf tetap tersimpan di HP">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-x"></use></svg>
+      </button>
+    </header>
+    <form class="sheet__body form" id="form-doc" data-draft-key="doc-owner" data-submit="doc" novalidate>
+      <div class="error-summary" id="doc-errors" data-error-summary tabindex="-1" hidden></div>
+      <fieldset class="field" id="doc-tanggal">
+        <legend class="fieldset__legend">Tanggal DOC datang</legend>
+        <div class="choice-group">
+          <span class="choice">
+            <input class="choice__input" type="radio" id="doc-tgl-hari-ini" name="tanggal" value="hari-ini" checked data-review-text="23 Sep 2026">
+            <label class="choice__label" for="doc-tgl-hari-ini"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Hari ini</label>
+          </span>
+          <span class="choice">
+            <input class="choice__input" type="radio" id="doc-tgl-kemarin" name="tanggal" value="kemarin" data-review-text="22 Sep 2026">
+            <label class="choice__label" for="doc-tgl-kemarin"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Kemarin</label>
+          </span>
+        </div>
+        <p class="field__hint">Tanggal benar-benar datang, bukan tanggal rencana.</p>
+      </fieldset>
+      <div class="field">
+        <label class="field__label" for="doc-hidup">DOC hidup diterima (ekor)</label>
+        <input class="input input--amount" type="text" id="doc-hidup" name="hidup" data-numeric="count" data-max-digits="7" data-min="1"
+          data-required data-required-message="Isi jumlah DOC hidup yang diterima.">
+        <p class="field__hint">Kapasitas kandang 7.000 ekor. Isi jumlah yang benar-benar datang hidup.</p>
+      </div>
+      <div class="disclosure-list">
+        <div class="disclosure-item">
+          <button type="button" class="disclosure__toggle" data-disclosure aria-expanded="false" aria-controls="doc-rincian">
+            <span class="disclosure__summary">
+              <span class="disclosure__title">Rincian penerimaan</span>
+              <span class="text-meta">Opsional: DOC ditagih, bonus, mati saat datang</span>
+            </span>
+            <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+          </button>
+          <div class="disclosure__panel" id="doc-rincian" hidden>
+            <div class="field">
+              <label class="field__label" for="doc-ditagih">DOC ditagih (ekor)</label>
+              <input class="input input--number" type="text" id="doc-ditagih" name="ditagih" data-numeric="count" data-max-digits="7">
+            </div>
+            <div class="field">
+              <label class="field__label" for="doc-bonus">Bonus DOC (ekor)</label>
+              <input class="input input--number" type="text" id="doc-bonus" name="bonus" data-numeric="count" data-max-digits="6">
+            </div>
+            <div class="field">
+              <label class="field__label" for="doc-mati-datang">Mati atau ditolak saat datang (ekor)</label>
+              <input class="input input--number" type="text" id="doc-mati-datang" name="mati_datang" data-numeric="count" data-max-digits="6" aria-describedby="doc-mati-datang-hint">
+              <p class="field__hint" id="doc-mati-datang-hint">Tidak dihitung lagi sebagai mati harian.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="impact" aria-live="polite">
+        <p class="impact__title">Pratinjau</p>
+        <p data-doc-preview>Isi jumlah DOC hidup untuk melihat pratinjau.</p>
+      </div>
+    </form>
+    <div class="keypad" data-keypad hidden></div>
+    <div class="sheet__footer">
+      <p class="disabled-reason" data-offline-reason hidden>Perlu sinyal untuk mengaktifkan periode.</p>
+      <div class="sheet__footer-actions">
+        <button type="submit" class="btn btn--primary" form="form-doc" data-requires-online>Catat DOC</button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

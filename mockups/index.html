@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mockup — Kandang Manajemen</title>
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/components.css">
+  <script type="module">
+    import { init } from './assets/components.js';
+    import { initMock } from './assets/mock.js';
+    init();
+    initMock();
+    document.querySelector('[data-reset]').addEventListener('click', () => {
+      Object.keys(localStorage).filter((key) => key.startsWith('km.')).forEach((key) => localStorage.removeItem(key));
+      document.querySelector('[data-reset-done]').hidden = false;
+    });
+  </script>
+</head>
+<body>
+  <header class="app-bar">
+    <div class="app-bar__inner">
+      <div class="app-bar__titles">
+        <h1 class="app-bar__title">Mockup layar penting</h1>
+        <p class="app-bar__context">Data contoh · bukan aplikasi jadi</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main page-main--focus">
+    <p class="mock-note">Semua nama, angka, dan tanggal adalah contoh. Tombol menyimpan hanya di browser ini; tidak ada server. Layar yang belum dibuat ditandai saat diketuk.</p>
+
+    <section class="stack" aria-labelledby="abk-judul">
+      <h2 class="section-title" id="abk-judul">ABK</h2>
+      <ul class="menu-list">
+        <li>
+          <a class="menu-item" href="screens/hari-ini.html">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-home"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Hari Ini</span><span class="text-meta">Saran berikutnya, Catat cepat, lembar Catat Belanja / Terima Uang</span></span>
+            <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-chevron-right"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a class="menu-item" href="screens/recording-harian.html">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-clipboard"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Recording Harian</span><span class="text-meta">Keypad kuantitas, −/+ ekor, rata-rata sampling otomatis</span></span>
+            <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-chevron-right"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a class="menu-item" href="screens/uang-kas.html">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-wallet"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Uang Kas</span><span class="text-meta">Perkiraan uang di tangan dan riwayat buka-tutup</span></span>
+            <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-chevron-right"></use></svg>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="stack" aria-labelledby="owner-judul">
+      <h2 class="section-title" id="owner-judul">Owner</h2>
+      <ul class="menu-list">
+        <li>
+          <a class="menu-item" href="screens/ringkasan-owner.html">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-barn"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Ringkasan</span><span class="text-meta">Persiapan bebas urutan: Siapkan Periode → DOC Masuk</span></span>
+            <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-chevron-right"></use></svg>
+          </a>
+        </li>
+        <li>
+          <a class="menu-item" href="screens/periksa-belanja.html">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-list"></use></svg>
+            <span class="menu-item__text"><span class="menu-item__label">Periksa Belanja</span><span class="text-meta">Baris buka-tutup, dampak sebelum Bukukan</span></span>
+            <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="assets/icons.svg#i-chevron-right"></use></svg>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card stack" aria-labelledby="coba-judul">
+      <h2 class="card__title" id="coba-judul">Coba juga</h2>
+      <ul class="stack stack--tight text-secondary">
+        <li><a href="screens/hari-ini.html?simulasi=offline">Hari Ini tanpa sinyal</a> — catatan tetap bisa disimpan di HP.</li>
+        <li><a href="screens/periksa-belanja.html?simulasi=offline&amp;belanja=b-101">Periksa Belanja tanpa sinyal</a> — Bukukan nonaktif dengan alasan.</li>
+        <li>Tombol Kembali HP/browser menutup lembar atau baris yang terbuka.</li>
+        <li>Muat ulang saat mengisi lembar: isian kembali dari draf.</li>
+      </ul>
+      <button type="button" class="btn btn--secondary" data-reset>Hapus Data Contoh</button>
+      <p class="text-meta" data-reset-done hidden role="status">Draf dan pilihan keypad dihapus.</p>
+    </section>
+  </main>
+  <div class="toast-region" data-toast-region role="status" aria-live="polite"></div>
+</body>
+</html>
