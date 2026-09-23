@@ -6,7 +6,7 @@
 | Tanggal | 23 September 2026 |
 | Dasar | Permintaan eksplisit pengguna: mockup beberapa layar penting yang dapat dipindahkan ke frontend |
 | Status | Mockup berjalan dengan data contoh; **bukan aplikasi, bukan hasil uji pengguna, bukan persetujuan desain final** |
-| Penilaian pengguna | 23 September 2026: desain visual dinilai kurang bagus. Jangan dipakai sebagai acuan tampilan; isi halaman untuk mockup baru ada di [BRIEF_MOCKUP.md](../BRIEF_MOCKUP.md) |
+| Penilaian pengguna | 23 September 2026: desain visual dinilai kurang bagus dan **digantikan** oleh desain final di [design/](../design/README.md) dan [FRONTEND_DESIGN_SPEC.md](../FRONTEND_DESIGN_SPEC.md) (K-39). Token dan komponen di folder ini tidak dipakai; yang masih berguna hanya fungsi murni `assets/format.js` (format rupiah, ejaan nominal, keypad) beserta tesnya |
 | Sumber aturan | [PRD](../PRD.md) K-38, D-24, D-26, D-27; [UX_UI_SPEC](../UX_UI_SPEC.md) §4–5, §8, §11, §15–16; [UX_FLOWS](../UX_FLOWS_WIREFRAMES.md) WF-11–WF-13; [IMP-006](../Implementation%20Plan.md#imp-006) |
 
 ## 1. Cara membuka

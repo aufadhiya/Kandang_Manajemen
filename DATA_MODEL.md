@@ -2,7 +2,7 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi dokumen | 0.1 |
+| Versi dokumen | 0.2 |
 | Tanggal | 23 September 2026 |
 | Status | Usulan model logis untuk ditinjau; bukan persetujuan aturan produk, DDL, migrasi yang dijalankan, atau pilihan vendor/ORM |
 | Cakupan | Identitas dan grant R1, kandang/periode, recording DAILY, penerimaan informasional, pembelian/klaim, kas/biaya/kewajiban, gaji/kasbon/upah, hasil aktual mitra, opening, lampiran, audit, outbox, ekspor, dan recovery |
@@ -214,7 +214,7 @@ ID berikut adalah invariant usulan lintas-entitas untuk memudahkan review dan te
 
 #### `item_catalog` (opsional R1, bukan inventory)
 
-- Field: `id`, `tenant_id`, `name`, `default_unit_code` nullable, `suggested_purchase_class` nullable, `status` (`ACTIVE`, `ARCHIVED`), `version`.
+- Field: `id`, `tenant_id`, `name`, `default_unit_code` nullable, `suggested_purchase_class` nullable, `pack_weight_kg` nullable (berat per sak untuk jenis pakan; dipakai hanya sebagai konversi tampilan), `is_feed_type` (boolean, daftar **Jenis Pakan** di Recording), `status` (`ACTIVE`, `ARCHIVED`), `version`.
 - Relasi: 0..N purchase line/operational receipt melalui ID opsional; transaksi tetap menyimpan nama dan satuan snapshot. Tidak wajib SKU, lokasi, stok minimum, saldo, atau consumption.
 - Constraint: unit/klasifikasi master yang berubah tidak menulis ulang histori. Saran feed/produk tidak membuktikan yang dipakai; recording harus menyimpan pilihan/kuantitas aktual.
 - Index: `(tenant_id, status, name)`.
@@ -684,6 +684,7 @@ Nama resource API `daily_summary` adalah alias untuk aggregate ini dan `daily_re
 
 - Field: `id`, `tenant_id`, `daily_recording_id`, `revision_no`, `supersedes_revision_id` nullable, `expected_base_version`, `recording_source=DAILY`, `as_of_date`, `created_at_device` nullable, `feed_used_quantity` nullable, `feed_unit_code` nullable, `feed_conversion_snapshot` nullable, `mortality_count` nullable, `cull_count` nullable, `sampling_at` nullable, `sample_count` nullable, `sample_net_weight_kg` nullable, `completeness` (`COMPLETE`, `PARTIAL`), `explicit_zero_fields`, `author_user_id`, `corrector_user_id` nullable, `correction_reason` nullable, `mode_revision_id`, `received_at_server`, `effective_at`, `status` (`RECEIVED`, `SUPERSEDED`, `REJECTED`), `version`.
 - Relasi: N..1 header, tepat satu revisi efektif; sample fields opsional sebagai satu paket pengamatan point-in-time; rekap global tidak diprorata ke building.
+- Baris pakan per jenis (`daily_recording_feed_line`): `id`, `tenant_id`, `daily_recording_revision_id`, `line_no`, `item_catalog_id` nullable, `feed_name_snapshot`, `quantity > 0`, `unit_code`, `pack_weight_kg_snapshot` nullable, `version`. Satu revisi dapat punya 0..N baris; unique `(daily_recording_revision_id, line_no)`. `feed_used_quantity`/`feed_unit_code` pada revisi adalah total harian yang dihitung server dari baris bila semua baris dapat dinyatakan dalam satu satuan, selain itu null dan baris tetap menjadi sumber. Revisi baru menyalin seluruh baris yang berlaku (snapshot pengganti), bukan menambah baris ke revisi lama. Konversi `≈ sak` hanya memakai `pack_weight_kg_snapshot` yang tercatat; tanpa nilai itu tidak ada konversi (K-39, FRONTEND_DESIGN_SPEC §7.2).
 - Constraint: unique `(daily_recording_id, revision_no)`; revision baru memerlukan expected current version dan supersedes current; stale submit `VERSION_CONFLICT`; satu `effective` per header. `business_date` adalah key lokal, `as_of_date` adalah tanggal data sumber benar-benar mencakup, waktu perangkat dan `received_at_server` tidak saling mengganti. `sample_count` integer >0 dan `sample_net_weight_kg >0` ketika sampling terisi; unit dan bobot net snapshot eksplisit. Mortality/cull integer ≥0. Nilai nol untuk data lengkap harus dikonfirmasi eksplisit; null berarti belum diisi.
 - Constraint tambahan: angka yang tercatat bukan harga/biaya/stok; satu submit dan retry tidak dijumlah; mode OFF tidak menampilkan form; actor bukan key rekap. Satu sampling harian dapat tidak ada tanpa menjadikan semua recording invalid bila completeness/kebijakan field mendukung.
 - Index: `(tenant_id, daily_recording_id, revision_no)`, `(tenant_id, author_user_id, received_at_server)`, `(tenant_id, mode_revision_id)`.
@@ -986,3 +987,4 @@ Penulisan dokumen ini tidak membuktikan implementasi, constraint DB, security, c
 | Versi | Tanggal | Perubahan |
 |---|---|---|
 | 0.1 | 23 September 2026 | Menulis model logis R1 dengan batas keputusan, entity dictionary, invariant lintas domain, efek sumber, concurrency, correction algebra, contoh sintetis, dan batas R2. |
+| 0.2 | 23 September 2026 | Menutup celah jenis pakan yang terlihat di mockup Recording (K-39): baris pakan per jenis pada revisi DAILY dan berat per sak opsional pada `item_catalog` untuk konversi tampilan. Tidak mengubah aturan agregasi, stok, atau biaya. |

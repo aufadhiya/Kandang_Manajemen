@@ -7,6 +7,7 @@
 | Untuk | Membuat mockup layar di Google AI Studio atau alat lain |
 | Isi | Konsep aplikasi, halaman yang penting dibuat mockup, dan isi setiap halaman |
 | Sengaja tidak diatur | Gaya visual dan tata letak. Semua keputusan desain ada di tangan Anda |
+| Status desain | Desain final sudah ditetapkan pengguna (K-39): lihat [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md) dan `design/`. Brief ini tetap dipakai sebagai isi untuk membuat mockup layar yang belum ada; beri tahu AI Studio untuk memakai gaya di `design/DESIGN.md` dan `design/stitch/DESIGN.stitch.md` |
 | Data | Semua nama, angka, dan tanggal di brief ini adalah contoh |
 
 ## Cara memakai brief ini
@@ -288,8 +289,8 @@ Semua halaman memakai data ini agar ceritanya nyambung. Setiap keadaan halaman b
 
 **Menu utama** (bentuk dan letak bebas):
 
-- **ABK:** Hari Ini · Catat · Uang Kas · Riwayat · Lainnya. Lainnya berisi Gaji, Kasbon, Upah Pekerjaan, Status Kirim, Panduan, dan Akun.
-- **Owner:** Ringkasan · Kandang · Transaksi · Laporan · Lainnya. Usulan pengelompokan: Transaksi berisi Periksa Belanja, Uang Kas, dan Riwayat Belanja; Lainnya berisi Tim Kandang, Gaji, Kasbon, Upah Pekerjaan, Ekspor, Status Kirim, Panduan, dan Akun. Pengelompokan ini boleh Anda ubah.
+- **ABK:** Hari Ini · Uang Kas · Catat (tombol tengah) · Riwayat · Lainnya. Lainnya berisi Gaji, Kasbon, Upah Pekerjaan, Status Kirim, Panduan, dan Akun.
+- **Owner:** Ringkasan · Transaksi · Catat (tombol tengah) · Kandang · Lainnya. Transaksi berisi Periksa Belanja, Uang Kas, dan Riwayat Belanja; Kandang berisi Tim Kandang dan periode; Lainnya berisi Laporan, Gaji, Kasbon, Upah Pekerjaan, Ekspor, Status Kirim, Panduan, dan Akun (sesuai mockup final).
 - **Catat** selalu bisa dibuka dari beranda kedua peran.
 
 | No | Halaman | Peran | Prioritas | Rujukan dokumen |

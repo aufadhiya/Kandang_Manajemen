@@ -2,7 +2,7 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.2 — panduan implementasi R1 terurai untuk AI agent |
+| Versi | 0.3 — panduan implementasi R1 terurai untuk AI agent, dengan desain frontend final |
 | Tanggal | 23 September 2026 |
 | Nama file kanonis | `Implementation Plan.md`, sesuai permintaan pengguna; jangan membuat salinan `IMPLEMENTATION_PLAN.md` yang isinya berbeda |
 | Status | Rencana tertulis lengkap untuk ditinjau; **seluruh tugas implementasi belum dikerjakan** |
@@ -248,14 +248,14 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 - **Berhenti:** muncul selisih rupiah atau double rounding; jangan “perbaiki tampilan” sambil menyimpan float salah.
 
 <a id="imp-006"></a>
-### IMP-006 — Fondasi UI: pola di tempat, keypad angka, dan bahasa layar
+### IMP-006 — Fondasi UI: desain final, pola di tempat, keypad angka, dan bahasa layar
 
 - **Dependensi:** IMP-003, IMP-004, IMP-005. **Area:** WEB + TESTS; tidak menyentuh aturan uang/server.
-- **Baca:** PRD K-38, D-24, D-26, D-27, UX-01–UX-20; UX_UI_SPEC §4–6 dan §15–16 (termasuk §5.3 keypad, §5.4 bantuan pintar, §16.4 pola di tempat, §16.5 glosarium, §16.6 aturan bahasa); UX_FLOWS §3; [UX_AUDIT.md](UX_AUDIT.md); skill UI/UX sesuai AGENTS.md.
-- **Kerjakan:** buat satu set komponen yang wajib dipakai semua kartu layar berikutnya: shell responsif dan navigasi per peran; token usulan sebagai variabel (solid sebagai dasar, kaca hanya bingkai); tombol **Catat**; kartu **Saran berikutnya** (judul, alasan, satu aksi, **Nanti**, **Kenapa?**); field berlabel + bantuan + error dekat field + ringkasan error terfokus; **keypad angka** untuk rupiah/kuantitas/ekor dengan `000`, hapus, koma kuantitas, −/+ ekor, ejaan rupiah dari CORE IMP-005, tombol **Keyboard HP**, paste dan keyboard fisik; pilihan tanggal **Hari ini/Kemarin/Pilih**; **lembar** (bawah di HP, samping di layar lebar) dengan penjaga draf, tombol kembali, alamat lembar, satu lembar aktif; **baris buka-tutup** dengan `aria-expanded`; bar aksi lengket di atas keyboard; label status kanonis §15.1; state loading/kosong/error/offline/tanpa izin; pesan singkat dengan **Urungkan** hanya untuk aksi lokal; satu kamus teks layar berisi glosarium §16.5.
-- **Hasil:** katalog komponen khusus pengembangan/tes yang hanya memakai data sintetis dan tidak tampil di navigasi produk; panduan pemakaian komponen untuk kartu berikutnya; pemeriksa teks otomatis yang gagal bila istilah terlarang (DRAFT, posting, sync, coverage, review, receipt, epoch, lease, capture-only) muncul pada teks layar. Token tetap usulan (UX-13), bukan brand final.
-- **Uji:** ejaan rupiah dan parser (`Rp1.250.000`, `1250000`, paste ambigu); keypad dengan TalkBack/VoiceOver, keyboard fisik, paste, dan password manager pada field login; 320 CSS px, zoom 200%, reduced motion, forced colors; tombol kembali menutup lembar tanpa kehilangan draf; refresh membuka lembar sama; fokus kembali ke pemicu; baris buka-tutup mengumumkan keadaan; keypad tidak menutupi field/error/tombol; tidak ada nominal terisi otomatis; UT-44–UT-46 dan UT-49 pada katalog sebelum layar bisnis dibuat.
-- **Berhenti:** keypad gagal diakses pembaca layar pada perangkat uji → jadikan keyboard angka HP sebagai default (D-26) dan laporkan; jangan menambah library UI besar, animasi, atau font daring tanpa alasan tertulis; jangan membuat layar bisnis atau angka contoh yang tampak nyata di produk.
+- **Baca:** PRD K-38, K-39, D-23, D-24, D-26, D-27, UX-01–UX-20; [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md) seluruhnya dan folder [design/](design/README.md); UX_UI_SPEC §4–6 dan §15–16 (termasuk §5.3 keypad, §5.4 bantuan pintar, §16.4 pola di tempat, §16.5 glosarium, §16.6 aturan bahasa); UX_FLOWS §3; [UX_AUDIT.md](UX_AUDIT.md); skill UI/UX sesuai AGENTS.md.
+- **Kerjakan:** buat satu set komponen yang wajib dipakai semua kartu layar berikutnya: Tailwind v3 build dengan `design/stitch/tailwind.config.json` persis, Inter 400/600/700 dan Material Symbols Outlined (subset) disimpan di aplikasi tanpa CDN (FRONTEND_DESIGN_SPEC §3); header ABK/Owner/fokus dan navigasi ABK (pil terapung) serta Owner (bilah penuh) sesuai §5; seluruh katalog komponen §6 dengan kelas persis dari `code.html`, fallback solid dan **Kurangi Efek Visual**; tombol **Catat**; kartu **Saran berikutnya** (judul, alasan, satu aksi, **Nanti**, **Kenapa?**); field berlabel + bantuan + error dekat field + ringkasan error terfokus; **keypad angka** untuk rupiah/kuantitas/ekor dengan `000`, hapus, koma kuantitas, −/+ ekor, ejaan rupiah dari CORE IMP-005, tombol **Keyboard HP**, paste dan keyboard fisik; pilihan tanggal **Hari ini/Kemarin/Pilih**; **lembar** (bawah di HP, samping di layar lebar) dengan penjaga draf, tombol kembali, alamat lembar, satu lembar aktif; **baris buka-tutup** dengan `aria-expanded`; bar aksi lengket di atas keyboard; label status kanonis §15.1; state loading/kosong/error/offline/tanpa izin; pesan singkat dengan **Urungkan** hanya untuk aksi lokal; satu kamus teks layar berisi glosarium §16.5.
+- **Hasil:** katalog komponen khusus pengembangan/tes yang hanya memakai data sintetis dan tidak tampil di navigasi produk; panduan pemakaian komponen untuk kartu berikutnya; pemeriksa teks otomatis yang gagal bila istilah terlarang (DRAFT, posting, sync, coverage, review, receipt, epoch, lease, capture-only) muncul pada teks layar. Token final mengikuti K-39; tidak ada token di luar §4. Katalog menampilkan setiap komponen pada data fixture FRONTEND_DESIGN_SPEC §11.2 dan dibandingkan dengan screenshot acuan `design/stitch/*/reference-390-*.png`.
+- **Uji:** ejaan rupiah dan parser (`Rp1.250.000`, `1250000`, paste ambigu); keypad dengan TalkBack/VoiceOver, keyboard fisik, paste, dan password manager pada field login; 320 CSS px, zoom 200%, reduced motion, forced colors; tombol kembali menutup lembar tanpa kehilangan draf; refresh membuka lembar sama; fokus kembali ke pemicu; baris buka-tutup mengumumkan keadaan; keypad tidak menutupi field/error/tombol; tidak ada nominal terisi otomatis; UT-44–UT-46 dan UT-49 pada katalog sebelum layar bisnis dibuat. Pemeriksaan kesesuaian visual FRONTEND_DESIGN_SPEC §11 untuk komponen bersama (header, nav, kartu, pil, tombol, isian, keypad, lembar) lulus di 390×844; koreksi §9 yang menyangkut komponen sudah diterapkan.
+- **Berhenti:** keypad gagal diakses pembaca layar pada perangkat uji → jadikan keyboard angka HP sebagai default (D-26) dan laporkan; jangan menambah library UI besar, animasi, atau font daring tanpa alasan tertulis; jangan membuat layar bisnis atau angka contoh yang tampak nyata di produk. Bila kelas mockup tidak dapat dihasilkan Tailwind v3 atau tampilan berbeda dari acuan tanpa penjelasan di §9, berhenti dan laporkan; jangan mengganti dengan nilai yang "mirip".
 
 <a id="imp-007"></a>
 ### IMP-007 — Identitas dan scope database dasar
@@ -334,7 +334,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-014 — Master kandang/bangunan dan setup bertahap
 
 - **Dependensi:** IMP-006, IMP-011, IMP-013. **Area:** OPERATIONS/API/WEB V-01/V-04/V-20.
-- **Baca:** ONB-01–ONB-04, ONB-10–ONB-11, DATA-01/08, K-31/K-32, AC-95/99, FL-01/03.
+- **Baca:** ONB-01–ONB-04, ONB-10–ONB-11, DATA-01/08, K-31/K-32, AC-95/99, FL-01/03. Tampilan: FRONTEND_DESIGN_SPEC §7.5 (Ringkasan) dan §7.7 (Mulai Kandang), resep R-08 (Tim Kandang), R-12 (daftar persiapan), R-17 (Kandang dan Periode).
 - **Kerjakan:** layanan/form kandang, zona waktu, bangunan/kapasitas, mitra/pihak minimum saat dibutuhkan di atas schema IMP-007; arsip master tanpa hapus histori. Hubungkan pengelolaan kandang ke alur assignment multi-ABK yang sudah selesai di IMP-011, jangan membuat implementasi kedua; Owner boleh tanpa tim, gaji, kontrak, barang master lengkap.
 - **Hasil:** setup dapat ditunda/dilanjutkan, draft kembali ke pekerjaan asal setelah melengkapi prasyarat; nilai default terlihat, bukan transaksi dummy. Kapasitas bukan DOC aktual. Versi awal **Saran berikutnya** untuk keadaan setup (belum ada kandang, belum ada periode, Persiapan) sudah berjalan: satu saran utama, daftar persiapan dengan hitungan nyata, semua langkah dapat diketuk dalam urutan apa pun, langkah bergantung diberi alasan, dan **Nanti** tidak muncul ulang tanpa kejadian relevan. Tombol **Catat** tetap tersedia.
 - **Uji:** Owner tanpa ABK tetap masuk persiapan; ubah nama tidak merusak histori; farm/building tenant beda ditolak; data kosong tidak ditampilkan sebagai saldo nol; UT-04–UT-06 dan UT-47 untuk keadaan setup (urutan bebas, alasan dependensi, Nanti, tanpa pop-up).
@@ -344,7 +344,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-015 — Periode persiapan, DOC aktual dan mode recording
 
 - **Dependensi:** IMP-010, IMP-014. **Area:** OPERATIONS/DATA/API/WEB V-04/V-05/V-07.
-- **Baca:** CYC-01–CYC-06, REC-01/REC-17, DATA-02–DATA-04, AC-06/07/87/89/92, FL-01/02.
+- **Baca:** CYC-01–CYC-06, REC-01/REC-17, DATA-02–DATA-04, AC-06/07/87/89/92, FL-01/02. Tampilan: FRONTEND_DESIGN_SPEC §7.7 langkah 2–3, resep R-05 (DOC Masuk) dan R-06 (Pakan Masuk).
 - **Kerjakan:** DRAFT/ACTIVE dan status finansial terpisah, tanggal DOC aktual/populasi positif, satu aktif per kandang, alokasi bangunan known+unallocated; OFF default eksplisit dan aktivasi DAILY online berizin dengan cutoff/version. Alokasi unknown tidak diprorata/farm dummy.
 - **Hasil:** periode persiapan tersedia sebelum DOC; perubahan mode tidak menghapus recording lama atau mengaktifkan tugas stok. Receipt/audit dan period lock coordination dipakai sejak awal.
 - **Uji:** dua aktivasi paralel satu lolos; DOC 6.500 kapasitas 7.000 tetap dua angka; salah tanggal/tenant, override kapasitas beralasan sesuai PRD, mode OFF tidak menerima submit DAILY baru.
@@ -404,10 +404,10 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-021 — Recording mobile bersama dan resolusi konflik
 
 - **Dependensi:** IMP-017, IMP-019, IMP-020. **Area:** WEB/LOCAL V-02/V-06/V-19/V-25.
-- **Baca:** FL-04, WF-07–WF-10, UT-07–UT-15, UX_UI_SPEC recording.
+- **Baca:** FL-04, WF-07–WF-10, UT-07–UT-15, UX_UI_SPEC recording, [FRONTEND_DESIGN_SPEC §7.1 dan §7.2](FRONTEND_DESIGN_SPEC.md#fd07-rec), `design/stitch/recording_harian_tab_riwayat_ringkas/`.
 - **Kerjakan:** form satu kandang/tanggal tanpa bangunan wajib, author/freshness bersama, draft personal; bandingkan versi berhak saat konflik dan minta konfirmasi revisi baru. OFF menghilangkan tugas baru, histori tidak hilang. Identitas/scope draft tidak pindah saat ganti kandang.
-- **Hasil:** satu halaman fokus dengan bar aksi lengket; pakan memakai keypad kuantitas + satuan, mati/afkir memakai keypad ekor dan −/+, tanggal **Hari ini/Kemarin**, rata-rata sampling dihitung otomatis; riwayat perubahan dibuka-tutup di halaman yang sama dan koreksi satu nilai boleh lewat lembar. Label status kanonis (Draf/Menunggu Kirim/Tercatat/Catatan Berubah). Tidak ada tombol Owner menyetujui recording biasa, saran stok dari pakan, atau angka kemarin yang terisi otomatis.
-- **Uji:** dua browser dua ABK offline lalu reconnect; conflicting 100/90 tidak jadi 190; revoke A tidak menghilangkan B; error dekat field; nilai kosong/0/sampling tidak diisi otomatis; angka tidak biasa hanya memberi peringatan setelah diisi; UT-44/UT-48 bagian recording.
+- **Hasil:** halaman Recording Harian **bertab** (Pakan, Mortalitas, Sampling) persis FRONTEND_DESIGN_SPEC §7.2: bilah konteks, judul + tombol Catat per tab, tab ARIA, ringkasan per tab, riwayat per tanggal termasuk celah, dan lembar input per tab; pakan memakai keypad kuantitas + satuan dan beberapa jenis pakan (`feed_lines`), mati/afkir memakai keypad ekor dan −/+, tanggal **Hari ini/Kemarin/Pilih**, rata-rata sampling dihitung otomatis; kirim dari satu tab mengirim revisi penuh satu catatan bersama; mode koreksi dan **Catatan Berubah** di lembar. Label status kanonis (Draf/Menunggu Kirim/Tercatat/Catatan Berubah). Tidak ada tombol Owner menyetujui recording biasa, saran stok dari pakan, atau angka kemarin yang terisi otomatis.
+- **Uji:** dua browser dua ABK offline lalu reconnect; conflicting 100/90 tidak jadi 190; revoke A tidak menghilangkan B; error dekat field; nilai kosong/0/sampling tidak diisi otomatis; angka tidak biasa hanya memberi peringatan setelah diisi; UT-44/UT-48 bagian recording. Tab: kirim Pakan tidak mengosongkan Mati/Afkir yang sudah tercatat; bagian kosong tetap kosong; tab tersimpan di alamat; pemeriksaan visual §11 untuk tab Pakan, lembar Pakan, dan (setelah disetujui) tab Mortalitas/Sampling.
 - **Berhenti:** API mengirim field keuangan rekan atau UI memperlakukan response 2xx sebagai bukti pembayaran.
 
 <a id="imp-022"></a>
@@ -437,7 +437,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-024 — Akun kas usaha dan saldo awal bersumber
 
 - **Dependensi:** IMP-005, IMP-010, IMP-014, IMP-016. **Area:** FINANCE/DATA/API/WEB V-08.
-- **Baca:** CASH-01–CASH-04, MOD-02–MOD-03, ONB-10, REP-03/05, DATA_MODEL opening.
+- **Baca:** CASH-01–CASH-04, MOD-02–MOD-03, ONB-10, REP-03/05, DATA_MODEL opening. Tampilan: FRONTEND_DESIGN_SPEC §7.4 (Uang Kas ABK) dan resep R-07 (Uang Kas Owner).
 - **Kerjakan:** rekening/kas usaha dan pemegang ABK per orang, currency IDR, opening cutoff+provenance, saldo turunan dari opening+mutasi sah; nominal tidak bebas diedit sebagai total. Pembayaran dari rekening pribadi eksternal bukan akun usaha otomatis.
 - **Hasil:** riwayat saldo awal dan coverage; ABK hanya sendiri, Owner memilih pemegang; tidak ada saldo rekan di cache/proyeksi.
 - **Uji:** opening Rp500.000 + penerimaan Rp200.000 − belanja Rp120.000 = Rp580.000, tanpa menghitung ulang histori sebelum cutoff; duplicate opening ditolak/koreksi tertaut.
@@ -467,7 +467,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-027 — Catatan tunai OFF-16 dan satu kejadian kanonis
 
 - **Dependensi:** IMP-019, IMP-022, IMP-025, IMP-026. **Area:** LOCAL/FINANCE/API/WEB V-13/V-08.
-- **Baca:** OFF-16, FIN-10–FIN-12, GOLD-23, AC-76, UT-21.
+- **Baca:** OFF-16, FIN-10–FIN-12, GOLD-23, AC-76, UT-21. Tampilan: lembar Terima/Kembalikan Uang di FRONTEND_DESIGN_SPEC §7.4 dan **Cocokkan** di resep R-07.
 - **Kerjakan:** catat penyerahan/penerimaan/pembayaran nyata secara offline sebagai unverified; server menerima klaim bukan posting ABK. Owner menaut kedua laporan ke satu cash movement kanonis, termasuk counterpart terlambat setelah movement posted. Parent operasi/linkage eksplisit sebelum child belanja.
 - **Hasil:** resolusi/link dan efek uang atomik; konfirmasi penerima tidak menjadi transfer kedua; nominal/tanggal sama tidak auto-match. Di layar ABK aksinya bernama **Terima Uang** dan **Kembalikan Uang** (lembar dari Uang Kas atau Catat), berstatus **Belum Dicek Owner**; label lama “Catatan Tunai” tidak dipakai.
 - **Uji:** dua perangkat masing-masing melaporkan Rp300.000 → saldo berubah Rp300.000 sekali; child Rp100.000 tetap dependency-pending sampai parent sah; late counterpart LINKED tanpa kas tambahan; retry/revoke/lock menjaga isi klaim.
@@ -477,9 +477,9 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-028 — Catat pembelian barang/jasa yang sederhana
 
 - **Dependensi:** IMP-019, IMP-023, IMP-025, IMP-027. **Area:** FINANCE/API/WEB/LOCAL V-09/V-10.
-- **Baca:** CASH-05–CASH-09/CASH-16, K-33/K-34, GOLD-30, AC-13/79/96/97, UT-17/18/37.
+- **Baca:** CASH-05–CASH-09/CASH-16, K-33/K-34, GOLD-30, AC-13/79/96/97, UT-17/18/37. Tampilan: FRONTEND_DESIGN_SPEC §7.3 (Catat Belanja, halaman fokus dengan keypad terpasang) dan §7.1 bagian Belanja Saya.
 - **Kerjakan:** keperluan bebas/saran terakhir, nominal, sumber/pembayar, tanggal dan konteks; bukti opsional, bukan master wajib. ABK mengajukan claim, Owner online boleh langsung save+approve+post dengan klasifikasi dan sumber valid; Owner offline hanya draft/capture.
-- **Hasil:** gas/solar/peralatan/listrik/jasa diterima sebagai contoh umum, tanpa usage/stock pool; status review/post/pay terpisah. Unknown klasifikasi ditahan untuk pelengkapan. Catat Belanja adalah lembar dari **Catat**/Hari Ini/Uang Kas: keperluan dengan saran riwayat sendiri, nominal lewat keypad + ejaan, tanggal **Hari ini/Kemarin**, sumber **Belum Tahu** boleh, cek belanja mirip tanpa memblokir; status **Menunggu Owner**.
+- **Hasil:** gas/solar/peralatan/listrik/jasa diterima sebagai contoh umum, tanpa usage/stock pool; status review/post/pay terpisah. Unknown klasifikasi ditahan untuk pelengkapan. Catat Belanja adalah halaman fokus dengan keypad terpasang (mockup K-39) yang dibuka dari **Catat**/Hari Ini/Uang Kas: keperluan dengan saran riwayat sendiri, nominal lewat keypad + ejaan, tanggal **Hari ini/Kemarin**, sumber **Belum Tahu** boleh, cek belanja mirip tanpa memblokir; status **Menunggu Owner**.
 - **Uji:** simpan tanpa nota/alasan, teks baru tanpa item; Owner bayar toko langsung tidak mengubah pegangan ABK; invoice kredit tidak keluar kas; offline retry satu claim; nominal tidak pernah terisi dari riwayat; UT-44/UT-45/UT-48 bagian belanja.
 - **Berhenti:** form ABK meminta coverage/pajak/aset atau pembelian hanya menerima katalog gas/solar; jangan approve uang dari keputusan DAILY.
 
@@ -487,7 +487,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-029 — Review Owner dan resolusi klaim kas
 
 - **Dependensi:** IMP-028. **Area:** FINANCE/API/WEB V-10/V-11/V-08.
-- **Baca:** FIN-10–FIN-11, COST-01, CYC-11, AC-10/64/65, UT-19/22.
+- **Baca:** FIN-10–FIN-11, COST-01, CYC-11, AC-10/64/65, UT-19/22. Tampilan: FRONTEND_DESIGN_SPEC §7.6 (Periksa Belanja) dan versi Owner di §7.3.
 - **Kerjakan:** review versioned approve/needs correction/reject, source/classification/allocation sebelum posting; resolusi terminal FIN-11 dan link efek dalam transaksi. Klaim rejected tetap unresolved jika uang memang diklaim keluar; kasus tidak terjadi/duplicate/recoverable/payer-corrected mengikuti aturan lengkap.
 - **Hasil:** pengurang kas sementara hilang hanya saat resolusi sah, bukan ketika reject; lebih besar saldo meminta klarifikasi, tidak auto-piutang hukuman/gaji. Layar **Periksa Belanja** memakai baris buka-tutup: baris tertutup menampilkan pencatat, tanggal, keperluan, nominal, status; baris terbuka menampilkan data yang perlu dilengkapi, pratinjau dampak, lalu **Setujui & Bukukan**/**Minta Perbaikan**/**Tolak** tanpa pindah halaman. Tidak ada bukukan hanya dengan geser.
 - **Uji:** tolak kategori Rp120.000 → claim masih terlihat; resolve duplicate taut sumber tanpa biaya lagi; approve setelah terminal ditolak; actor/version stale gagal; refund-required belum disahkan bukan terminal; UT-46 (posisi gulir, `aria-expanded`, pratinjau sebelum bukukan).
@@ -497,7 +497,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-030 — Batch setujui dan bukukan tanpa blanket approval
 
 - **Dependensi:** IMP-029. **Area:** FINANCE/API/WEB V-11.
-- **Baca:** FIN-13, FIN-12, AC-79, UT-19.
+- **Baca:** FIN-13, FIN-12, AC-79, UT-19. Tampilan: resep R-10 (Periksa Sekaligus).
 - **Kerjakan:** selection/batch action/doc IDs/expected versions/hash dibekukan sebelum konfirmasi; tampilkan jumlah/total/sumber/pengecualian; proses receipt per dokumen atomik. Hasil applied/already posted/needs data/dependency/conflict/denied jelas.
 - **Hasil:** satu dokumen invalid tidak memaksa seluruh batch sukses; retry selection sama tanpa efek tambahan; kredit tetap payable/unpaid, bukan PAID karena approve.
 - **Uji:** tiga dokumen: valid Rp100.000, sumber belum jelas Rp50.000, versi berubah Rp70.000 → hanya Rp100.000 boleh diposting; retry+double click tetap sama; revisi selection tidak membukukan sumber lama dua kali.
@@ -673,7 +673,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-047 — Inbox, arahan adaptif dan panduan singkat
 
 - **Dependensi:** IMP-013, IMP-014, IMP-019, IMP-029, IMP-039, IMP-046. **Area:** API/WORKER/WEB V-01/V-02/V-23.
-- **Baca:** NOT-01–NOT-08 bagian R1, UX-15/16, ONB-11, AC-55/95/99, UT-04–UT-06/38.
+- **Baca:** NOT-01–NOT-08 bagian R1, UX-15/16, ONB-11, AC-55/95/99, UT-04–UT-06/38. Tampilan: `NextStepHero`, `CompanionAlert`, dan resep R-16 di FRONTEND_DESIGN_SPEC.
 - **Kerjakan:** perluas mesin **Saran berikutnya** dari IMP-014 ke keadaan operasional (DAILY belum tercatat, belanja menunggu Owner, keuangan periode belum selesai, catatan belum terkirim) dengan prioritas akses/storage→pekerjaan tertahan→tahap kandang→opsional; satu saran utama + maksimal dua pendamping, **Kenapa?**, aturan **Nanti**; review belanja tetap terlihat; inbox dedupe event+penerima, izin saat kirim/buka, recording informasi bukan approval. Panduan kontekstual pendek sesuai alur, tanpa LMS/gamification wajib.
 - **Hasil:** saran dapat dijelaskan dari data, tidak mengubah nominal/mode/posting otomatis; last sync dan “belum ada data terkirim” bukan menuduh ABK. Tidak membangun push/websocket wajib R1.
 - **Uji:** setup separuh, OFF/DAILY, multi-farm, revoke recipient, worker retry; inbox tidak ganda, tidak nominal gaji/kasbon dalam pesan publik/lock screen.
@@ -766,7 +766,7 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 ### IMP-056 — Verifikasi seluruh layar mobile dan aksesibilitas
 
 - **Dependensi:** IMP-021, IMP-022, IMP-045–IMP-049, IMP-055. **Area:** WEB/TESTS/evidence sintetis.
-- **Baca:** UX_UI_SPEC seluruh V/UT, UX_FLOWS_WIREFRAMES, UI skill sesuai AGENTS, NFR-01/05/09.
+- **Baca:** UX_UI_SPEC seluruh V/UT, UX_FLOWS_WIREFRAMES, UI skill sesuai AGENTS, NFR-01/05/09. Pemeriksaan visual dan aksesibilitas FRONTEND_DESIGN_SPEC §10–§11 untuk semua layar, termasuk risiko kontras §10.2.
 - **Kerjakan:** jalankan aplikasi nyata dengan role berbeda pada 320/360/390/768/1280 CSS px, HP sasaran, keyboard/screen reader, zoom 200%, long numbers/text, loading/empty/error/offline/conflict/permission. Glass selektif, form/angka solid, fallback/no blur/forced colors, fokus tidak tertutup keyboard/dialog/header; 320 CSS px wajib untuk reflow UT-42.
 - **Hasil:** bukti visual segar dan bukti interaksi untuk semua alur utama; label singkat membantu, tidak menghilangkan konteks/status. Input error inline+ringkasan terfokus bila banyak error; tidak menambah animasi/font daring agar menarik.
 - **Uji:** seluruh UT-01–UT-49 sesuai matriks, AC-56; target pindah halaman/ketukan UX_UI_SPEC §16.4; pemeriksa teks glosarium lulus; target sentuh web minimal 44×44 CSS px/utama 48×48 sesuai spesifikasi, bukan menyalin satuan native tanpa penyesuaian.
@@ -870,6 +870,8 @@ Setiap kartu mewarisi prosedur §5 dan Definition of Done §14. Field **Uji** ad
 | V-24 Admin | IMP-008, IMP-013 | Status/limit, tidak membaca buku usaha |
 | V-25 riwayat | IMP-010, IMP-021, IMP-032, IMP-046 | Actor/revision/source/reversal berizin |
 | V-26 Tutup Buku | IMP-044–IMP-045 | FL-09; Kandang Kosong vs Tutup Buku, Buka Lagi dengan snapshot |
+
+Tampilan setiap layar mengikuti [FRONTEND_DESIGN_SPEC](FRONTEND_DESIGN_SPEC.md): layar yang punya mockup di §7 (V-01, V-02, V-04, V-06, V-08/V-13, V-09, V-11) wajib lolos pemeriksaan visual §11 terhadap `design/stitch/`; layar lain disusun dari resep §8. Kartu layar tidak boleh membuat komponen di luar katalog §6.
 
 IMP-056 memeriksa semua layar di atas pada aplikasi berjalan. Backend/security/offline evidence tetap diperlukan meski layar telah diverifikasi.
 
@@ -1015,6 +1017,7 @@ TS-19–TS-22 dan TS-24 adalah perluasan R2, **tidak dijalankan sebagai fitur wa
 | Tenant/personal aman | API/file/export/job/cache attacks memakai ID objek lain dan runtime DB role | Menu disembunyikan atau snapshot response yang sudah disaring manual |
 | Offline tahan gangguan | Restart/pergantian akun/lease/quota/migration/response loss pada target yang diuji | Toggle offline screenshot dengan data di memori |
 | UI dapat dipakai | Interaksi nyata, viewport/HP, fokus/reader/contrast/status serta partisipan UAT yang disebutkan | Generator desain, gambar statis atau agent mengaku sebagai ABK |
+| UI sesuai mockup | Screenshot 390×844 implementasi dengan fixture §11.2 dibanding `reference-390-*.png`, selisih di luar area koreksi ≤1%, daftar koreksi §9 yang diterapkan | Klaim "sudah mirip", screenshot tanpa fixture, atau hanya membandingkan warna |
 | UI mudah dan jelas | Hitungan pindah halaman/ketukan per tugas, klik pertama pada label, pengguna menemukan langkah berikutnya tanpa bantuan, perbandingan keypad dan keyboard HP | Pendapat desainer, jumlah komponen, atau screenshot yang terlihat rapi |
 | Ekspor konsisten | Snapshot source counts/totals/relations/checksums dibanding artefak private hasil job | File berhasil diunduh saja |
 | Restore layak | Drill terisolasi, titik restore/kehilangan/RPO/RTO, grant/receipt/ledger/file reconciliation dan keputusan buka layanan | Backup job hijau atau halaman login hidup |
@@ -1118,3 +1121,4 @@ Skill UI/UX lokal dibaca dan pencarian `error summary validation` ditinjau untuk
 |---|---|---|
 | 0.1 | 23 September 2026 | Rencana R1 dipecah menjadi 62 kartu yang dapat diaudit, lengkap dengan dependensi, invariant, cakupan tes/layar, stop conditions, bukti dan batas prapilot/pilot; seluruhnya dokumen, belum eksekusi. |
 | 0.2 | 23 September 2026 | Audit kemudahan K-38: menyisipkan IMP-006 fondasi UI (pola di tempat, keypad angka, glosarium, pemeriksa istilah) sebelum layar pertama sehingga kartu v0.1 IMP-006–IMP-062 menjadi IMP-007–IMP-063 tanpa perubahan isi selain penyesuaian UI; saran berikutnya dimulai di IMP-014 dan diperluas di IMP-047; gate UX menjadi 49 UT. Semua kartu tetap NOT_STARTED. |
+| 0.3 | 23 September 2026 | Desain final K-39: IMP-006 membangun fondasi dari FRONTEND_DESIGN_SPEC dan `design/stitch/` (Tailwind build, font/ikon lokal, komponen persis, pemeriksaan visual); IMP-021 memakai Recording bertab; kartu layar lain merujuk blueprint §7 atau resep §8. Jumlah kartu tetap 63. |

@@ -2,17 +2,17 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.3 — audit kemudahan: arahan bebas, kerja di tempat, keypad angka, dan glosarium |
+| Versi | 0.4 — desain visual final dari mockup (K-39), Recording bertab, navigasi per peran |
 | Tanggal | 23 September 2026 |
-| Sumber bisnis | [PRD v0.5](PRD.md) dan keputusan pengguna terbaru, termasuk K-38 |
+| Sumber bisnis | [PRD v0.6](PRD.md) dan keputusan pengguna terbaru, termasuk K-38 dan K-39 |
 | Bahasa | Bahasa Indonesia; IDR dan satuan ditulis jelas |
 | Perangkat utama | HP untuk Owner dan ABK; desktop sebagai perluasan |
 | Arah terkonfirmasi | Aplikasi sederhana, sangat dinamis/adaptif, modern; glassmorphism tetap mudah dibaca |
-| Status rancangan | Keputusan dan usulan dibedakan; detail visual belum final |
+| Status rancangan | Keputusan dan usulan dibedakan; tampilan final mengikuti [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md) dan folder `design/` (K-39) |
 | Inventaris UX | 26 layar (V-01–V-26); 49 skenario (UT-01–UT-49) |
-| Rancangan alur pendamping | [Alur Layar & Wireframe v0.1](UX_FLOWS_WIREFRAMES.md): perjalanan R1, keadaan layar, dan rencana validasi; masih usulan |
+| Rancangan alur pendamping | [Alur Layar & Wireframe v0.3](UX_FLOWS_WIREFRAMES.md): perjalanan R1, keadaan layar, dan rencana validasi; masih usulan |
 | Implementasi | Spesifikasi, bukan aplikasi/prototype yang sudah berjalan atau lulus UAT |
-| Fase kerja saat ini | Perencanaan `.md` saja, tanpa mockup atau prototype; lihat [PLANNING.md](PLANNING.md) |
+| Fase kerja saat ini | Perencanaan `.md` dengan acuan desain visual final di `design/`; belum ada implementasi; lihat [PLANNING.md](PLANNING.md) |
 | Handoff pelaksanaan | [Rencana tes](TEST_PLAN.md) mencakup seluruh UT; [Implementation Plan](Implementation%20Plan.md) memetakan layar/alur ke tugas, tanpa mengubah makna bisnis atau memberi izin implementasi |
 | Privasi | Data dan contoh sintetis; materi privat pengguna tidak disalin ke dokumen atau aset publik |
 
@@ -21,7 +21,7 @@
 1. [Kontrak dokumen dan prinsip](#ux01)
 2. [Keputusan, scope, dan peran](#ux02)
 3. [Validasi desain dan sifat dinamis](#ux03)
-4. [Arah visual dan token awal](#ux04)
+4. [Arah visual dan token](#ux04)
 5. [Tata letak, aksesibilitas, dan input](#ux05)
 6. [Arsitektur informasi dan navigasi](#ux06)
 7. [Inventaris layar R1](#ux07)
@@ -130,46 +130,28 @@ Fase aktif hanya dokumentasi. Tahap berikut meninjau kelengkapan spesifikasi, bu
 Prioritas alur tertulis tetap **Aktivasi Owner → Data Kandang → Tim Kandang (opsional) → pilih OFF/DAILY → Siapkan Periode (Persiapan) → DOC Masuk**, beranda adaptif Owner, Hari Ini ABK, Recording Harian, Catat Belanja, dan Uang Kas. Tidak membuat mockup sebagai langkah berikutnya. Jika implementasi kelak diminta, keterbacaan solid/kaca, perangkat kecil dan keyboard tetap perlu diuji; dokumen atau persetujuan arah visual bukan bukti kelulusan aplikasi.
 
 <a id="ux04"></a>
-## 4. Arah visual dan token awal
+## 4. Arah visual dan token
 
-### 4.1 Kaca pada bingkai, data pada permukaan solid
+### 4.1 Desain final dari mockup
 
-Gunakan hierarki teks jelas, radius konsisten, ikon berlabel, dan ruang kosong yang cukup. Latar boleh memiliki gradien biru/teal sangat halus. Hindari foto nota, latar bergerak, dan animasi di belakang angka.
+Tampilan final ditetapkan pengguna lewat tujuh mockup Google Stitch dan `DESIGN.md` di folder `design/` (K-39). Aturan implementasinya — token, komponen, blueprint layar, koreksi wajib, dan cara pemeriksaan visual — ada di [FRONTEND_DESIGN_SPEC.md](FRONTEND_DESIGN_SPEC.md). Dokumen ini tetap menentukan perilaku, isi, status, dan bahasa layar.
 
-Header atau navigasi boleh translucent. Form, daftar, kartu saldo, status, konfirmasi uang, tabel, dan laporan memakai permukaan opaque. Scrim boleh transparan; modal input tetap solid. Jangan menurunkan opacity seluruh teks/container.
+Ringkasan watak visual: kanvas kertas hangat `#f6f5f4`, kartu kaca putih 75–95% dengan blur halus, satu biru utama `#0075de` untuk aksi utama, huruf Inter, ikon Material Symbols Outlined, radius 12–24 px, dan warna status dari palet mockup. Isian, tombol keypad, dan tampilan nominal memakai permukaan solid. Header dan navigasi bawah juga kaca.
 
-### 4.2 Token usulan, bukan brand final
+### 4.2 Token
 
-| Token | Nilai awal | Penggunaan |
-|---|---|---|
-| canvas | `#F3F6FB` | Latar halaman |
-| surface | `#FFFFFF` | Form, angka, daftar, dialog |
-| text-primary | `#132238` | Judul/data utama |
-| text-secondary | `#526176` | Bantuan dan timestamp |
-| action-primary | `#155EEF` | Tombol utama dengan teks putih |
-| accent | `#0E7490` | Aksen terbatas; bukan satu-satunya tanda status |
-| control-border | `#64748B` | Batas field yang terlihat |
-| divider | `#E2E8F0` | Pemisah dekoratif |
-| success | `#067647` pada `#ECFDF3` | Status sukses beserta label/ikon |
-| warning | `#93370D` pada `#FFFAEB` | Pending/perhatian |
-| danger | `#B42318` pada `#FEF3F2` | Error/tindakan berisiko |
-| info | `#175CD3` pada `#EFF8FF` | Informasi/pengiriman |
-| glass-surface | `rgb(255 255 255 / 0.88)` | Shell dengan latar terkendali |
-| glass-blur | `12px` | Batas awal eksplorasi, bukan target performa |
-| shadow-panel | `0 8px 24px rgb(19 34 56 / 0.08)` | Elevasi, bukan batas satu-satunya |
-
-Font awal: `system-ui, -apple-system, "Segoe UI", sans-serif`; jangan bergantung pada CDN untuk kerja offline. Usulan ukuran: judul 24/32 px, isi/input 16/24 px, metadata nonkritis 14/20 px, nominal utama 28–32 px dan dapat membungkus. Gunakan tabular numerals bila tersedia. Hit area kontrol ≥44×44 px; aksi utama ≥48×48 px. Nilai penting tidak dipotong menjadi `jt`.
+Token final ada di [FRONTEND_DESIGN_SPEC §4](FRONTEND_DESIGN_SPEC.md#fd04) dan `design/stitch/tailwind.config.json`. Token usulan lama (canvas `#F3F6FB`, action `#155EEF`, font sistem) tidak dipakai lagi. Font Inter dan ikon disimpan di aplikasi, bukan dari CDN, agar tetap bekerja offline. Hit area kontrol ≥44×44 px; aksi utama ≥48 px tinggi atau diberi area sentuh setara. Nilai penting tidak dipotong menjadi `jt`.
 
 ### 4.3 Fallback dan rendering
 
 1. Solid adalah baseline; bila blur tidak tersedia, dimatikan, atau lambat, fungsi dan informasi tetap sama.
 2. Sediakan **Kurangi efek visual**; hormati preferensi sistem bila tersedia. Blur bukan pengaman data pribadi.
 3. `prefers-reduced-motion` mematikan gerak nonesensial; forced colors tetap menampilkan kontrol/focus dengan warna sistem.
-4. Usulan maksimal dua bidang blur yang terlihat; jangan blur baris transaksi atau menganimasikan blur. Jika HP lambat, gunakan solid.
+4. Jumlah dan jenis blur mengikuti mockup; jangan menambah blur baru atau menganimasikan blur. Jika HP lambat, gunakan solid.
 5. Animasi tidak boleh menunda simpan/konfirmasi dan tidak mendahului keberhasilan penyimpanan.
 6. Uji kontras pada komposit yang dirender, termasuk ketika konten bergulir di bawah header. Target acuan WCAG: teks normal ≥4,5:1, teks besar ≥3:1, dan fokus/kontrol relevan ≥3:1.
 
-Token di atas bukan klaim sertifikasi WCAG. Mockup final tetap memerlukan uji kontras, keyboard, screen reader, dan perangkat.
+Token final bukan klaim sertifikasi WCAG. Risiko kontras yang sudah diketahui tercatat di [FRONTEND_DESIGN_SPEC §10](FRONTEND_DESIGN_SPEC.md#fd10); implementasi tetap memerlukan uji kontras, keyboard, screen reader, dan perangkat.
 
 <a id="ux05"></a>
 ## 5. Tata letak, aksesibilitas, dan input
@@ -193,16 +175,19 @@ Token di atas bukan klaim sertifikasi WCAG. Mockup final tetap memerlukan uji ko
 ### 5.3 Keypad angka — D-26
 
 ```text
-Nominal
-Rp1.250.000
+Nominal Belanja *              Ketuk keypad di bawah
+            Rp 1.250.000
 satu juta dua ratus lima puluh ribu rupiah
 
+[Keyboard HP]                    [+50rb] [+100rb]
 [ 1 ]  [ 2 ]  [ 3 ]
 [ 4 ]  [ 5 ]  [ 6 ]
 [ 7 ]  [ 8 ]  [ 9 ]
 [000]  [ 0 ]  [ ⌫ ]
-[Keyboard HP]          [Selesai]
+[Tinjau Belanja]
 ```
+
+Bentuk dan kelas persisnya ada di [FRONTEND_DESIGN_SPEC §6.6](FRONTEND_DESIGN_SPEC.md#fd06). Di Catat Belanja keypad terpasang di bawah halaman (mockup K-39); di lembar input keypad muncul saat isian angka aktif, dengan toolbar **Keyboard HP** · **Lanjut** · **Selesai**. Pintasan **+50rb/+100rb** hanya ada untuk nominal rupiah, menambah ke nilai saat ini, dan tidak pernah aktif sendiri.
 
 | Jenis field | Tombol | Bantuan otomatis | Batas |
 |---|---|---|---|
@@ -238,11 +223,11 @@ Tidak boleh: mengisi nominal/kuantitas dari kebiasaan, menyalin recording kemari
 
 | Peran | Navigasi utama | Tujuan sekunder |
 |---|---|---|
-| Owner | Ringkasan · Kandang · Transaksi · Laporan · Lainnya | Pemeriksaan belanja, Tim Kandang, DOC/Pakan Masuk, pengaturan recording lewat Kandang → Periode → Pengaturan, akun, ekspor |
-| ABK | Hari Ini · Catat · Uang Kas · Riwayat · Lainnya | Gaji, Kasbon, Upah Pekerjaan, akun dan panduan |
+| Owner | Ringkasan · Transaksi · **Catat** (tombol tengah) · Kandang · Lainnya | Periksa Belanja dan Uang Kas di Transaksi; Tim Kandang, periode, dan pengaturan recording di Kandang; Laporan, gaji, kasbon, upah, ekspor, Status Kirim, panduan, dan akun di Lainnya |
+| ABK | Hari Ini · Uang Kas · **Catat** (tombol tengah) · Riwayat · Lainnya | Gaji, Kasbon, Upah Pekerjaan, Status Kirim, akun dan panduan |
 | Admin | Tenant · Layanan · Audit · Akun | Batas tenant; bukan tab rahasia Owner |
 
-Tombol/menu **Catat** membuka lembar pilihan: ABK melihat **Recording Harian**, **Catat Belanja**, **Upah Pekerjaan**, **Terima Uang**, dan **Kembalikan Uang**; Owner melihat **Catat Belanja**, **Beri Uang Kas**, **DOC Masuk**, dan **Pakan Masuk** sesuai keadaan kandang. Tidak ada menu **Pemakaian** atau tombol **Pakai gas/solar** di R1. Uang Kas menampilkan catatan penerimaan/pengembalian uang yang benar-benar terjadi; aplikasi tidak mentransfer uang.
+Bentuk navigasi mengikuti mockup (K-39): ABK memakai pil terapung, Owner memakai bilah penuh; keduanya punya tombol **Catat** bulat di tengah ([FRONTEND_DESIGN_SPEC §5.3–§5.4](FRONTEND_DESIGN_SPEC.md#fd05)). Tombol/menu **Catat** membuka lembar pilihan: ABK melihat **Recording Harian**, **Catat Belanja**, **Upah Pekerjaan**, **Terima Uang**, dan **Kembalikan Uang**; Owner melihat **Catat Belanja**, **Beri Uang Kas**, **DOC Masuk**, dan **Pakan Masuk** sesuai keadaan kandang. Tidak ada menu **Pemakaian** atau tombol **Pakai gas/solar** di R1. Uang Kas menampilkan catatan penerimaan/pengembalian uang yang benar-benar terjadi; aplikasi tidak mentransfer uang.
 
 Gunakan label pendek yang sama di navigasi, judul layar, dan notifikasi. Helper text menjelaskan istilah dan batas efek, misalnya:
 
@@ -352,18 +337,34 @@ OFF menghilangkan kartu recording baru, bukan mengubahnya menjadi nol. Tidak ada
 ### 8.3 Recording Harian — V-06
 
 ```text
-Recording Harian · Kandang Utara
-23 Sep 2026 · Periode 01 · seluruh kandang
-Satu catatan bersama untuk tanggal ini
-Terakhir diubah [nama akun], 16.00    [Riwayat v]
+Kandang Utara · Periode 01 · Hari ke-18 · Rabu, 23 Sep 2026   (Aktif)
+Recording Harian                                 [+ Catat Pakan]
+Catatan konsumsi & pemantauan kandang
 
-Pakan dipakai hari ini                 [kg]
-Mati [ekor]          Afkir [ekor]
-Sampling: Tidak dilakukan / Dilakukan
+[ Pakan ]  [ Mortalitas ]  [ Sampling ]          (tab)
 
-[Simpan draf]                   [Kirim]
-Status: Draf
+Total Pakan Tercatat  545 kg (≈ 10,9 sak)        6 hari data
+                                          Rata-rata: 90,8 kg/hr
+RIWAYAT CATATAN PAKAN                              Urut Terbaru
+Rabu, 23 Sep 2026   Draf   Hari ke-18                     [edit]
+  Pakan BR-1  100 kg  ≈ 2 sak
+  Draf di HP ini · 16.05
+Selasa, 22 Sep 2026   Tercatat   Hari ke-17
+  Pakan BR-1  96 kg  ≈ 1,9 sak
+  Dicatat oleh Yanto · 16.05 WIB
+
+Lembar "Catat Pakan Harian":
+Tanggal Catatan   [Hari ini (23)] [Kemarin (22)] [Pilih]
+Jenis Pakan       [Pakan BR-1 (Starter Broiler) v]   + Tambah Jenis
+Kuantitas Digunakan Hari Ini              Bukan saldo gudang
+                  [ 100 ][kg]   [≈ 2][sak]
+Kemarin: 96 kg (+4 kg hari ini)       Rata-rata 7 hari: 91 kg
+Catatan Tambahan (opsional)
+[Simpan Draf]        [Kirim Recording]
+Satu catatan bersama untuk seluruh kandang · Berlaku langsung
 ```
+
+Recording Harian **berbentuk tab** sesuai keputusan pengguna (K-39): **Pakan**, **Mortalitas** (mati dan afkir), **Sampling**. Setiap tab punya ringkasan, riwayat per tanggal, dan lembar input sendiri, tetapi ketiganya mengisi **satu** catatan bersama per periode dan tanggal; mengirim dari satu tab mengirim revisi penuh dengan bagian lain apa adanya. Rincian tampilan dan aturan tab ada di [FRONTEND_DESIGN_SPEC §7.2](FRONTEND_DESIGN_SPEC.md#fd07-rec).
 
 Setelah validasi server: **Tercatat — dipakai bersama**. Tidak ada tahap “menunggu persetujuan Owner”. Koreksi menampilkan perbedaan nilai lama/baru dan siapa yang mengubahnya.
 
@@ -640,22 +641,22 @@ Panduan pendek tersedia dekat form: isi recording bersama, koreksi versi, belanj
 
 | Pola | Dipakai untuk | Jangan dipakai untuk |
 |---|---|---|
-| Lembar bawah / panel samping | Catat Belanja, Terima/Kembalikan Uang, Beri Uang Kas, koreksi satu nilai, filter, pratinjau dampak | Form panjang seperti Rincian RHPP atau Tutup Buku; lembar di atas lembar |
+| Lembar bawah / panel samping | Terima/Kembalikan Uang, Beri Uang Kas, input per tab Recording Harian, Tinjau Belanja, koreksi satu nilai, filter, konfirmasi, pratinjau dampak | Form panjang seperti Rincian RHPP atau Tutup Buku; lembar di atas lembar |
 | Baris buka-tutup | Detail belanja/uang, riwayat recording, rincian saldo, penghambat Tutup Buku, rincian gaji per orang | Menyembunyikan nominal, status, atau pencatat yang dibutuhkan untuk memutuskan |
 | Aksi dari baris terbuka | **Setujui & Bukukan**, **Minta Perbaikan**, **Tolak**, **Koreksi**, **Kirim Ulang** | Aksi hanya lewat geser; membukukan tanpa pratinjau dampak |
-| Halaman fokus | Recording Harian, Rincian RHPP, Tutup Buku, detail akun Tim Kandang | Aksi 1–3 field |
+| Halaman fokus | Catat Belanja dengan keypad terpasang, Mulai Kandang tiga langkah, Recording Harian bertab, Rincian RHPP, Tutup Buku, detail akun Tim Kandang (sesuai mockup K-39) | Aksi 1–3 field |
 
 - Tombol kembali HP/browser menutup lembar atau baris terbuka lebih dulu, bukan keluar dari layar. Isi lembar disimpan sebagai draf lokal dan muncul lagi saat dibuka.
 - Lembar dan baris terbuka mempunyai alamat, misalnya `?belanja=123`, sehingga refresh atau tautan membuka keadaan yang sama sesuai izin.
 - Hanya satu lembar aktif. Bila butuh data lain, misalnya akun kas belum ada, isi lembar berganti dengan tombol kembali ke draf asal.
 - Lembar untuk aksi yang wajib online—**Beri Uang Kas**, **Terima Kembali**, **Setujui & Bukukan**—menampilkan “Perlu sinyal untuk membukukan” dan menonaktifkan tombol dengan alasan saat offline; isi lembar tetap tersimpan sebagai draf. **Terima Uang**, **Kembalikan Uang**, dan **Catat Belanja** ABK boleh disimpan offline dengan status **Menunggu Kirim**.
-- Membuka satu baris tidak menutup paksa baris lain; daftar panjang menyediakan **Tutup Semua**. Posisi gulir tetap.
+- Di Periksa Belanja, membuka satu baris tidak menutup baris lain dan tersedia **Tutup Semua**. Di Riwayat Uang Kas hanya satu laci terbuka pada satu waktu, sesuai mockup. Posisi gulir tetap.
 - Fokus pindah ke judul lembar/isi baris dan kembali ke pemicunya; tidak ada aksi yang hanya bisa dengan gesture.
 - Tablet/desktop memakai dua panel: daftar di kiri, detail di kanan, dengan data dan izin yang sama.
 
 | Tugas | Target usulan untuk diuji |
 |---|---|
-| ABK catat belanja dari Hari Ini | 1 ketuk membuka lembar; 0 pindah halaman; ≤60 detik (GOAL-01) |
+| ABK catat belanja dari Hari Ini | 1 ketuk membuka halaman fokus Catat Belanja; kembali ke Hari Ini setelah kirim; ≤60 detik (GOAL-01) |
 | ABK Recording Harian | 1 ketuk dari Hari Ini; 1 halaman fokus; ≤2 menit |
 | Owner periksa dan bukukan satu belanja lengkap | 0 pindah halaman dari Periksa Belanja; ≤3 ketuk setelah baris dibuka |
 | Owner beri uang kas | 0 pindah halaman dari Uang Kas atau Catat |
@@ -749,7 +750,7 @@ Istilah dunia kerja kandang yang sudah dikenal tetap dipakai: DOC, RHPP, ABK, af
 | UT-42 | Viewport 320/360/390/768/1280 px, zoom 200%, dan keyboard tidak menutup field/error/action | Semua |
 | UT-43 | Keyboard/screen reader/modal/paste dan state loading/empty/error/offline/no-permission/success dapat digunakan; tutorial opsional, deep link berizin, READ_ONLY tidak memberi mutasi | Semua; UX-09, SEC-01 |
 | UT-44 | Keypad angka: nominal diisi dengan `000`/hapus, tampil `Rp1.250.000` dan ejaannya; kuantitas memakai koma dan satuan; ekor memakai −/+; **Keyboard HP**, paste, keyboard fisik, dan pembaca layar bekerja; username/password/teks tetap keyboard HP; tidak ada nominal atau kuantitas yang terisi dari kebiasaan | V-06, V-08, V-09, V-13, V-14; UX-06, D-26 |
-| UT-45 | Kerja di tempat: Catat Belanja, Terima/Kembalikan Uang, Beri Uang Kas, dan koreksi satu nilai selesai di lembar tanpa pindah halaman; tombol kembali menutup lembar tanpa kehilangan draf; refresh/tautan membuka keadaan yang sama sesuai izin; satu lembar aktif dan fokus kembali ke pemicu | V-02, V-08, V-09, V-13, V-06; UX-18, D-27 |
+| UT-45 | Kerja di tempat: Terima/Kembalikan Uang, Beri Uang Kas, input per tab Recording, dan koreksi satu nilai selesai di lembar tanpa pindah halaman; Catat Belanja selesai di satu halaman fokus lalu kembali ke layar asal (K-39); tombol kembali menutup lembar atau halaman fokus tanpa kehilangan draf; refresh/tautan membuka keadaan yang sama sesuai izin; satu lembar aktif dan fokus kembali ke pemicu | V-02, V-08, V-09, V-13, V-06; UX-18, D-27 |
 | UT-46 | Baris buka-tutup menampilkan nominal/status/pencatat saat tertutup; detail dan aksi terbuka di tempat dengan `aria-expanded`; Owner memeriksa dan membukukan dari baris dengan pratinjau dampak; tidak ada bukukan hanya dengan geser; posisi gulir tetap | V-10, V-11, V-08, V-25, V-26; UX-18 |
 | UT-47 | Arahan bebas: satu saran utama dan maksimal dua pendamping berasal dari data nyata dengan **Kenapa?**; tombol **Catat** selalu ada; langkah setup dapat dikerjakan dalam urutan apa pun kecuali dependensi nyata yang diberi alasan; **Nanti** menyembunyikan saran opsional sampai kejadian relevan; tidak ada pop-up berulang, poin, atau streak | V-01, V-02, V-04, V-20; UX-16, UX-17 |
 | UT-48 | Bantuan pintar: saran keperluan dari riwayat sendiri, **Hari ini/Kemarin**, rata-rata sampling otomatis, cek belanja mirip, dan peringatan angka tidak biasa tidak memblokir; tidak mengisi nominal/kuantitas/sumber dana dan tidak mengirim/membukukan otomatis | V-06, V-09, V-11; UX-04, UX-19 |
@@ -816,3 +817,4 @@ ID di bawah adalah nomor Q milik PRD v0.5, bukan nomor pertanyaan UX lokal.
 | 0.1 | 20 September 2026 | Rancangan awal dengan satu ABK/kandang dan gagasan pemakaian/stok; referensi historis, bukan keputusan terkini. |
 | 0.2 | 23 September 2026 | Konsolidasi UX v0.2: setup Owner sebelum DOC dan adaptif; banyak akun ABK; recording bersama satu per siklus/tanggal tanpa approval Owner; koreksi ter-audit; belanja ditinjau Owner dan posting online; bukti opsional; penghapusan pemakaian/stok operasional R1; pemisahan kasbon/gaji/upah; login tanpa email wajib; 26 layar dan 43 skenario penerimaan. |
 | 0.3 | 23 September 2026 | Audit kemudahan (K-38): prinsip UI-16–UI-20, keypad angka, bantuan pintar, pola kerja di tempat, glosarium dan aturan bahasa, label status kanonis, penggantian label ambigu (Catatan Tunai, Barang & Peralatan, Sinkronisasi, Tutup Periode, Selesai Fisik, DRAFT), serta UT-44–UT-49. Masih rancangan tertulis, belum mockup atau uji pengguna. |
+| 0.4 | 23 September 2026 | Desain visual final dari tujuh mockup Google Stitch dan `DESIGN.md` pengguna (K-39): §4 merujuk FRONTEND_DESIGN_SPEC dan token lama dihapus; sketsa keypad dan Recording Harian bertab; navigasi ABK dan Owner sesuai mockup; pola kerja di tempat menyesuaikan halaman fokus Catat Belanja/Mulai Kandang. Perilaku, status, dan aturan bisnis tidak berubah. |

@@ -2,7 +2,7 @@
 
 ## Perencanaan produk
 
-- Fase kerja saat ini adalah dokumen perencanaan `.md` dan mockup layar penting di `mockups/` yang diminta pengguna. Jangan membuat layar mockup baru, prototype, aset visual, atau implementasi aplikasi tanpa permintaan baru yang eksplisit. Baca `PLANNING.md` untuk urutan dan status dokumen, serta `mockups/README.md` untuk kontrak komponen dan batas porting. Desain visual `mockups/` dinilai pengguna kurang bagus; jangan jadikan acuan tampilan. Isi halaman untuk mockup baru ada di `BRIEF_MOCKUP.md`, sedangkan arah desain ditentukan pengguna.
+- Fase kerja saat ini adalah dokumen perencanaan `.md`. Desain visual final sudah ditetapkan pengguna (K-39): tujuh mockup Google Stitch dan `DESIGN.md` di `design/`, dengan aturan implementasi di `FRONTEND_DESIGN_SPEC.md`. Jangan membuat prototype, aset visual baru, atau implementasi aplikasi tanpa permintaan baru yang eksplisit. Baca `PLANNING.md` untuk urutan dan status dokumen. Folder `mockups/` lama dinilai pengguna kurang bagus dan **bukan** acuan tampilan. `BRIEF_MOCKUP.md` dipakai untuk isi layar yang belum punya mockup.
 - Baca `PRD.md` dan `UX_UI_SPEC.md` untuk keputusan bisnis, batas rilis, serta status usulan. Jangan menganggap rancangan atau hasil generator sebagai persetujuan pengguna maupun hasil uji aplikasi.
 - Pertahankan prinsip aplikasi sangat dinamis dan sederhana. Gunakan bahasa bisnis yang mudah dipahami pengguna nonteknis dan label aplikasi yang pendek serta jelas.
 
@@ -17,10 +17,10 @@
 ## Pekerjaan UI/UX
 
 - Gunakan `.agents/skills/ui-ux-pro-max/SKILL.md` sebelum merancang, membangun, atau meninjau antarmuka. Baca instruksi lengkap dan jalankan pencarian lokal yang relevan.
-- Pilih `--design-system` untuk arah visual menyeluruh, `--domain` untuk masalah khusus, dan `--stack` hanya setelah stack diketahui. Jangan memilih teknologi hanya karena direkomendasikan skill.
+- Arah visual sudah ditetapkan (K-39); hasil skill tidak boleh mengubah token atau tata letak mockup. Pakai `--design-system` hanya untuk meninjau, `--domain` untuk masalah khusus, dan `--stack` hanya setelah stack diketahui. Jangan memilih teknologi hanya karena direkomendasikan skill.
 - Periksa kecocokan setiap hasil dengan aplikasi operasional mobile-first, Owner/ABK, dan spesifikasi proyek. Hasil katalog bukan aturan bisnis; pola landing page tidak otomatis cocok untuk dashboard operasional.
-- Glassmorphism tetap selektif sesuai spesifikasi: angka dan form harus mudah dibaca, dengan permukaan solid serta fallback. Jangan menambah animasi, dependensi font daring, atau input yang membebani ABK demi tampilan.
-- Untuk layar, pakai komponen fondasi IMP-006, label glosarium `UX_UI_SPEC.md` §16.5, aturan bahasa §16.6, dan batas bantuan pintar §5.4. Jangan mengisi angka dari kebiasaan, membukukan dengan geser, atau menambah istilah teknis di layar; lihat `UX_AUDIT.md`.
+- Tampilan frontend harus **persis** mockup `design/stitch/` sesuai `FRONTEND_DESIGN_SPEC.md`: salin kelas dari `code.html`, pakai hanya token §4, terapkan koreksi wajib §9, dan buktikan dengan pemeriksaan visual §11. Layar tanpa mockup disusun dari komponen §6 menurut resep §8; jangan menciptakan pola baru. Isian, keypad, dan nominal tetap solid dengan fallback solid untuk kaca. Font dan ikon disimpan di aplikasi, bukan CDN. Jangan menambah animasi atau input yang membebani ABK demi tampilan.
+- Untuk layar, pakai komponen fondasi IMP-006 (katalog `FRONTEND_DESIGN_SPEC.md` §6), label glosarium `UX_UI_SPEC.md` §16.5, aturan bahasa §16.6, dan batas bantuan pintar §5.4. Jangan mengisi angka dari kebiasaan, membukukan dengan geser, atau menambah istilah teknis di layar; lihat `UX_AUDIT.md`.
 - Jangan menyimpan hasil generator sebagai desain final sebelum ditinjau. Verifikasi perubahan UI pada aplikasi yang berjalan saat implementasinya tersedia; pemasangan skill tidak membuktikan UI sudah bagus atau lulus uji.
 
 Versi, sumber, dan perintah verifikasi skill ada di `.agents/README.md`.

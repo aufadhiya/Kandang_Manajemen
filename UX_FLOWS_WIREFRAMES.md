@@ -2,9 +2,9 @@
 
 | Metadata | Nilai |
 |---|---|
-| Versi | 0.2 — rancangan alur setelah audit kemudahan |
+| Versi | 0.3 — rancangan alur disesuaikan dengan mockup final (K-39) |
 | Tanggal | 23 September 2026 |
-| Acuan | [PRD v0.5](PRD.md), [UX/UI v0.3](UX_UI_SPEC.md), dan [audit kemudahan](UX_AUDIT.md) |
+| Acuan | [PRD v0.6](PRD.md), [UX/UI v0.4](UX_UI_SPEC.md), [audit kemudahan](UX_AUDIT.md), dan [desain frontend](FRONTEND_DESIGN_SPEC.md) |
 | Tujuan | Mendokumentasikan urutan pengalaman, informasi minimum, tindakan, dan keadaan layar sebagai acuan perencanaan tertulis |
 | Cakupan | R1; 10 alur dan 16 wireframe teks yang memakai ID layar V yang sudah ada |
 | Status | Usulan interaksi, belum disetujui sebagai desain final; bukan aplikasi atau hasil uji pengguna |
@@ -117,11 +117,11 @@ Pergantian kartu terjadi setelah keadaan diketahui, bukan memindahkan fokus atau
 
 1. **Konteks terlihat:** usaha/kandang/periode, tanggal relevan, dan waktu data. Satu kandang berizin boleh langsung terpilih; beberapa kandang memerlukan pilihan yang jelas.
 2. **Satu tugas utama:** judul pendek, bantuan satu kalimat bila perlu, detail tambahan dapat dibuka. Ini bukan batas jumlah data yang sah.
-3. **Navigasi tetap:** Owner memakai Ringkasan / Kandang / Transaksi / Laporan / Lainnya; ABK memakai Hari Ini / Catat / Uang Kas / Riwayat / Lainnya.
+3. **Navigasi tetap (mockup K-39):** Owner memakai Ringkasan / Transaksi / Catat / Kandang / Lainnya; ABK memakai Hari Ini / Uang Kas / Catat / Riwayat / Lainnya. **Catat** adalah tombol bulat di tengah; Laporan Owner ada di Lainnya.
 4. **Form fokus:** saat mengedit, action bar menggantikan navigasi bawah; tidak bertumpuk. Kembali menjaga draf dan konteks asal. Modal tidak bersarang.
 5. **Isi yang jujur:** belum diketahui ditulis demikian. Rp0 hanya untuk nol yang memang diketahui. Nominal rupiah bulat; kuantitas memakai satuan, persentase boleh desimal.
 
-**Kerja di tempat (D-27):** input singkat seperti Catat Belanja, Terima/Kembalikan Uang, Beri Uang Kas, dan koreksi satu nilai dibuka sebagai lembar di atas layar asal. Detail daftar dibuka-tutup di baris yang sama (`[v]` tertutup, `[^]` terbuka pada sketsa). Halaman fokus hanya untuk Recording Harian, Rincian RHPP, Tutup Buku, dan detail akun. Aturan tombol kembali, alamat lembar, dan satu lembar aktif mengikuti [UX/UI §16.4](UX_UI_SPEC.md#ux16).
+**Kerja di tempat (D-27):** input singkat seperti Terima/Kembalikan Uang, Beri Uang Kas, input per tab Recording Harian, dan koreksi satu nilai dibuka sebagai lembar di atas layar asal. Detail daftar dibuka-tutup di baris yang sama (`[v]` tertutup, `[^]` terbuka pada sketsa). Halaman fokus untuk Catat Belanja, Mulai Kandang, Recording Harian bertab, Rincian RHPP, Tutup Buku, dan detail akun (mockup K-39). Tampilan persis setiap layar ada di [FRONTEND_DESIGN_SPEC](FRONTEND_DESIGN_SPEC.md#fd07). Aturan tombol kembali, alamat lembar, dan satu lembar aktif mengikuti [UX/UI §16.4](UX_UI_SPEC.md#ux16).
 6. **Simpan bukan selalu kirim:** Draf, Menunggu Kirim, Tercatat, Menunggu Owner, Dibukukan, dan Lunas menunjukkan akibat yang berbeda. Sukses tidak diumumkan sebelum penyimpanan yang bersangkutan berhasil.
 
 <a id="fl01"></a>
@@ -200,7 +200,7 @@ Perlu diperiksa: belum ada pengajuan diterima
 Tim Kandang                 [Tambah] [Nanti]
 Pengaturan lainnya          [Buka]
 
-Ringkasan / Kandang / Transaksi / Laporan / Lainnya
+Ringkasan / Transaksi / (+ Catat) / Kandang / Lainnya
 ```
 
 **Cabang penting:**
@@ -300,10 +300,10 @@ Recording Harian · Tercatat
 Dicatat ABK A, 16.00                        [Lihat]
 Catatan ini dipakai bersama.                [Koreksi]
 
-[Catat Belanja]               [Uang Kas]
+[Catat Belanja] [Terima Uang] [Upah Pekerjaan] [Uang Kas]
 Catatan Anda di HP ini: 1 belum terkirim     [Buka]
 
-Hari Ini / Catat / Uang Kas / Riwayat / Lainnya
+Hari Ini / Uang Kas / (+ Catat) / Riwayat / Lainnya
 ```
 
 Jika belum ada data server, ajakan **Recording Harian** menggantikan kartu tercatat. Saat OFF atau sebelum DOC, tidak ada tugas recording. ABK kedua membuka catatan yang sama, bukan mengirim laporan terpisah. Nominal uang milik ABK lain maupun laba Owner tidak tampil.
@@ -311,24 +311,31 @@ Jika belum ada data server, ajakan **Recording Harian** menggantikan kartu terca
 ### WF-09 — Recording Harian · V-06
 
 ```text
-Recording Harian
-Kandang Utara / Periode 01
-Tanggal pencatatan          [23 Sep 2026   ]
-Seluruh kandang, bukan per bangunan.
+Kandang Utara · Periode 01 · Hari ke-18 · Rabu, 23 Sep 2026   (Aktif)
+Recording Harian                           [+ Catat Pakan]
+[ Pakan ]  [ Mortalitas ]  [ Sampling ]          (tab)
 
-Jenis pakan                 [Pakan A       ]
-Dipakai hari ini            [100] [kg     v]
-[Tambah jenis pakan]
-Mati                        [2 ekor        ]
-Afkir                       [0 ekor        ]
-Sampling                    [Tidak] [Ya]
-Jika Ya: jumlah sampel      [25 ekor       ]
-         total bobot bersih [30 kg         ]
-         rata-rata          1,2 kg/ekor sampel
-Catatan (opsional)           [              ]
-[Simpan Draf]                [Kirim]
+Tab Pakan
+  Total Pakan Tercatat 545 kg · 6 hari data · Rata-rata 90,8 kg/hr
+  Riwayat per tanggal: tanggal · status · Hari ke- · jenis + kg · pencatat
+  Lembar: Tanggal · Jenis Pakan (+ Tambah Jenis) · Kuantitas [100][kg]
+          · Kemarin 96 kg · Catatan · [Simpan Draf] [Kirim Recording]
+
+Tab Mortalitas
+  Total Mati Tercatat 15 ekor · Afkir 3 ekor · Rata-rata mati 2,5 ekor/hr
+  Riwayat: tanggal · status · Mati 3 ekor · Afkir 1 ekor · pencatat
+  Lembar: Tanggal · Mati [-][  ][+] ekor · Afkir [-][  ][+] ekor · Catatan
+
+Tab Sampling
+  Sampling Terakhir 0,7 kg/ekor sampel · 21 Sep · 2 kali sampling
+  Riwayat: tanggal · 25 ekor · 17,5 kg · 0,7 kg/ekor, atau "Tidak sampling"
+  Lembar: Tanggal · Sampling hari ini? [Tidak dilakukan] [Dilakukan]
+          · Jumlah ayam ditimbang · Total bobot · Rata-rata (hitung)
+
+Satu catatan bersama untuk seluruh kandang · Berlaku langsung
 ```
 
+- Recording Harian berbentuk tab sesuai keputusan pengguna (K-39). Ketiga tab mengisi **satu** catatan bersama per periode dan tanggal; mengirim dari satu tab mengirim revisi penuh dengan bagian tab lain apa adanya (kosong tetap kosong). Tampilan persis, lembar per tab, dan keadaan ada di [FRONTEND_DESIGN_SPEC §7.2](FRONTEND_DESIGN_SPEC.md#fd07-rec).
 - Angka contoh menggambarkan input pengguna, bukan nilai awal. Jangan menyalin kuantitas kemarin; nol hanya setelah dinyatakan. Saran jenis/satuan pakan boleh dipilih; 1 sak tidak otomatis 50 kg.
 - Sampling bukan kewajiban harian. Bila tidak dilakukan, tidak membuat 0 kg; bila dilakukan, jumlah sampel dan total bobot >0, tanggal/waktu pengukuran serta satuan jelas. Rata-rata sampel bukan bobot seluruh populasi.
 - Draf parsial tetap dapat disimpan. Data yang belum lengkap ditandai, bukan diisi nol agar terlihat lengkap. Error input ada dekat field dan ringkasan yang dapat difokuskan; teks tidak hilang.
@@ -390,24 +397,29 @@ Aplikasi tidak mentransfer uang bank. Owner tidak membukukan rencana sebagai uan
 ### WF-12 — Catat Belanja · V-09
 
 ```text
-Catat Belanja
-Kandang Utara · 23 Sep 2026                 [Ubah]
-Tanggal     (•) Hari ini  ( ) Kemarin  [Pilih]
-Keperluan                   [Listrik       ]
-  Gas · Solar · Listrik     (dari riwayat Anda)
-Nominal                     [Rp150.000     ]
-  seratus lima puluh ribu rupiah
-Sumber uang                 [Pilih        v]
-  Uang Kas / Uang Pribadi / Belum Dibayar / Belum Tahu
-Rincian tambahan (opsional)  [Buka]
-Foto/nota (opsional)         [Tambah]
-
-Owner memeriksa sebelum dibukukan.
-[Simpan Draf]                [Tinjau]
-(lembar bawah; nominal memakai keypad angka)
+<- Catat                                           (R)
+Draf tersimpan di HP · 09.10                 Terhubung
+Catat Belanja                          OPERASIONAL ABK
+Kandang Utara · Periode 01 · 23 Sep 2026
+Keperluan *                 Contoh: Bensin, Pakan, Vitamin
+[Listrik                                   (x)]
+Pilihan Cepat: [Solar] [Gas] [Listrik v] [Sekam]
+Nominal Belanja *                 Ketuk keypad di bawah
+                 Rp 150.000
+    seratus lima puluh ribu rupiah
+Tanggal Belanja   [v Hari ini] [Kemarin] [Pilih]
+Dibayar Dengan    ( ) Uang Kas saya
+                  ( ) Uang pribadi saya (minta diganti)
+                  ( ) Belum dibayar ke toko (Bon/Hutang)
+                  ( ) Belum tahu
+Foto Nota / Struk (opsional)   [Tambah Foto Nota]
+[Keyboard HP]                        [+50rb] [+100rb]
+[1][2][3] [4][5][6] [7][8][9] [000][0][hapus]
+[Tinjau Belanja]
+Owner memeriksa & menyetujui sebelum dibukukan.
 ```
 
-**Tinjau** memperlihatkan konteks, nominal, sumber, dan bukti jika ada dalam ringkasan pendek; **Kirim** mengajukan klaim. Ini satu lembar ringkas dan satu konfirmasi, bukan satu halaman per field. Pilihan keperluan hanya saran dari riwayat sendiri; nominal tidak pernah diisi otomatis. Jika mirip belanja yang sudah ada, tampilkan “Mirip belanja Listrik Rp150.000 kemarin. [Tetap Kirim] [Lihat]” tanpa memblokir. Sumber **Belum Tahu** boleh dikirim; bantuan menyebut Owner akan melengkapinya.
+**Tinjau** memperlihatkan konteks, nominal, sumber, dan bukti jika ada dalam ringkasan pendek; **Kirim** mengajukan klaim. Ini satu halaman fokus dan satu lembar Tinjau, bukan satu halaman per field (mockup K-39, [FRONTEND_DESIGN_SPEC §7.3](FRONTEND_DESIGN_SPEC.md#fd07)). Pilihan keperluan hanya saran dari riwayat sendiri; nominal tidak pernah diisi otomatis. Jika mirip belanja yang sudah ada, tampilkan “Mirip belanja Listrik Rp150.000 kemarin. [Tetap Kirim] [Lihat]” tanpa memblokir. Sumber **Belum Tahu** boleh dikirim; bantuan menyebut Owner akan melengkapinya.
 
 - Keperluan/barang/jasa boleh teks baru; tidak perlu master barang/SKU atau kategori akuntansi. Listrik dan jasa sama sahnya dengan gas/solar. Rincian tambahan dapat berisi toko, jumlah/unit, pembayaran parsial, penerimaan barang/pekerjaan, dan beberapa baris bila dibutuhkan.
 - **Uang Pribadi** pada ABK berarti talangan ABK, bukan kasbon. **Belum Dibayar** berarti utang toko bila pembelian sudah diterima/disahkan. **Belum Tahu** tidak diubah menjadi kas default.
@@ -669,3 +681,4 @@ Perintah dapat dijalankan ulang dari root proyek dengan `python3 -B .agents/skil
 |---|---|---|
 | 0.1 | 23 September 2026 | Alur R1 dan wireframe teks prioritas, beranda adaptif, cabang gagal/offline, rujukan PRD/UX, serta rencana validasi. Arahan pengguna berikutnya menetapkan fokus `.md` saja; urutan mockup diganti dokumen arsitektur dan perencanaan teknis melalui PLANNING.md. Belum mockup visual, implementasi, atau UAT. |
 | 0.2 | 23 September 2026 | Audit kemudahan K-38: aturan arahan bebas, kerja di tempat dengan lembar dan baris buka-tutup, keypad angka dan bantuan pintar pada Catat Belanja, serta label kanonis (Terima/Kembalikan Uang, Periksa Belanja, Riwayat Belanja, Status Kirim, Kandang Kosong, Tutup Buku). Masih sketsa teks, bukan mockup. |
+| 0.3 | 23 September 2026 | Menyesuaikan dengan mockup final K-39: navigasi per peran dengan tombol Catat di tengah, halaman fokus Catat Belanja/Mulai Kandang, WF-08 aksi cepat, dan WF-09 Recording Harian bertab (Pakan, Mortalitas, Sampling) yang tetap satu catatan bersama. |
