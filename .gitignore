@@ -1,0 +1,3 @@
+# Cache Python dari skrip skill lokal
+__pycache__/
+*.pyc
