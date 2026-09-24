@@ -1,0 +1,420 @@
+<!-- Acuan terkoreksi: dibuat dari code.html oleh design/tools/buat_acuan_terkoreksi.py menurut FRONTEND_DESIGN_SPEC §9. Jangan diedit manual. -->
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-highest": "#e3e2e2", "primary-container": "#0075de", "coral-alert": "#f64932", "tertiary": "#9b4300", "error-container": "#ffdad6", "secondary-fixed-dim": "#ffba43", "inverse-primary": "#a8c8ff", "surface-container": "#efeded", "sky-tint": "#e6f3fe", "surface-container-low": "#f5f3f3", "error": "#ba1a1a", "on-primary-fixed": "#001b3c", "inverse-on-surface": "#f2f0f0", "on-secondary-fixed": "#281800", "ink-black-secondary": "rgba(0, 0, 0, 0.60)", "on-primary": "#ffffff", "tertiary-fixed": "#ffdbca", "on-error-container": "#93000a", "secondary-container": "#fdaf0c", "on-tertiary-container": "#fffeff", "ink-black-primary": "rgba(0, 0, 0, 0.80)", "on-tertiary": "#ffffff", "surface-container-lowest": "#ffffff", "secondary": "#805600", "on-error": "#ffffff", "surface-variant": "#e3e2e2", "tertiary-fixed-dim": "#ffb68f", "on-secondary": "#ffffff", "primary-fixed": "#d5e3ff", "surface": "#fbf9f9", "on-primary-fixed-variant": "#00468a", "tertiary-container": "#c15600", "on-secondary-fixed-variant": "#614000", "primary-fixed-dim": "#a8c8ff", "inverse-surface": "#303031", "on-tertiary-fixed": "#331100", "surface-bright": "#fbf9f9", "on-surface-variant": "#414753", "on-background": "#1b1c1c", "primary": "#005db2", "on-tertiary-fixed-variant": "#773200", "surface-dim": "#dbdad9", "on-secondary-container": "#694600", "outline": "#717784", "ink-black-tertiary": "rgba(0, 0, 0, 0.40)", "secondary-fixed": "#ffddaf", "on-surface": "#1b1c1c", "surface-tint": "#005eb4", "outline-variant": "#c1c6d5", "canvas-base": "#f6f5f4", "background": "#fbf9f9", "on-primary-container": "#fffeff", "surface-container-high": "#e9e8e7" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1rem", "margin": "1rem", "space-xl": "1.5rem", "space-lg": "1.25rem", "space-md": "1rem" }, fontFamily: { "label-lg": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "label-sm": ["Inter"], "body-sm": ["Inter"], "body-lg": ["Inter"], "headline-xl": ["Inter"], "label-md": ["Inter"], "headline-xl-mobile": ["Inter"], "body-md": ["Inter"] }, fontSize: { "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#fbf9f9;color:#1b1c1c;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-40 pt-safe bg-white/80 backdrop-blur-xl shadow-[0_4px_24px_rgba(31,38,135,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><button aria-label="Kembali" class="min-w-[44px] min-h-[44px] flex items-center justify-center -ml-2 rounded-full text-on-surface active:bg-surface-container-high/50" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="Modern minimalist rooster emblem logo inside rounded squircle icon, sleek geometric poultry symbol in vibrant notion blue and soft warm tones, flat modern vector style, ultra clean aesthetic for farm management app. Design context: - Primary color: #0075de
+- Font: inter
+- Mode: light
+- Roundness: rounded-md
+. The logo should be visually consistent with these brand tokens." class="h-7 w-auto object-contain" src="../assets/logo-placeholder-farmflow.jpg"/><h1 class="font-headline-md text-headline-md text-on-surface tracking-tight truncate max-w-[200px]">Detail Kandang</h1></div><div class="flex items-center gap-space-xs"><span aria-hidden="true" class="w-8 h-8 rounded-full bg-sky-tint text-primary font-label-md text-label-md font-bold flex items-center justify-center">H</span></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface"><div class="flex flex-col w-full">
+<div class="px-gutter py-space-md flex flex-col gap-space-md">
+<!-- Top Delight Header & Stepper Card -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-tint text-primary font-label-sm text-label-sm w-fit mb-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">roofing</span>
+            Kandang Baru
+          </span>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Mulai Kandang Baru</h2>
+<p class="font-body-sm text-body-sm text-ink-black-secondary mt-0.5">
+            Siapkan kandang dan periode secara bertahap. Anda bisa berhenti dan melanjutkan kapan saja.
+          </p>
+</div>
+<div class="w-10 h-10 rounded-full bg-sky-tint flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[22px]">pets</span>
+</div>
+</div>
+<!-- Stepper Horizontal Indicator -->
+<div class="pt-2 flex flex-col gap-1.5">
+<div class="grid grid-cols-3 gap-2">
+<!-- Step 1 -->
+<div class="cursor-pointer flex items-center gap-1.5 p-2 rounded-lg bg-primary-container text-on-primary shadow-sm transition-all duration-200" id="tab-btn-1" onclick="switchStep(1)">
+<span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center font-label-sm text-label-sm font-bold flex-shrink-0">1</span>
+<span class="font-label-sm text-label-sm truncate">Data Kandang</span>
+</div>
+<!-- Step 2 -->
+<div class="cursor-pointer flex items-center gap-1.5 p-2 rounded-lg bg-surface-container text-on-surface-variant transition-all duration-200" id="tab-btn-2" onclick="switchStep(2)">
+<span class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-label-sm font-bold flex-shrink-0">2</span>
+<span class="font-label-sm text-label-sm truncate">Recording</span>
+</div>
+<!-- Step 3 -->
+<div class="cursor-pointer flex items-center gap-1.5 p-2 rounded-lg bg-surface-container text-on-surface-variant transition-all duration-200" id="tab-btn-3" onclick="switchStep(3)">
+<span class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-label-sm font-bold flex-shrink-0">3</span>
+<span class="font-label-sm text-label-sm truncate">Periode</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-ink-black-tertiary flex items-center gap-1 text-[11px]">
+<span class="material-symbols-outlined text-[14px]">touch_app</span>
+          Persiapan kandang • Boleh dikerjakan urutan mana saja
+        </p>
+</div>
+</div>
+<!-- STEP 8a: DATA KANDANG -->
+<section class="flex flex-col gap-space-md" id="step-panel-1">
+<!-- Info banner with friendly micro-illustration -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-space-md shadow-sm flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-sky-tint flex items-center justify-center flex-shrink-0 text-primary">
+<span class="material-symbols-outlined text-[28px]">home_work</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface">Langkah 1: Identitas Kandang</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary truncate">Mulai dari tempat pencatatan usaha Anda</span>
+</div>
+</div>
+<!-- Main Form Card -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<!-- Nama Usaha -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface flex items-center justify-between">
+<span>Nama Usaha Peternakan</span>
+<span class="text-[11px] font-body-sm text-ink-black-tertiary">Contoh: Hadi Farm</span>
+</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2.5 rounded-lg outline-none focus:bg-white focus:shadow-sm" id="farm-name" placeholder="Masukkan nama peternakan..." type="text" value="Hadi Farm"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-[20px] text-ink-black-tertiary pointer-events-none">domain</span>
+</div>
+</div>
+<!-- Nama Kandang -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Nama Kandang</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2.5 rounded-lg outline-none focus:bg-white focus:shadow-sm" id="pen-name" placeholder="Contoh: Kandang Barat, Unit 1..." type="text" value="Kandang Utara"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-[20px] text-ink-black-tertiary pointer-events-none">warehouse</span>
+</div>
+</div>
+<!-- Zona Waktu -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface">Zona Waktu Operasional</label>
+<span class="text-[11px] font-label-sm text-primary">Dipilih, bukan ditebak</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<button class="tz-option flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-all" onclick="selectTimezone(this, 'WIB')" type="button">
+<span>WIB</span>
+<span class="text-[10px] opacity-80">UTC+7</span>
+</button>
+<button class="tz-option flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md transition-all" onclick="selectTimezone(this, 'WITA')" type="button">
+<span>WITA</span>
+<span class="text-[10px] text-ink-black-tertiary">UTC+8</span>
+</button>
+<button class="tz-option flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md transition-all" onclick="selectTimezone(this, 'WIT')" type="button">
+<span>WIT</span>
+<span class="text-[10px] text-ink-black-tertiary">UTC+9</span>
+</button>
+</div>
+</div>
+<!-- Akordeon Bangunan & Kapasitas (Terbuka Secara Elegan) -->
+<div class="bg-surface-container-low rounded-xl p-3.5 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">grid_view</span>
+<span class="font-label-md text-label-md text-on-surface">Rincian Bangunan &amp; Kapasitas</span>
+</div>
+<span class="text-[11px] px-2 py-0.5 rounded-full bg-surface-container text-ink-black-secondary font-label-sm">2 Bangunan</span>
+</div>
+<div class="flex flex-col gap-2.5">
+<!-- Bangunan A -->
+<div class="bg-surface-container-lowest p-3 rounded-lg flex items-center justify-between gap-3 shadow-sm">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-7 h-7 rounded bg-sky-tint text-primary flex items-center justify-center font-label-sm font-bold flex-shrink-0">A</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface">Bangunan A</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary text-[11px]">Sisi Timur / Atas</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 flex-shrink-0">
+<input class="w-24 bg-surface-container-low text-right font-label-md text-label-md text-on-surface px-2.5 py-1.5 rounded-md outline-none focus:bg-white" id="cap-a" oninput="calculateTotalCapacity()" type="number" value="3500"/>
+<span class="font-body-sm text-body-sm text-ink-black-tertiary">ekor</span>
+</div>
+</div>
+<!-- Bangunan B -->
+<div class="bg-surface-container-lowest p-3 rounded-lg flex items-center justify-between gap-3 shadow-sm">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-7 h-7 rounded bg-sky-tint text-primary flex items-center justify-center font-label-sm font-bold flex-shrink-0">B</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface">Bangunan B</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary text-[11px]">Sisi Barat / Bawah</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 flex-shrink-0">
+<input class="w-24 bg-surface-container-low text-right font-label-md text-label-md text-on-surface px-2.5 py-1.5 rounded-md outline-none focus:bg-white" id="cap-b" oninput="calculateTotalCapacity()" type="number" value="3500"/>
+<span class="font-body-sm text-body-sm text-ink-black-tertiary">ekor</span>
+</div>
+</div>
+</div>
+<!-- Total Kapasitas Otomatis Terhitung -->
+<div class="bg-sky-tint p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[18px]">calculate</span>
+<span class="font-label-md text-label-md">Total Kapasitas Terhitung</span>
+</div>
+<span class="font-headline-md text-headline-md text-primary" id="total-capacity">7.000 <span class="font-body-sm text-body-sm font-normal">ekor</span></span>
+</div>
+</div>
+<!-- Alamat & Kemitraan -->
+<div class="flex flex-col gap-space-sm pt-1">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface">Mitra Kemitraan</label>
+<span class="text-[11px] font-body-sm text-ink-black-tertiary">Opsional</span>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2.5 rounded-lg outline-none focus:bg-white focus:shadow-sm" placeholder="Nama PT / Kemitraan / Mandiri..." type="text" value="PT Contoh Mitra"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-[20px] text-ink-black-tertiary pointer-events-none">handshake</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface">Alamat / Lokasi Kandang</label>
+<span class="text-[11px] font-body-sm text-ink-black-tertiary">Opsional</span>
+</div>
+<textarea class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-lg outline-none focus:bg-white focus:shadow-sm resize-none" placeholder="Desa, Kecamatan, atau patokan jalan masuk kandang..." rows="2">Jl. Raya Peternakan No. 12, Subang</textarea>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 8b: PILIHAN RECORDING -->
+<section class="flex flex-col gap-space-md" id="step-panel-2">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-space-md shadow-sm flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">edit_note</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface">Langkah 2: Model Pencatatan</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary truncate">Tentukan cara tim Anda bekerja setiap hari</span>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Kartu A: Recording Harian (Rekomendasi) -->
+<div class="cursor-pointer bg-surface-container-lowest/90 backdrop-blur-md rounded-xl p-space-md shadow-sm relative transition-all duration-200" id="card-rec-daily" onclick="selectRecordingMode('daily')">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Recording Harian</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Rekomendasi</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-black-secondary mt-2">
+            Pakan dipakai, mati, afkir, dan sampling bobot bila dilakukan. Satu catatan bersama yang praktis diisi bersama Anak Buah Kandang (ABK).
+          </p>
+<div class="mt-3.5 pt-3 flex items-center gap-3 text-ink-black-secondary font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">groups</span>
+              Dipakai bersama ABK
+            </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">analytics</span>
+              Rata-rata sampling otomatis
+            </span>
+</div>
+</div>
+<!-- Kartu B: Tidak Aktif / Finansial Saja -->
+<div class="cursor-pointer bg-surface-container-lowest/60 backdrop-blur-md rounded-xl p-space-md shadow-sm relative opacity-80 transition-all duration-200" id="card-rec-off" onclick="selectRecordingMode('off')">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container text-transparent flex items-center justify-center flex-shrink-0" id="radio-rec-off">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Tidak Aktif (Finansial Saja)</h3>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-ink-black-secondary mt-2">
+            Tetap bisa mencatat belanja, uang kas, dan hasil periode tanpa recording harian.
+          </p>
+<div class="mt-3.5 pt-3 flex items-center gap-2 text-ink-black-secondary font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-ink-black-tertiary">account_balance_wallet</span>
+              Fokus Keuangan
+            </span>
+</div>
+</div>
+<!-- Micro Information -->
+<div class="bg-surface-container-low rounded-xl p-3 flex items-center gap-2 text-ink-black-secondary">
+<span class="material-symbols-outlined text-[18px] text-primary flex-shrink-0">info</span>
+<span class="font-body-sm text-body-sm text-[12px]">Fleksibel: Mode recording ini bisa diubah kapan saja di menu Pengaturan Periode.</span>
+</div>
+</div>
+</section>
+<!-- STEP 8c: SIAPKAN PERIODE -->
+<section class="flex flex-col gap-space-md" id="step-panel-3">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-space-md shadow-sm flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]">event_upcoming</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface">Langkah 3: Persiapan Periode</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary truncate">Sebelum DOC Datang ke kandang</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-xl p-space-md shadow-sm flex flex-col gap-space-md">
+<!-- Nama Periode -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-on-surface">Nama Periode Perdana</label>
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2.5 rounded-lg outline-none focus:bg-white focus:shadow-sm" type="text" value="Periode 01"/>
+</div>
+<!-- Rencana DOC Datang -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface">Rencana DOC Datang</label>
+<span class="text-[11px] font-body-sm text-ink-black-tertiary">Boleh dikosongkan</span>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md px-3.5 py-2.5 rounded-lg outline-none focus:bg-white focus:shadow-sm" type="date" value="2026-09-25"/>
+</div>
+</div>
+<!-- Penjelasan Status Transparan -->
+<div class="p-3.5 rounded-xl bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Status Transparan &amp; Aman</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-black-secondary leading-relaxed">
+            Periode 01 akan berstatus <strong class="text-on-surface">"Persiapan"</strong>. Belum ada ayam atau umur yang dihitung sampai Anda mencatat DOC Masuk saat ayam benar-benar tiba di kandang.
+          </p>
+</div>
+<!-- Tautan Bantuan Ramah -->
+<div class="pt-1 flex items-center justify-between bg-sky-tint p-3 rounded-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">help_center</span>
+<span class="font-body-sm text-body-sm text-on-surface">Kandang sudah ada ayamnya?</span>
+</div>
+<button class="font-label-md text-label-md text-primary hover:underline flex items-center gap-0.5" type="button">
+            Gunakan 'Periode Sudah Mulai'
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Visual Photo Inspiration: Living Farm Warmth -->
+<div class="relative rounded-xl overflow-hidden shadow-sm bg-surface-container">
+<img class="w-full h-32 object-cover" data-alt="A warm, sunlit clean commercial poultry farm shed in Indonesia with modern automated feeding equipment, warm timber beams, and soft atmospheric morning sunlight streaming through side curtains. Peaceful, organized agricultural mood, notion blue clean accents." src="../assets/banner-kandang.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-3.5">
+<div class="flex flex-col text-white">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-sky-tint">Mulai Sederhana</span>
+<span class="font-label-md text-label-md">Catat kandang, belanja, dan uang di satu tempat.</span>
+</div>
+</div>
+</div>
+<!-- Bottom Actions & Mobile Primary Triggers -->
+<div class="sticky bottom-0 bg-surface/95 backdrop-blur-md pt-2 pb-safe flex flex-col gap-2">
+<!-- Tombol Utama -->
+<button class="w-full py-3.5 px-4 bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl shadow-md active:scale-[0.98] transition-transform flex items-center justify-center gap-2" id="btn-primary-action" onclick="handlePrimaryAction()" type="button">
+<span id="btn-label">Simpan &amp; Lanjut ke Pilihan Recording</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<!-- Tombol Sekunder -->
+<button class="w-full py-2.5 px-4 bg-sky-tint text-primary font-label-md text-label-md rounded-xl active:scale-[0.98] transition-transform flex items-center justify-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_border</span>
+        Simpan &amp; Lanjutkan Nanti
+      </button>
+<!-- Catatan Status & Sinyal -->
+<div class="flex items-center justify-center gap-1.5 pt-0.5 pb-1 text-ink-black-tertiary">
+<span class="material-symbols-outlined text-[14px] text-tertiary">cloud_sync</span>
+<span class="font-body-sm text-body-sm text-[11px]">Draf tersimpan di HP • Perlu sinyal untuk menyimpan pengaturan kandang</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentStep = 1;
+  let recordingMode = 'daily';
+
+  function calculateTotalCapacity() {
+    const a = parseInt(document.getElementById('cap-a').value) || 0;
+    const b = parseInt(document.getElementById('cap-b').value) || 0;
+    const total = a + b;
+    document.getElementById('total-capacity').innerHTML = total.toLocaleString('id-ID') + ' <span class="font-body-sm text-body-sm font-normal">ekor</span>';
+  }
+
+  function selectTimezone(btn, tz) {
+    document.querySelectorAll('.tz-option').forEach(el => {
+      el.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+      el.classList.add('bg-surface-container', 'text-on-surface');
+      const sub = el.querySelector('span:last-child');
+      if (sub) {
+        sub.classList.remove('opacity-80');
+        sub.classList.add('text-ink-black-tertiary');
+      }
+    });
+    btn.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+    btn.classList.remove('bg-surface-container', 'text-on-surface');
+    const sub = btn.querySelector('span:last-child');
+    if (sub) {
+      sub.classList.add('opacity-80');
+      sub.classList.remove('text-ink-black-tertiary');
+    }
+  }
+
+  function selectRecordingMode(mode) {
+    recordingMode = mode;
+    const cardDaily = document.getElementById('card-rec-daily');
+    const cardOff = document.getElementById('card-rec-off');
+    const radioOff = document.getElementById('radio-rec-off');
+
+    if (mode === 'daily') {
+      cardDaily.classList.remove('opacity-80');
+      cardDaily.classList.add('shadow-sm');
+      cardOff.classList.add('opacity-80');
+      cardOff.classList.remove('shadow-sm');
+      radioOff.classList.remove('bg-primary-container', 'text-on-primary');
+      radioOff.classList.add('bg-surface-container', 'text-transparent');
+    } else {
+      cardOff.classList.remove('opacity-80');
+      cardOff.classList.add('shadow-sm');
+      cardDaily.classList.add('opacity-80');
+      cardDaily.classList.remove('shadow-sm');
+      radioOff.classList.add('bg-primary-container', 'text-on-primary');
+      radioOff.classList.remove('bg-surface-container', 'text-transparent');
+    }
+  }
+
+  function switchStep(step) {
+    currentStep = step;
+    
+    // Update step pills
+    for (let i = 1; i <= 3; i++) {
+      const tab = document.getElementById('tab-btn-' + i);
+      const badge = tab.querySelector('span:first-child');
+      if (i === step) {
+        tab.className = 'cursor-pointer flex items-center gap-1.5 p-2 rounded-lg bg-primary-container text-on-primary shadow-sm transition-all duration-200';
+        badge.className = 'w-5 h-5 rounded-full bg-white/20 flex items-center justify-center font-label-sm text-label-sm font-bold flex-shrink-0';
+      } else {
+        tab.className = 'cursor-pointer flex items-center gap-1.5 p-2 rounded-lg bg-surface-container text-on-surface-variant transition-all duration-200';
+        badge.className = 'w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center font-label-sm text-label-sm font-bold flex-shrink-0';
+      }
+    }
+
+    // Smooth scroll to related section
+    const target = document.getElementById('step-panel-' + step);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Update main button label
+    const btnLabel = document.getElementById('btn-label');
+    if (step === 1) {
+      btnLabel.innerText = 'Simpan & Lanjut ke Pilihan Recording';
+    } else if (step === 2) {
+      btnLabel.innerText = 'Simpan & Lanjut ke Siapkan Periode';
+    } else {
+      btnLabel.innerText = 'Selesai & Buat Kandang Baru';
+    }
+  }
+
+  function handlePrimaryAction() {
+    if (currentStep < 3) {
+      switchStep(currentStep + 1);
+    } else {
+      const btn = document.getElementById('btn-primary-action');
+      btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Menyimpan Kandang...';
+      setTimeout(() => {
+        btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span> Kandang Berhasil Disiapkan!';
+        btn.classList.remove('bg-primary-container');
+        btn.classList.add('bg-secondary');
+      }, 1000);
+    }
+  }
+</script></main></body></html>

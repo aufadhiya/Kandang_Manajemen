@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'primary-fixed': '#d5e3ff', 'ink-black-tertiary': 'rgba(0, 0, 0, 0.40)', 'secondary-fixed': '#ffddaf', 'primary': '#005db2', 'surface-container': '#efeded', 'on-tertiary-fixed-variant': '#773200', 'surface-variant': '#e3e2e2', 'inverse-primary': '#a8c8ff', 'surface-container-high': '#e9e8e7', 'tertiary-fixed': '#ffdbca', 'error': '#ba1a1a', 'secondary': '#805600', 'on-secondary-fixed': '#281800', 'on-primary': '#ffffff', 'tertiary': '#9b4300', 'on-primary-fixed': '#001b3c', 'coral-alert': '#f64932', 'tertiary-container': '#c15600', 'primary-container': '#0075de', 'on-tertiary-fixed': '#331100', 'on-tertiary-container': '#fffeff', 'on-primary-container': '#fffeff', 'on-surface-variant': '#414753', 'on-error': '#ffffff', 'primary-fixed-dim': '#a8c8ff', 'on-secondary-fixed-variant': '#614000', 'outline-variant': '#c1c6d5', 'on-surface': '#1b1c1c', 'surface-container-lowest': '#ffffff', 'surface-container-highest': '#e3e2e2', 'on-tertiary': '#ffffff', 'tertiary-fixed-dim': '#ffb68f', 'surface-bright': '#fbf9f9', 'inverse-surface': '#303031', 'background': '#fbf9f9', 'on-secondary': '#ffffff', 'surface-container-low': '#f5f3f3', 'on-secondary-container': '#694600', 'on-error-container': '#93000a', 'canvas-base': '#f6f5f4', 'inverse-on-surface': '#f2f0f0', 'ink-black-primary': 'rgba(0, 0, 0, 0.80)', 'surface-tint': '#005eb4', 'surface': '#fbf9f9', 'secondary-fixed-dim': '#ffba43', 'outline': '#717784', 'surface-dim': '#dbdad9', 'on-background': '#1b1c1c', 'on-primary-fixed-variant': '#00468a', 'ink-black-secondary': 'rgba(0, 0, 0, 0.60)', 'secondary-container': '#fdaf0c', 'error-container': '#ffdad6', 'sky-tint': '#e6f3fe' }, borderRadius: { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, spacing: { 'gutter': '1rem', 'space-xs': '0.25rem', 'space-md': '1rem', 'space-xl': '1.5rem', 'space-sm': '0.5rem', 'margin': '1rem', 'space-lg': '1.25rem' }, fontFamily: { 'headline-lg': ['Inter'], 'body-md': ['Inter'], 'label-md': ['Inter'], 'label-sm': ['Inter'], 'label-lg': ['Inter'], 'body-lg': ['Inter'], 'headline-md': ['Inter'], 'body-sm': ['Inter'], 'headline-xl-mobile': ['Inter'], 'headline-xl': ['Inter'] }, fontSize: { 'headline-lg': ['24px', { lineHeight: '32px', letterSpacing: '-0.01em', fontWeight: '700' }], 'body-md': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'label-md': ['12px', { lineHeight: '16px', fontWeight: '600' }], 'label-sm': ['10px', { lineHeight: '14px', letterSpacing: '0.04em', fontWeight: '600' }], 'label-lg': ['14px', { lineHeight: '20px', fontWeight: '600' }], 'body-lg': ['16px', { lineHeight: '24px', fontWeight: '400' }], 'headline-md': ['20px', { lineHeight: '28px', fontWeight: '600' }], 'body-sm': ['12px', { lineHeight: '16px', fontWeight: '400' }], 'headline-xl-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.02em', fontWeight: '700' }], 'headline-xl': ['36px', { lineHeight: '44px', letterSpacing: '-0.02em', fontWeight: '700' }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;background-color:#f6f5f4;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-canvas-base text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col relative selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 inset-x-0 z-50 pt-safe bg-white/80 backdrop-blur-xl shadow-[0_4px_24px_rgba(31,38,135,0.04)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-xs"><button aria-label="Kembali" class="w-11 h-11 -ml-2 rounded-full flex items-center justify-center text-on-surface active:bg-black/5 hover:bg-black/5 transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-2xl">arrow_back</span></button><img alt="Logo Kandang Manajemen" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxiuWfCBWDloh_O7LJeZ13tBVBfFuvn4qBFBnj2dD6mmrxNUIufaAqf7YCZkcigvIx1LBcmxLhjnoLaeJu6h-HVBx9hk-DlfK1Ujo-RutPpAWX-dj13kWNiTJQXr8tK4rH23ojseBs032uNoH1joq-B6immAVDt9RqcRdJpm2zT-9vP04MFwgkwF-UGg0NXVETb3Wzj8TiUPpyt-dlRsOD5s-SUDkBtOnHK7H3fqt9mqfWJuiY5SmA_g"/><h1 class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight truncate max-w-[200px]">Catat Harian</h1></div><div class="flex items-center gap-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_2px_8px_rgba(0,0,0,0.08)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrmp2iZzWDnorykRwkceXG6ij8_ILP6ISKdSCMWCJMh5ifCE39sTjnrA__b9gvI71zP86ak76jJJrRzXZzBfXWhdrYTw-FY2b4oQA3QSwIdPDatLeYNe4cFwZ6bb5m9WGP0Ps5h2HnyWbidwsHKXIK9FdeyLbs5THaHT4Tzf1YoRoSraehhsMlx4BAcURZPT88FQax_85ivkc4sAGCLQXcT8n4PbCO1FqByQz0Fs0t530YlHQ0pps9nQ"/></div></div></header><main class="flex-1 w-full max-w-lg mx-auto pt-16 pb-safe px-gutter flex flex-col bg-canvas-base"><div class="flex flex-col w-full pb-6 relative select-none">
+<!-- Status & Draft Notification Banner -->
+<div class="flex items-center justify-between px-space-md py-space-xs bg-surface-container-low rounded-xl mb-space-md shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-ink-black-secondary">Draf tersimpan di HP · 09.10</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-sm">cloud_done</span> Tersinkron
+    </span>
+</div>
+<!-- Header Sheet Glassmorphic Info Card -->
+<div class="flex flex-col bg-surface-container-lowest/90 backdrop-blur-xl rounded-xl p-space-md shadow-sm mb-space-md">
+<div class="flex items-center justify-between mb-1">
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Catat Belanja</h2>
+<span class="bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">Operasional ABK</span>
+</div>
+<p class="font-body-sm text-body-sm text-ink-black-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+      Kandang Utara · Periode 01 · 23 Sep 2026
+    </p>
+</div>
+<!-- Form Content Stack -->
+<div class="flex flex-col gap-space-md mb-space-md">
+<!-- Field 1: Keperluan (Wajib) -->
+<div class="flex flex-col bg-surface-container-lowest/90 backdrop-blur-xl rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-1" for="input-keperluan">
+<span>Keperluan</span>
+<span class="text-coral-alert">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-ink-black-tertiary">Contoh: Bensin, Pakan, Vitamin</span>
+</div>
+<div class="relative mb-2.5">
+<input class="w-full bg-surface-container-low text-on-surface font-body-lg text-body-lg px-space-md py-3 rounded-xl focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" id="input-keperluan" placeholder="Tulis keperluan belanja..." type="text" value="Listrik"/>
+<button aria-label="Hapus teks" class="absolute right-3 top-3 text-ink-black-tertiary active:text-on-surface" onclick="document.getElementById('input-keperluan').value=''; document.getElementById('input-keperluan').focus();" type="button">
+<span class="material-symbols-outlined text-xl">cancel</span>
+</button>
+</div>
+<!-- Quick Chips History -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-ink-black-secondary">Pilihan Cepat:</span>
+<div class="flex items-center gap-2 overflow-x-auto pb-1" id="quick-category-pills">
+<button class="category-pill font-label-md text-label-md px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant whitespace-nowrap active:scale-95 transition-all" onclick="selectCategory('Solar', this)" type="button">
+            Solar
+          </button>
+<button class="category-pill font-label-md text-label-md px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant whitespace-nowrap active:scale-95 transition-all" onclick="selectCategory('Gas', this)" type="button">
+            Gas
+          </button>
+<button class="category-pill font-label-md text-label-md px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all" onclick="selectCategory('Listrik', this)" type="button">
+            Listrik ✓
+          </button>
+<button class="category-pill font-label-md text-label-md px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant whitespace-nowrap active:scale-95 transition-all" onclick="selectCategory('Sekam', this)" type="button">
+            Sekam
+          </button>
+<button class="category-pill font-label-md text-label-md px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant whitespace-nowrap active:scale-95 transition-all" onclick="selectCategory('Pakan Darurat', this)" type="button">
+            Pakan Darurat
+          </button>
+</div>
+</div>
+</div>
+<!-- Field 2: Nominal (Wajib) Display Box -->
+<div class="flex flex-col bg-surface-container-lowest/95 backdrop-blur-xl rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-1.5">
+<label class="font-label-lg text-label-lg text-on-surface flex items-center gap-1">
+<span>Nominal Belanja</span>
+<span class="text-coral-alert">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">touch_app</span> Ketuk keypad di bawah
+        </span>
+</div>
+<!-- Nominal Hero Display Glass -->
+<div class="flex flex-col items-center justify-center p-space-md bg-sky-tint/60 rounded-xl mb-2 text-center shadow-inner">
+<div class="flex items-baseline justify-center gap-1">
+<span class="font-headline-md text-headline-md text-primary font-bold">Rp</span>
+<span class="font-headline-xl-mobile text-headline-xl-mobile text-primary font-extrabold tracking-tight" id="display-nominal">150.000</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-medium mt-1 lowercase text-center px-space-xs" id="display-terbilang">
+          seratus lima puluh ribu rupiah
+        </p>
+</div>
+<!-- Smart Advice Banner: Peringatan Halus Non-blocking -->
+<div class="flex items-start gap-2 bg-secondary-fixed/50 p-2.5 rounded-xl" id="smart-warning">
+<span class="material-symbols-outlined text-secondary text-base mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed">
+          Nominal ini mirip tagihan listrik 3 minggu lalu (<span class="font-semibold">Rp148.500</span>). Pastikan struk token/meteran sudah sesuai.
+        </p>
+</div>
+</div>
+<!-- Field 3: Tanggal Belanja -->
+<div class="flex flex-col bg-surface-container-lowest/90 backdrop-blur-xl rounded-xl p-space-md shadow-sm">
+<label class="font-label-lg text-label-lg text-on-surface mb-2">Tanggal Belanja</label>
+<div class="grid grid-cols-3 gap-2" id="date-selector">
+<button class="date-btn py-2.5 px-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold text-center active:scale-95 shadow-sm transition-all flex items-center justify-center gap-1" onclick="selectDate(this, 'Hari ini')" type="button">
+<span class="material-symbols-outlined text-base">check</span> Hari ini
+        </button>
+<button class="date-btn py-2.5 px-2 rounded-xl bg-surface-container-high text-on-surface-variant font-label-md text-label-md text-center active:scale-95 transition-all" onclick="selectDate(this, 'Kemarin')" type="button">
+          Kemarin
+        </button>
+<button class="date-btn py-2.5 px-2 rounded-xl bg-surface-container-high text-on-surface-variant font-label-md text-label-md text-center active:scale-95 transition-all flex items-center justify-center gap-1" onclick="selectDate(this, 'Pilih tanggal')" type="button">
+<span class="material-symbols-outlined text-base">calendar_today</span> Pilih
+        </button>
+</div>
+</div>
+<!-- Field 4: Dibayar Dengan (Payment Sources) -->
+<div class="flex flex-col bg-surface-container-lowest/90 backdrop-blur-xl rounded-xl p-space-md shadow-sm">
+<label class="font-label-lg text-label-lg text-on-surface mb-2.5">Dibayar Dengan</label>
+<div class="flex flex-col gap-2" id="payment-options">
+<!-- Option 1: Uang Kas Saya (Selected) -->
+<div class="payment-card p-space-md rounded-xl bg-primary-fixed/40 cursor-pointer active:scale-[0.99] transition-all flex items-start gap-3" onclick="selectPayment(this)">
+<div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-0.5 shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-white text-sm">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Uang Kas saya</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary">Sisa saldo kas kecil di tangan: Rp420.000</span>
+</div>
+</div>
+<!-- Option 2: Uang pribadi saya -->
+<div class="payment-card p-space-md rounded-xl bg-surface-container-low cursor-pointer active:scale-[0.99] transition-all flex items-start gap-3" onclick="selectPayment(this)">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center mt-0.5 flex-shrink-0">
+<span class="material-symbols-outlined text-transparent text-sm">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Uang pribadi saya (minta diganti)</span>
+<span class="font-body-sm text-body-sm text-secondary font-medium mt-0.5">Dicatat sebagai utang penggantian ke Anda, bukan kasbon.</span>
+</div>
+</div>
+<!-- Option 3: Belum dibayar ke toko -->
+<div class="payment-card p-space-md rounded-xl bg-surface-container-low cursor-pointer active:scale-[0.99] transition-all flex items-start gap-3" onclick="selectPayment(this)">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center mt-0.5 flex-shrink-0">
+<span class="material-symbols-outlined text-transparent text-sm">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Belum dibayar ke toko (Bon/Hutang)</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary">Barang sudah dibawa, nota toko menyusul dilunasi.</span>
+</div>
+</div>
+<!-- Option 4: Belum tahu -->
+<div class="payment-card p-space-md rounded-xl bg-surface-container-low cursor-pointer active:scale-[0.99] transition-all flex items-start gap-3" onclick="selectPayment(this)">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center mt-0.5 flex-shrink-0">
+<span class="material-symbols-outlined text-transparent text-sm">check</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Belum tahu / Ragu</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Tidak apa-apa. Owner akan melengkapinya saat verifikasi.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Field 5: Foto Nota (Upload Card) -->
+<div class="flex flex-col bg-surface-container-lowest/90 backdrop-blur-xl rounded-xl p-space-md shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<label class="font-label-lg text-label-lg text-on-surface">Foto Nota / Struk</label>
+<span class="font-label-sm text-label-sm text-ink-black-tertiary">Opsional</span>
+</div>
+<div class="flex items-center gap-space-md bg-surface-container-low p-space-md rounded-xl active:bg-surface-container transition-colors cursor-pointer" onclick="simulateUpload()">
+<div class="w-14 h-14 rounded-xl bg-primary-fixed flex items-center justify-center flex-shrink-0 text-on-primary-fixed shadow-sm">
+<span class="material-symbols-outlined text-2xl">add_a_photo</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-primary font-bold truncate">Tambah Foto Nota (Opsional)</span>
+<span class="font-body-sm text-body-sm text-ink-black-secondary mt-0.5">Tanpa foto tetap bisa dikirim ke sistem.</span>
+</div>
+</div>
+<!-- Preview strip (Delight touch for operational feedback) -->
+<div class="hidden mt-space-sm pt-space-xs flex items-center gap-2" id="photo-preview-slot">
+<div class="relative w-12 h-12 rounded-lg overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close up photograph of a printed thermal paper receipt on a warm wooden chicken farm manager desk under warm natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGoS5pREfHa5i7faDx5_f0qj2ET4zqtIZf1jNIpRBUQyWC3zk2kkPMt6pNAnQ651Ws2KJOIeXFgMZTtT4HI1BfLfzxl2Bk_EHQ2uNQSDfxDPCXsTEhGipzFxWmhG3Z8AwGqlsTj26c52SYqYaTjVeL_SJ8ljUNrsihTHo8ls5bPJNi0sXjzUAnQlJljt_3OUF7IqUyu523LHjDQJSw40MprwxZCvpSPBh3wd-iXf-Un4B9Bnips2umtw"/>
+<span class="absolute bottom-0 inset-x-0 bg-black/60 text-white font-label-sm text-[8px] text-center">Nota 1</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">nota_struk_token_listrik.jpg</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Terlampir · Siap dikirim</span>
+</div>
+<button aria-label="Hapus nota" class="ml-auto p-1.5 rounded-full bg-surface-container-high text-on-surface-variant" onclick="removePhoto()" type="button">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Section 3: Custom Keypad Angka Khusus Aplikasi (Field-ready & tactile) -->
+<div class="sticky bottom-0 z-30 -mx-gutter px-gutter pt-3 pb-safe bg-surface-container-lowest/95 backdrop-blur-2xl shadow-xl rounded-t-3xl">
+<!-- Keypad Quick Toolbar -->
+<div class="flex items-center justify-between mb-2 px-1">
+<button class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-ink-black-secondary font-label-sm text-label-sm active:bg-surface-container-high transition-colors" onclick="document.getElementById('input-keperluan').focus()" type="button">
+<span class="material-symbols-outlined text-sm">keyboard</span> Keyboard HP
+      </button>
+<div class="flex items-center gap-1.5">
+<button class="px-2 py-0.5 rounded-full bg-sky-tint text-primary font-label-sm text-label-sm font-semibold active:scale-95 transition-all" onclick="keypadShortcut(50000)" type="button">
+          +50rb
+        </button>
+<button class="px-2 py-0.5 rounded-full bg-sky-tint text-primary font-label-sm text-label-sm font-semibold active:scale-95 transition-all" onclick="keypadShortcut(100000)" type="button">
+          +100rb
+        </button>
+</div>
+</div>
+<!-- Numeric Keypad Grid -->
+<div class="grid grid-cols-3 gap-2 mb-3">
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('1')" type="button">1</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('2')" type="button">2</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('3')" type="button">3</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('4')" type="button">4</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('5')" type="button">5</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('6')" type="button">6</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('7')" type="button">7</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('8')" type="button">8</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('9')" type="button">9</button>
+<button class="h-12 bg-surface-container-high text-primary font-headline-md text-headline-md font-bold rounded-xl flex items-center justify-center shadow-sm transition-transform active:scale-95" onclick="pressKey('000')" type="button">000</button>
+<button class="h-12 bg-surface-container-low active:bg-primary-fixed rounded-xl flex items-center justify-center font-headline-md text-headline-md text-on-surface font-semibold shadow-sm transition-transform active:scale-95" onclick="pressKey('0')" type="button">0</button>
+<button class="h-12 bg-surface-container-high text-on-surface-variant active:bg-error-container active:text-on-error-container rounded-xl flex items-center justify-center shadow-sm transition-transform active:scale-95" onclick="backspaceKey()" type="button">
+<span class="material-symbols-outlined text-2xl">backspace</span>
+</button>
+</div>
+<!-- Bottom Action Button & Safety Reminder -->
+<div class="flex flex-col gap-1.5 pb-2">
+<button class="w-full py-3.5 bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold rounded-xl shadow-md flex items-center justify-center gap-2 active:scale-[0.98] transition-all" onclick="reviewExpense()" type="button">
+<span class="material-symbols-outlined text-xl">fact_check</span>
+<span>Tinjau Belanja</span>
+</button>
+<div class="flex items-center justify-center gap-1 text-center">
+<span class="material-symbols-outlined text-xs text-ink-black-tertiary">verified_user</span>
+<span class="font-label-sm text-label-sm text-ink-black-secondary">Owner memeriksa &amp; menyetujui sebelum dibukukan.</span>
+</div>
+</div>
+</div>
+</div>
+<script>
+  let currentRawAmount = "150000";
+
+  function formatIDR(numStr) {
+    if (!numStr || numStr === "0") return "0";
+    const num = parseInt(numStr, 10);
+    return num.toLocaleString("id-ID");
+  }
+
+  function numberToWordsID(n) {
+    if (!n || n === 0) return "nol rupiah";
+    const satuan = ["", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"];
+    
+    function terbilang(x) {
+      x = Math.floor(x);
+      if (x < 12) return satuan[x];
+      if (x < 20) return terbilang(x - 10) + " belas";
+      if (x < 100) return terbilang(Math.floor(x / 10)) + " puluh " + satuan[x % 10];
+      if (x < 200) return "seratus " + terbilang(x - 100);
+      if (x < 1000) return terbilang(Math.floor(x / 100)) + " ratus " + terbilang(x % 100);
+      if (x < 2000) return "seribu " + terbilang(x - 1000);
+      if (x < 1000000) return terbilang(Math.floor(x / 1000)) + " ribu " + terbilang(x % 1000);
+      if (x < 1000000000) return terbilang(Math.floor(x / 1000000)) + " juta " + terbilang(x % 1000000);
+      return terbilang(Math.floor(x / 1000000000)) + " milyar " + terbilang(x % 1000000000);
+    }
+    
+    return terbilang(n).replace(/\s+/g, ' ').trim() + " rupiah";
+  }
+
+  function updateNominalDisplay() {
+    const disp = document.getElementById("display-nominal");
+    const terbilang = document.getElementById("display-terbilang");
+    const warning = document.getElementById("smart-warning");
+    
+    disp.innerText = formatIDR(currentRawAmount);
+    const numericVal = parseInt(currentRawAmount || "0", 10);
+    terbilang.innerText = numberToWordsID(numericVal);
+
+    if (numericVal >= 140000 && numericVal <= 160000) {
+      warning.classList.remove("hidden");
+    } else {
+      warning.classList.add("hidden");
+    }
+  }
+
+  function pressKey(val) {
+    if (currentRawAmount === "0" && val !== "000") {
+      currentRawAmount = val;
+    } else if (currentRawAmount.length < 9) {
+      currentRawAmount += val;
+    }
+    updateNominalDisplay();
+  }
+
+  function backspaceKey() {
+    if (currentRawAmount.length > 1) {
+      currentRawAmount = currentRawAmount.slice(0, -1);
+    } else {
+      currentRawAmount = "0";
+    }
+    updateNominalDisplay();
+  }
+
+  function keypadShortcut(addVal) {
+    const current = parseInt(currentRawAmount || "0", 10);
+    currentRawAmount = (current + addVal).toString();
+    updateNominalDisplay();
+  }
+
+  function selectCategory(name, btn) {
+    document.getElementById("input-keperluan").value = name;
+    const all = document.querySelectorAll(".category-pill");
+    all.forEach(p => {
+      p.className = "category-pill font-label-md text-label-md px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant whitespace-nowrap active:scale-95 transition-all";
+      p.innerText = p.innerText.replace(' ✓', '');
+    });
+    btn.className = "category-pill font-label-md text-label-md px-3.5 py-1.5 rounded-full bg-primary text-on-primary font-bold whitespace-nowrap shadow-sm active:scale-95 transition-all";
+    btn.innerText = name + ' ✓';
+  }
+
+  function selectDate(btn, label) {
+    const all = document.querySelectorAll(".date-btn");
+    all.forEach(b => {
+      b.className = "date-btn py-2.5 px-2 rounded-xl bg-surface-container-high text-on-surface-variant font-label-md text-label-md text-center active:scale-95 transition-all flex items-center justify-center gap-1";
+      if (!b.innerText.includes("Pilih")) {
+        b.innerText = b.innerText.replace("check ", "").trim();
+      }
+    });
+    btn.className = "date-btn py-2.5 px-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md font-bold text-center active:scale-95 shadow-sm transition-all flex items-center justify-center gap-1";
+    if (!label.includes("Pilih")) {
+      btn.innerHTML = '<span class="material-symbols-outlined text-base">check</span> ' + label;
+    }
+  }
+
+  function selectPayment(card) {
+    const cards = document.querySelectorAll(".payment-card");
+    cards.forEach(c => {
+      c.className = "payment-card p-space-md rounded-xl bg-surface-container-low cursor-pointer active:scale-[0.99] transition-all flex items-start gap-3";
+      const iconWrap = c.querySelector("div");
+      iconWrap.className = "w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center mt-0.5 flex-shrink-0";
+      const icon = iconWrap.querySelector("span");
+      icon.className = "material-symbols-outlined text-transparent text-sm";
+    });
+
+    card.className = "payment-card p-space-md rounded-xl bg-primary-fixed/40 cursor-pointer active:scale-[0.99] transition-all flex items-start gap-3";
+    const selIconWrap = card.querySelector("div");
+    selIconWrap.className = "w-5 h-5 rounded-full bg-primary flex items-center justify-center mt-0.5 shadow-sm flex-shrink-0";
+    const selIcon = selIconWrap.querySelector("span");
+    selIcon.className = "material-symbols-outlined text-white text-sm";
+  }
+
+  function simulateUpload() {
+    const slot = document.getElementById("photo-preview-slot");
+    slot.classList.remove("hidden");
+  }
+
+  function removePhoto() {
+    const slot = document.getElementById("photo-preview-slot");
+    slot.classList.add("hidden");
+  }
+
+  function reviewExpense() {
+    const keperluan = document.getElementById("input-keperluan").value;
+    const nominal = document.getElementById("display-nominal").innerText;
+    alert("Draf Belanja Siap Ditinjau:\nKeperluan: " + keperluan + "\nNominal: Rp" + nominal + "\nStatus: Menunggu ACC Owner.");
+  }
+</script></main></body></html>

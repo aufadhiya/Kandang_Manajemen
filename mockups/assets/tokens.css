@@ -1,0 +1,103 @@
+/*
+ * Design tokens — Kandang Manajemen (mockup v0.1).
+ * Sumber: UX_UI_SPEC.md §4.2 (warna/efek) dan §4.2/§5 (ukuran). Nilai masih usulan (PRD UX-13).
+ * Port ke frontend apa pun sebagai CSS custom properties atau theme object dengan nama yang sama.
+ */
+:root {
+  /* Warna dasar */
+  --color-canvas: #f3f6fb;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f8fafc;
+  --color-text-primary: #132238;
+  --color-text-secondary: #526176;
+  --color-action-primary: #155eef;
+  --color-action-primary-hover: #0f4ed1;
+  --color-action-primary-pressed: #0b3fae;
+  --color-on-action: #ffffff;
+  --color-action-secondary-bg: #eef3fe;
+  --color-accent: #0e7490;
+  --color-control-border: #64748b;
+  --color-divider: #e2e8f0;
+  --color-focus: #155eef;
+
+  /* Warna status: selalu dipasangkan dengan teks + ikon (UX-03) */
+  --color-success-fg: #067647;
+  --color-success-bg: #ecfdf3;
+  --color-warning-fg: #93370d;
+  --color-warning-bg: #fffaeb;
+  --color-danger-fg: #b42318;
+  --color-danger-bg: #fef3f2;
+  --color-info-fg: #175cd3;
+  --color-info-bg: #eff8ff;
+  --color-neutral-fg: #475467;
+  --color-neutral-bg: #f2f4f7;
+
+  /* Efek kaca hanya untuk bingkai (D-24); solid adalah baseline */
+  --glass-surface: rgb(255 255 255 / 0.88);
+  --glass-blur: 12px;
+  --shadow-panel: 0 8px 24px rgb(19 34 56 / 0.08);
+  --shadow-raised: 0 2px 8px rgb(19 34 56 / 0.08);
+  --scrim: rgb(19 34 56 / 0.48);
+
+  /* Tipografi: font sistem, tanpa CDN (kerja offline) */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-size-title: 1.5rem;      /* 24px */
+  --line-height-title: 2rem;      /* 32px */
+  --font-size-heading: 1.125rem;  /* 18px */
+  --line-height-heading: 1.5rem;
+  --font-size-body: 1rem;         /* 16px, juga ukuran input */
+  --line-height-body: 1.5rem;
+  --font-size-meta: 0.875rem;     /* 14px, hanya metadata nonkritis */
+  --line-height-meta: 1.25rem;
+  --font-size-amount: 1.75rem;    /* 28px nominal utama */
+  --line-height-amount: 2.25rem;
+  --font-size-keypad: 1.5rem;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spasi: ritme 4/8 px */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Bentuk */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-sheet: 20px;
+  --radius-pill: 999px;
+  --border-width: 1px;
+  --border-width-control: 1.5px;
+
+  /* Target sentuh (UX-07) */
+  --target-min: 44px;
+  --target-primary: 48px;
+  --keypad-key-height: 56px;
+
+  /* Tata letak */
+  --content-max: 640px;
+  --app-bar-height: 56px;
+  --nav-height: 64px;
+  --keypad-height: 312px;
+  --breakpoint-wide: 900px; /* informasi; media query memakai angka yang sama */
+
+  /* Lapisan */
+  --z-app-bar: 10;
+  --z-nav: 20;
+  --z-action-bar: 25;
+  --z-keypad: 30;
+  --z-toast: 40;
+
+  /* Gerak: singkat, tidak menunda simpan (UX_UI_SPEC §4.3) */
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+}

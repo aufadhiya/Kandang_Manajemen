@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f6fb">
+  <title>Recording Harian — Kandang Manajemen (mockup)</title>
+  <link rel="stylesheet" href="../assets/tokens.css">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="../assets/components.css">
+  <script type="module" src="./recording-harian.js"></script>
+</head>
+<body class="has-action-bar">
+  <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+  <header class="app-bar">
+    <div class="app-bar__inner app-bar__inner--back">
+      <a class="icon-btn" href="hari-ini.html" aria-label="Kembali ke Hari Ini">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-arrow-left"></use></svg>
+      </a>
+      <div class="app-bar__titles">
+        <h1 class="app-bar__title">Recording Harian</h1>
+        <p class="app-bar__context">Kandang Utara · Periode 01 · Hari ke-18</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="konten" class="page-main page-main--focus">
+    <div class="banner banner--warning offline-banner" role="status">
+      <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-offline"></use></svg>
+      <p class="banner__body">Tidak ada sinyal. Recording tersimpan di HP dan dikirim saat ada sinyal.</p>
+    </div>
+
+    <section class="card stack--tight" aria-label="Status catatan">
+      <div class="row row--between row--wrap">
+        <p class="text-secondary">Satu catatan bersama untuk seluruh kandang.</p>
+        <span class="status status--neutral" data-recording-status>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-clipboard"></use></svg>
+          <span data-recording-status-text>Draf</span>
+        </span>
+      </div>
+      <p class="text-meta" data-recording-author>Belum ada yang mengirim untuk tanggal ini.</p>
+    </section>
+
+    <form class="form" id="form-recording" data-draft-key="recording-kandang-utara-2026-09-23" data-submit="recording" novalidate>
+      <div class="error-summary" id="recording-errors" data-error-summary tabindex="-1" hidden></div>
+      <p class="draft-status" data-draft-status hidden>
+        <svg class="icon icon--xs" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>
+        Draf tersimpan di HP · <span data-draft-time></span>
+      </p>
+
+      <fieldset class="field" id="recording-tanggal">
+        <legend class="fieldset__legend">Tanggal</legend>
+        <div class="choice-group">
+          <span class="choice">
+            <input class="choice__input" type="radio" id="rec-tgl-hari-ini" name="tanggal" value="hari-ini" checked>
+            <label class="choice__label" for="rec-tgl-hari-ini"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Hari ini, 23 Sep</label>
+          </span>
+          <span class="choice">
+            <input class="choice__input" type="radio" id="rec-tgl-kemarin" name="tanggal" value="kemarin">
+            <label class="choice__label" for="rec-tgl-kemarin"><svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-check"></use></svg>Kemarin</label>
+          </span>
+        </div>
+        <p class="field__hint" data-show-when="tanggal=kemarin" hidden>Tanggal 22 Sep sudah dicatat Yanto. Mengirim akan mengoreksi catatan itu.</p>
+      </fieldset>
+
+      <section class="card form" aria-labelledby="pakan-judul">
+        <h2 class="card__title" id="pakan-judul">Pakan</h2>
+        <div class="field">
+          <label class="field__label" for="rec-jenis-pakan">Jenis pakan</label>
+          <select class="select" id="rec-jenis-pakan" name="jenis_pakan">
+            <option value="br1">Pakan starter BR-1</option>
+            <option value="br2">Pakan grower BR-2</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="rec-pakan">Dipakai hari ini</label>
+          <div class="input-group">
+            <input class="input input--number" type="text" id="rec-pakan" name="pakan" data-numeric="quantity" data-decimals="1"
+              data-required data-required-message="Isi pakan yang dipakai hari ini." aria-describedby="rec-pakan-hint">
+            <select class="select" id="rec-pakan-satuan" name="pakan_satuan" aria-label="Satuan pakan">
+              <option value="kg">kg</option>
+              <option value="sak">sak</option>
+            </select>
+          </div>
+          <p class="field__hint" id="rec-pakan-hint">Jumlah hari ini saja, bukan total sejak awal.</p>
+          <p class="field__hint" data-compare-for="rec-pakan" hidden>Kemarin: 96 kg</p>
+        </div>
+        <button type="button" class="btn btn--tertiary" data-mock-missing style="justify-self:start">
+          <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-plus"></use></svg>
+          Tambah jenis pakan
+        </button>
+      </section>
+
+      <section class="card form" aria-labelledby="ayam-judul">
+        <h2 class="card__title" id="ayam-judul">Ayam</h2>
+        <div class="field">
+          <label class="field__label" for="rec-mati">Mati (ekor)</label>
+          <div class="stepper">
+            <button type="button" class="stepper__btn" data-stepper-target="rec-mati" data-stepper-delta="-1" aria-label="Kurangi mati satu ekor">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-minus"></use></svg>
+            </button>
+            <input class="input input--number" type="text" id="rec-mati" name="mati" data-numeric="count" data-max-digits="6"
+              data-usual-max="12" data-usual-text="7 hari terakhir (paling banyak 6 ekor)" data-unit="ekor"
+              data-required data-required-message="Isi jumlah mati. Tulis 0 bila tidak ada.">
+            <button type="button" class="stepper__btn" data-stepper-target="rec-mati" data-stepper-delta="1" aria-label="Tambah mati satu ekor">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-plus"></use></svg>
+            </button>
+          </div>
+          <div class="field__notice" data-unusual-for="rec-mati" role="status" hidden>
+            <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-alert"></use></svg>
+            <div class="field__notice-body"><p data-unusual-text></p></div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field__label" for="rec-afkir">Afkir (ekor)</label>
+          <div class="stepper">
+            <button type="button" class="stepper__btn" data-stepper-target="rec-afkir" data-stepper-delta="-1" aria-label="Kurangi afkir satu ekor">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-minus"></use></svg>
+            </button>
+            <input class="input input--number" type="text" id="rec-afkir" name="afkir" data-numeric="count" data-max-digits="6"
+              data-required data-required-message="Isi jumlah afkir. Tulis 0 bila tidak ada.">
+            <button type="button" class="stepper__btn" data-stepper-target="rec-afkir" data-stepper-delta="1" aria-label="Tambah afkir satu ekor">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-plus"></use></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card form" aria-labelledby="sampling-judul">
+        <h2 class="card__title" id="sampling-judul">Sampling bobot</h2>
+        <fieldset class="field" id="recording-sampling">
+          <legend class="visually-hidden">Sampling bobot hari ini</legend>
+          <div class="choice-group choice-group--segmented">
+            <span class="choice">
+              <input class="choice__input" type="radio" id="rec-sampling-tidak" name="sampling" value="tidak" checked>
+              <label class="choice__label" for="rec-sampling-tidak">Tidak dilakukan</label>
+            </span>
+            <span class="choice">
+              <input class="choice__input" type="radio" id="rec-sampling-ya" name="sampling" value="ya">
+              <label class="choice__label" for="rec-sampling-ya">Dilakukan</label>
+            </span>
+          </div>
+          <p class="field__hint" data-show-when="sampling=tidak">Tidak sampling bukan berarti bobot 0.</p>
+        </fieldset>
+        <div class="form" data-show-when="sampling=ya" hidden>
+          <div class="field">
+            <label class="field__label" for="rec-sampel">Jumlah ayam ditimbang (ekor)</label>
+            <input class="input input--number" type="text" id="rec-sampel" name="sampel" data-numeric="count" data-max-digits="4" data-min="1"
+              data-required data-required-message="Isi jumlah ayam yang ditimbang.">
+          </div>
+          <div class="field">
+            <label class="field__label" for="rec-bobot">Total bobot (kg)</label>
+            <input class="input input--number" type="text" id="rec-bobot" name="bobot" data-numeric="quantity" data-decimals="2"
+              data-required data-required-message="Isi total bobot ayam yang ditimbang.">
+          </div>
+          <div class="value-row value-row--total" aria-live="polite">
+            <span class="value-row__label">Rata-rata</span>
+            <span class="value-row__value" data-average-of="rec-bobot/rec-sampel">—</span>
+          </div>
+          <p class="field__hint">Rata-rata sampel, bukan bobot seluruh ayam.</p>
+        </div>
+      </section>
+
+      <div class="field">
+        <label class="field__label" for="rec-catatan">Catatan <span class="field__optional">(opsional)</span></label>
+        <textarea class="textarea" id="rec-catatan" name="catatan" placeholder="Contoh: kipas bangunan 2 mati sore hari"></textarea>
+      </div>
+    </form>
+
+    <section class="disclosure-list" aria-label="Riwayat">
+      <div class="disclosure-item">
+        <button type="button" class="disclosure__toggle" data-disclosure aria-expanded="false" aria-controls="rec-riwayat">
+          <span class="disclosure__summary">
+            <span class="disclosure__title">Riwayat perubahan hari ini</span>
+            <span class="text-meta" data-history-summary>Belum ada perubahan</span>
+          </span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <div class="disclosure__panel" id="rec-riwayat" hidden>
+          <p class="text-meta" data-history-body>Belum ada catatan yang terkirim untuk 23 Sep.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button type="button" class="disclosure__toggle" data-disclosure aria-expanded="false" aria-controls="rec-kemarin">
+          <span class="disclosure__summary">
+            <span class="disclosure__title">Catatan kemarin, 22 Sep</span>
+            <span class="text-meta">Dicatat Yanto, 16.05</span>
+          </span>
+          <svg class="icon disclosure__chevron" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-chevron-down"></use></svg>
+        </button>
+        <div class="disclosure__panel" id="rec-kemarin" hidden>
+          <dl class="detail-list">
+            <dt>Pakan BR-1</dt><dd>96 kg</dd>
+            <dt>Mati</dt><dd>3 ekor</dd>
+            <dt>Afkir</dt><dd>1 ekor</dd>
+            <dt>Sampling</dt><dd>Tidak dilakukan</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="action-bar">
+    <div class="action-bar__inner">
+      <button type="button" class="btn btn--secondary" data-save-draft>Simpan Draf</button>
+      <button type="submit" class="btn btn--primary" form="form-recording">
+        <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="../assets/icons.svg#i-send"></use></svg>
+        Kirim
+      </button>
+    </div>
+  </div>
+
+  <div class="toast-region" data-toast-region role="status" aria-live="polite"></div>
+  <div class="keypad" data-keypad hidden></div>
+</body>
+</html>

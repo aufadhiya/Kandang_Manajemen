@@ -1,0 +1,80 @@
+{
+  "_catatan": "Area yang tidak dihitung saat membandingkan screenshot (FRONTEND_DESIGN_SPEC §11). Koordinat piksel CSS [x, y, lebar, tinggi] pada 390 px. Hanya logo sementara (K-ALL-3) yang di-mask; hapus mask ini setelah logo final pengguna dipasang dan acuan dirender ulang. Jangan menambah mask untuk menyembunyikan perbedaan tampilan.",
+  "hari_ini_abk": [
+    {
+      "kode": "K-ALL-3",
+      "rect": [
+        14,
+        14,
+        36,
+        36
+      ]
+    }
+  ],
+  "catat_belanja_keypad": [
+    {
+      "kode": "K-ALL-3",
+      "rect": [
+        54,
+        16,
+        32,
+        32
+      ]
+    }
+  ],
+  "uang_kas_abk": [
+    {
+      "kode": "K-ALL-3",
+      "rect": [
+        14,
+        14,
+        36,
+        36
+      ]
+    }
+  ],
+  "recording_harian_tab_riwayat_ringkas": [
+    {
+      "kode": "K-ALL-3",
+      "rect": [
+        14,
+        14,
+        36,
+        36
+      ]
+    }
+  ],
+  "ringkasan_owner_dashboard": [
+    {
+      "kode": "K-ALL-3",
+      "rect": [
+        14,
+        14,
+        36,
+        36
+      ]
+    }
+  ],
+  "periksa_belanja_owner": [
+    {
+      "kode": "K-ALL-3",
+      "rect": [
+        14,
+        14,
+        36,
+        36
+      ]
+    }
+  ],
+  "mulai_kandang_setup_3_langkah": [
+    {
+      "kode": "K-ALL-3",
+      "rect": [
+        58,
+        16,
+        32,
+        32
+      ]
+    }
+  ]
+}
